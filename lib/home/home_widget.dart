@@ -83,8 +83,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: StreamBuilder<List<OrdersRecord>>(
                   stream: queryOrdersRecord(
-                    queryBuilder: (ordersRecord) =>
-                        ordersRecord.orderBy('scheduled_at'),
+                    queryBuilder: (ordersRecord) => ordersRecord
+                        .where('status', isEqualTo: 'Confirmed')
+                        .orderBy('scheduled_at'),
                     limit: 10,
                   ),
                   builder: (context, snapshot) {
