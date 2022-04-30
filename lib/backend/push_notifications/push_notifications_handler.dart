@@ -77,7 +77,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'SignIn': (data) async => SignInWidget(),
-  'Homes': (data) async => HomesWidget(),
+  'OrderPool': (data) async => NavBarPage(initialPage: 'OrderPoolWidget'),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
