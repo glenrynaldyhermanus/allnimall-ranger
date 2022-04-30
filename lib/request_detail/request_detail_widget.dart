@@ -424,89 +424,94 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
               ),
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          final ordersUpdateData = createOrdersRecordData(
-                            status: 'Rejected',
-                          );
-                          await widget.order.reference.update(ordersUpdateData);
-                        },
-                        text: 'Tolak',
-                        icon: Icon(
-                          Icons.close_outlined,
-                          size: 15,
-                        ),
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 60,
-                          color: Color(0xFFFF0000),
-                          textStyle:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                          elevation: 3,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            final ordersUpdateData = createOrdersRecordData(
+                              status: 'Rejected',
+                            );
+                            await widget.order.reference
+                                .update(ordersUpdateData);
+                          },
+                          text: 'Tolak',
+                          icon: Icon(
+                            Icons.close_outlined,
+                            size: 15,
                           ),
-                          borderRadius: 8,
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 60,
+                            color: Color(0xFFFF0000),
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          final ordersUpdateData = createOrdersRecordData(
-                            status: 'Confirmed',
-                          );
-                          await widget.order.reference.update(ordersUpdateData);
-                        },
-                        text: 'Ambil ',
-                        icon: Icon(
-                          Icons.check_rounded,
-                          size: 15,
-                        ),
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 60,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                          elevation: 3,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            final ordersUpdateData = createOrdersRecordData(
+                              status: 'Confirmed',
+                            );
+                            await widget.order.reference
+                                .update(ordersUpdateData);
+                          },
+                          text: 'Ambil ',
+                          icon: Icon(
+                            Icons.check_rounded,
+                            size: 15,
                           ),
-                          borderRadius: 8,
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 60,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
