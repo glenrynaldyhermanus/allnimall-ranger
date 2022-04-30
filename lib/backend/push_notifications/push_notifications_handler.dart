@@ -77,7 +77,11 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'SignIn': (data) async => SignInWidget(),
-  'OrderPool': (data) async => NavBarPage(initialPage: 'OrderPoolWidget'),
+  'OrderRequest': (data) async => NavBarPage(initialPage: 'OrderRequestWidget'),
+  'RequestDetail': (data) async => RequestDetailWidget(
+        order:
+            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

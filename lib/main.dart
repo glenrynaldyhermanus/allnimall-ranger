@@ -117,7 +117,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Home': HomeWidget(),
-      'OrderPool': OrderPoolWidget(),
+      'OrderRequest': OrderRequestWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -145,7 +145,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.format_list_bulleted,
               size: 24,
             ),
-            label: 'Pool',
+            label: 'Request',
             tooltip: '',
           )
         ],
