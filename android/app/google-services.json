@@ -1,0 +1,202 @@
+{
+  "project_info": {
+    "project_number": "81093612277",
+    "project_id": "allnimall",
+    "storage_bucket": "allnimall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81093612277:android:30d209b24eaaedb34febbc",
+        "android_client_info": {
+          "package_name": "com.allnimall.administrator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81093612277-d8pigmdhuonitmt3ckhquhsdrle7h85p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.allnimall.administrator",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81093612277-ak3itfp04phgopl63vou3jkg11j7louj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.allnimall.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81093612277:android:6ec9dd17a7be7e324febbc",
+        "android_client_info": {
+          "package_name": "com.allnimall.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81093612277-9h8j7lbjegi4s0rbiah598k3aj66v40n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.allnimall.app",
+            "certificate_hash": "55bfa6d66e57b9aed9bdb5191377f2179255ad3f"
+          }
+        },
+        {
+          "client_id": "81093612277-oahtbatumofq5d42ltrdaabco8kbo7ep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.allnimall.app",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "81093612277-okvmbedovkid4fp53mdphp8f3r8q8tou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.allnimall.app",
+            "certificate_hash": "76f97bb3869258453b8a12520bfe548d1f60e533"
+          }
+        },
+        {
+          "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81093612277-ak3itfp04phgopl63vou3jkg11j7louj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.allnimall.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81093612277:android:3021a63c386f60724febbc",
+        "android_client_info": {
+          "package_name": "com.allnimall.ranger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81093612277-am7v4qpvfqf1o5s5vm79hau0g4vtod3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.allnimall.ranger",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81093612277-ak3itfp04phgopl63vou3jkg11j7louj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.allnimall.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81093612277:android:f21c7f5934b247a34febbc",
+        "android_client_info": {
+          "package_name": "com.allnimall.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81093612277-bf9heseg9itlu60159diamm1tmo0foef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.allnimall.store",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81093612277-98ist3lcs2cnq2o2nb5lunfudt1pjvmc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81093612277-ak3itfp04phgopl63vou3jkg11j7louj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.allnimall.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
