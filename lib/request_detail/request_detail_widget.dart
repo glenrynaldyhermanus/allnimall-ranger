@@ -314,8 +314,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                           ordersRecord
                                               .where('scheduled_at',
                                                   isEqualTo:
-                                                      getCurrentTimestamp)
-                                              .orderBy('scheduled_at'),
+                                                      DateTime.now()),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
