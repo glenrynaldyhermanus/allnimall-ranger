@@ -275,11 +275,13 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        widget.order.customerAddress,
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle2,
+                                      Expanded(
+                                        child: Text(
+                                          widget.order.customerAddress,
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2,
+                                        ),
                                       ),
                                     ],
                                   ),
