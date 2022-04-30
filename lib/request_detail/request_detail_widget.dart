@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -310,11 +311,21 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       20, 0, 20, 0),
                                   child: StreamBuilder<List<OrdersRecord>>(
                                     stream: queryOrdersRecord(
-                                      queryBuilder: (ordersRecord) =>
-                                          ordersRecord
-                                              .where('scheduled_at',
-                                                  isEqualTo:
-                                                      DateTime.now()),
+                                      queryBuilder:
+                                          (ordersRecord) =>
+                                              ordersRecord
+                                                  .where('scheduled_at',
+                                                      isGreaterThanOrEqualTo:
+                                                          functions.dateStart(
+                                                              widget.order
+                                                                  .scheduledAt))
+                                                  .where('scheduled_at',
+                                                      isLessThanOrEqualTo:
+                                                          functions
+                                                              .dateEnd(widget
+                                                                  .order
+                                                                  .scheduledAt))
+                                                  .orderBy('scheduled_at'),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
