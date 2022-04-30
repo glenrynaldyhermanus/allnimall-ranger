@@ -295,7 +295,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                           ordersRecord
                                               .where('scheduled_at',
                                                   isEqualTo:
-                                                      widget.order.scheduledAt)
+                                                      getCurrentTimestamp)
                                               .orderBy('scheduled_at'),
                                     ),
                                     builder: (context, snapshot) {
