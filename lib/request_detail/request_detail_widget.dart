@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/rejection_reasons_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -451,11 +452,19 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            final ordersUpdateData = createOrdersRecordData(
-                              status: 'Rejected',
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: RejectionReasonsWidget(
+                                    order: widget.order,
+                                  ),
+                                );
+                              },
                             );
-                            await widget.order.reference
-                                .update(ordersUpdateData);
                           },
                           text: 'Tolak',
                           icon: Icon(
