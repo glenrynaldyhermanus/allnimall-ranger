@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -15,10 +14,10 @@ class SignInWidget extends StatefulWidget {
 }
 
 class _SignInWidgetState extends State<SignInWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailAddressController;
   TextEditingController passwordController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -51,7 +50,13 @@ class _SignInWidgetState extends State<SignInWidget> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [],
+                    children: [
+                      Image.asset(
+                        'assets/images/Artboard1_4.png',
+                        height: 64,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
                   ),
                 ),
                 Image.asset(
@@ -92,21 +97,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 44,
-                              fillColor: Colors.white,
-                              icon: Icon(
-                                Icons.phone_enabled,
-                                color: Color(0xFF57636C),
-                                size: 24,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
                             ),
                           ],
                         ),

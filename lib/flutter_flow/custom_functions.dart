@@ -16,3 +16,16 @@ DateTime dateStart(DateTime timestamp) {
 DateTime dateEnd(DateTime timestamp) {
   return DateTime(timestamp.year, timestamp.month, timestamp.day, 23, 59, 59);
 }
+
+String countEndTimeForOrder(
+  int startHour,
+  int numOfPets,
+) {
+  int workHour = startHour + numOfPets;
+  String workHourString = workHour.toString();
+  if (workHourString.length == 1) {
+    workHourString = "0$workHour";
+  }
+
+  return "$workHourString:00";
+}

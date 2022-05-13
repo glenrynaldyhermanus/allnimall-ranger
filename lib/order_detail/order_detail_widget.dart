@@ -1,17 +1,16 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/rejection_reasons_widget.dart';
-import '../components/request_time_picker_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RequestDetailWidget extends StatefulWidget {
-  const RequestDetailWidget({
+class OrderDetailWidget extends StatefulWidget {
+  const OrderDetailWidget({
     Key key,
     this.order,
   }) : super(key: key);
@@ -19,10 +18,10 @@ class RequestDetailWidget extends StatefulWidget {
   final OrdersRecord order;
 
   @override
-  _RequestDetailWidgetState createState() => _RequestDetailWidgetState();
+  _OrderDetailWidgetState createState() => _OrderDetailWidgetState();
 }
 
-class _RequestDetailWidgetState extends State<RequestDetailWidget> {
+class _OrderDetailWidgetState extends State<OrderDetailWidget> {
   LatLng googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -43,20 +42,43 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
               ),
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.delete_forever_outlined,
-              color: FlutterFlowTheme.of(context).secondaryColor,
-              size: 30,
-            ),
-            onPressed: () async {
-              await widget.order.reference.delete();
-              Navigator.pop(context);
-            },
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 60,
+                icon: Icon(
+                  Icons.cancel_rounded,
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  size: 30,
+                ),
+                onPressed: () async {
+                  final ordersUpdateData = createOrdersRecordData(
+                    status: 'CanceledByGroomer',
+                  );
+                  await widget.order.reference.update(ordersUpdateData);
+                  Navigator.pop(context);
+                },
+              ),
+              FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 60,
+                icon: Icon(
+                  Icons.delete_forever_outlined,
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  size: 30,
+                ),
+                onPressed: () async {
+                  await widget.order.reference.delete();
+                  Navigator.pop(context);
+                },
+              ),
+            ],
           ),
         ],
         centerTitle: false,
@@ -278,170 +300,126 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 10, 20, 10),
+                                      20, 10, 20, 0),
                                   child: Row(
-                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
-                                        child: Text(
-                                          widget.order.customerAddress,
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle2,
+                                        flex: 2,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 10, 0),
+                                          child: Text(
+                                            widget.order.customerAddress,
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await launchURL(
+                                                'https://api.whatsapp.com/send?phone=${widget.order.customerPhone}');
+                                          },
+                                          text: 'Navigasi',
+                                          options: FFButtonOptions(
+                                            width: 84,
+                                            height: 40,
+                                            color: Color(0x19EF487F),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .title3
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      fontSize: 14,
+                                                    ),
+                                            elevation: 0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                            borderRadius: 12,
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Divider(
-                                  thickness: 1,
-                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 10, 20, 10),
+                                      20, 15, 20, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        'Jadwal Kamu Tanggal Ini',
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 0, 20, 0),
-                                  child: StreamBuilder<List<OrdersRecord>>(
-                                    stream: queryOrdersRecord(
-                                      queryBuilder:
-                                          (ordersRecord) =>
-                                              ordersRecord
-                                                  .where(
-                                                      'scheduled_at',
-                                                      isGreaterThanOrEqualTo:
-                                                          functions
-                                                              .dateStart(widget
-                                                                  .order
-                                                                  .scheduledAt))
-                                                  .where(
-                                                      'scheduled_at',
-                                                      isLessThanOrEqualTo:
-                                                          functions
-                                                              .dateEnd(widget
-                                                                  .order
-                                                                  .scheduledAt))
-                                                  .where('status',
-                                                      isEqualTo: 'Confirmed')
-                                                  .orderBy('scheduled_at'),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: CircularProgressIndicator(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<OrdersRecord>
-                                          columnOrdersRecordList =
-                                          snapshot.data;
-                                      return Column(
+                                      Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: List.generate(
-                                            columnOrdersRecordList.length,
-                                            (columnIndex) {
-                                          final columnOrdersRecord =
-                                              columnOrdersRecordList[
-                                                  columnIndex];
-                                          return Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 2, 0, 0),
-                                                    child: Text(
-                                                      columnOrdersRecord
-                                                          .startTime,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontSize: 12,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20, 0, 0, 0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            columnOrdersRecord
-                                                                .name,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
-                                                          ),
-                                                          Text(
-                                                            columnOrdersRecord
-                                                                .customerAddress,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.order.customerName,
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1,
+                                          ),
+                                          Text(
+                                            widget.order.customerPhone,
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          await launchURL(
+                                              'https://api.whatsapp.com/send?phone=${widget.order.customerPhone}');
+                                        },
+                                        text: 'Call',
+                                        options: FFButtonOptions(
+                                          width: 64,
+                                          height: 40,
+                                          color: Color(0x19EF487F),
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .title3
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                fontSize: 14,
                                               ),
-                                              Divider(
-                                                thickness: 1,
-                                              ),
-                                            ],
-                                          );
-                                        }),
-                                      );
-                                    },
+                                          elevation: 0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 12,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -467,71 +445,18 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                    if ((widget.order.status) == 'Confirmed')
+                      Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              context: context,
-                              builder: (context) {
-                                return Padding(
-                                  padding: MediaQuery.of(context).viewInsets,
-                                  child: RejectionReasonsWidget(
-                                    order: widget.order,
-                                  ),
-                                );
-                              },
+                            final ordersUpdateData = createOrdersRecordData(
+                              status: 'OnTheWay',
+                              onthewayAt: getCurrentTimestamp,
                             );
+                            await widget.order.reference
+                                .update(ordersUpdateData);
                           },
-                          text: 'Tolak',
-                          icon: Icon(
-                            Icons.close_outlined,
-                            size: 15,
-                          ),
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            color: Color(0xFFFF0000),
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                            elevation: 3,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: 8,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              context: context,
-                              builder: (context) {
-                                return Padding(
-                                  padding: MediaQuery.of(context).viewInsets,
-                                  child: RequestTimePickerWidget(
-                                    order: widget.order,
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          text: 'Ambil ',
+                          text: 'Menuju Lokasi',
                           icon: Icon(
                             Icons.check_rounded,
                             size: 15,
@@ -556,7 +481,78 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                           ),
                         ),
                       ),
-                    ),
+                    if ((widget.order.status) == 'OnTheWay')
+                      Expanded(
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            final ordersUpdateData = createOrdersRecordData(
+                              status: 'Working',
+                              workingAt: getCurrentTimestamp,
+                            );
+                            await widget.order.reference
+                                .update(ordersUpdateData);
+                          },
+                          text: 'Mulai Pengerjaan',
+                          icon: Icon(
+                            Icons.check_rounded,
+                            size: 15,
+                          ),
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 60,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
+                          ),
+                        ),
+                      ),
+                    if ((widget.order.status) == 'Working')
+                      Expanded(
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            final ordersUpdateData = createOrdersRecordData(
+                              status: 'Finish',
+                              finishAt: getCurrentTimestamp,
+                            );
+                            await widget.order.reference
+                                .update(ordersUpdateData);
+                          },
+                          text: 'Selesai',
+                          icon: Icon(
+                            Icons.check_rounded,
+                            size: 15,
+                          ),
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 60,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 8,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

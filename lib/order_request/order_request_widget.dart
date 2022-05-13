@@ -17,44 +17,11 @@ class OrderRequestWidget extends StatefulWidget {
 }
 
 class _OrderRequestWidgetState extends State<OrderRequestWidget> {
-  PagingController<DocumentSnapshot, OrdersRecord> _pagingController =
-      PagingController(firstPageKey: null);
+  PagingController<DocumentSnapshot, OrdersRecord> _pagingController;
+  Query _pagingQuery;
   List<StreamSubscription> _streamSubscriptions = [];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    _pagingController.addPageRequestListener((nextPageMarker) {
-      queryOrdersRecordPage(
-        queryBuilder: (ordersRecord) => ordersRecord
-            .where('status', isEqualTo: 'New')
-            .orderBy('scheduled_at'),
-        nextPageMarker: nextPageMarker,
-        pageSize: 25,
-        isStream: true,
-      ).then((page) {
-        _pagingController.appendPage(
-          page.data,
-          page.nextPageMarker,
-        );
-        final streamSubscription = page.dataStream?.listen((data) {
-          final itemIndexes = _pagingController.itemList
-              .asMap()
-              .map((k, v) => MapEntry(v.reference.id, k));
-          data.forEach((item) {
-            final index = itemIndexes[item.reference.id];
-            if (index != null) {
-              _pagingController.itemList.replaceRange(index, index + 1, [item]);
-            }
-          });
-          setState(() {});
-        });
-        _streamSubscriptions.add(streamSubscription);
-      });
-    });
-  }
 
   @override
   void dispose() {
@@ -69,14 +36,17 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
       appBar: AppBar(
         backgroundColor: Color(0xFFF1F4F8),
         automaticallyImplyLeading: false,
-        title: Text(
-          'Permintaan',
-          style: FlutterFlowTheme.of(context).title1.override(
-                fontFamily: 'Outfit',
-                color: Color(0xFF0F1113),
-                fontSize: 32,
-                fontWeight: FontWeight.w500,
-              ),
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+          child: Text(
+            'Permintaan',
+            style: FlutterFlowTheme.of(context).title1.override(
+                  fontFamily: 'Outfit',
+                  color: Color(0xFF0F1113),
+                  fontSize: 32,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
         ),
         actions: [
           Padding(
@@ -108,7 +78,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -127,7 +97,57 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: PagedListView<DocumentSnapshot<Object>, OrdersRecord>(
-                  pagingController: _pagingController,
+                  pagingController: () {
+                    final Query<Object> Function(Query<Object>) queryBuilder =
+                        (ordersRecord) => ordersRecord
+                            .where('status', isEqualTo: 'New')
+                            .orderBy('scheduled_at');
+                    if (_pagingController != null) {
+                      final query = queryBuilder(OrdersRecord.collection);
+                      if (query != _pagingQuery) {
+                        // The query has changed
+                        _pagingQuery = query;
+                        _streamSubscriptions.forEach((s) => s?.cancel());
+                        _streamSubscriptions.clear();
+                        _pagingController.refresh();
+                      }
+                      return _pagingController;
+                    }
+
+                    _pagingController = PagingController(firstPageKey: null);
+                    _pagingQuery = queryBuilder(OrdersRecord.collection);
+                    _pagingController.addPageRequestListener((nextPageMarker) {
+                      queryOrdersRecordPage(
+                        queryBuilder: (ordersRecord) => ordersRecord
+                            .where('status', isEqualTo: 'New')
+                            .orderBy('scheduled_at'),
+                        nextPageMarker: nextPageMarker,
+                        pageSize: 25,
+                        isStream: true,
+                      ).then((page) {
+                        _pagingController.appendPage(
+                          page.data,
+                          page.nextPageMarker,
+                        );
+                        final streamSubscription =
+                            page.dataStream?.listen((data) {
+                          final itemIndexes = _pagingController.itemList
+                              .asMap()
+                              .map((k, v) => MapEntry(v.reference.id, k));
+                          data.forEach((item) {
+                            final index = itemIndexes[item.reference.id];
+                            if (index != null) {
+                              _pagingController.itemList
+                                  .replaceRange(index, index + 1, [item]);
+                            }
+                          });
+                          setState(() {});
+                        });
+                        _streamSubscriptions.add(streamSubscription);
+                      });
+                    });
+                    return _pagingController;
+                  }(),
                   padding: EdgeInsets.zero,
                   primary: false,
                   shrinkWrap: true,
@@ -148,7 +168,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                       final listViewOrdersRecord =
                           _pagingController.itemList[listViewIndex];
                       return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
                         child: InkWell(
                           onTap: () async {
                             await Navigator.push(
@@ -174,10 +194,11 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 15, 10, 15),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: 64,
@@ -199,7 +220,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 8, 4, 0),
+                                          10, 0, 10, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -214,7 +235,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                                 .override(
                                                   fontFamily: 'Outfit',
                                                   color: Color(0xFF0F1113),
-                                                  fontSize: 20,
+                                                  fontSize: 16,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
@@ -230,6 +251,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                                 replacement: '…',
                                               ),
                                               textAlign: TextAlign.start,
+                                              maxLines: 2,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText2
@@ -249,35 +271,25 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 4, 0, 0),
-                                        child: Icon(
-                                          Icons.chevron_right_rounded,
-                                          color: Color(0xFF57636C),
-                                          size: 24,
+                                      Text(
+                                        formatNumber(
+                                          listViewOrdersRecord.amount,
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.commaDecimal,
+                                          currency: 'Rp',
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 12, 4, 8),
-                                        child: Text(
-                                          listViewOrdersRecord.amount
-                                              .toString(),
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                color: Color(0xFF0F1113),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              color: Color(0xFF0F1113),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                       ),
                                     ],
                                   ),

@@ -72,6 +72,50 @@ abstract class OrdersRecord
   String get notes;
 
   @nullable
+  @BuiltValueField(wireName: 'start_time')
+  String get startTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'end_time')
+  String get endTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_uid')
+  DocumentReference get rangerUid;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_name')
+  String get rangerName;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_phone')
+  String get rangerPhone;
+
+  @nullable
+  @BuiltValueField(wireName: 'ranger_profile_picture')
+  String get rangerProfilePicture;
+
+  @nullable
+  @BuiltValueField(wireName: 'confirmed_at')
+  DateTime get confirmedAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'customer_phone')
+  String get customerPhone;
+
+  @nullable
+  @BuiltValueField(wireName: 'ontheway_at')
+  DateTime get onthewayAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'working_at')
+  DateTime get workingAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'finish_at')
+  DateTime get finishAt;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -88,7 +132,13 @@ abstract class OrdersRecord
     ..paymentStatus = ''
     ..prefferedTime = ''
     ..discount = 0.0
-    ..notes = '';
+    ..notes = ''
+    ..startTime = ''
+    ..endTime = ''
+    ..rangerName = ''
+    ..rangerPhone = ''
+    ..rangerProfilePicture = ''
+    ..customerPhone = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('orders');
@@ -129,6 +179,17 @@ Map<String, dynamic> createOrdersRecordData({
   String prefferedTime,
   double discount,
   String notes,
+  String startTime,
+  String endTime,
+  DocumentReference rangerUid,
+  String rangerName,
+  String rangerPhone,
+  String rangerProfilePicture,
+  DateTime confirmedAt,
+  String customerPhone,
+  DateTime onthewayAt,
+  DateTime workingAt,
+  DateTime finishAt,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -149,4 +210,15 @@ Map<String, dynamic> createOrdersRecordData({
           ..paymentStatus = paymentStatus
           ..prefferedTime = prefferedTime
           ..discount = discount
-          ..notes = notes));
+          ..notes = notes
+          ..startTime = startTime
+          ..endTime = endTime
+          ..rangerUid = rangerUid
+          ..rangerName = rangerName
+          ..rangerPhone = rangerPhone
+          ..rangerProfilePicture = rangerProfilePicture
+          ..confirmedAt = confirmedAt
+          ..customerPhone = customerPhone
+          ..onthewayAt = onthewayAt
+          ..workingAt = workingAt
+          ..finishAt = finishAt));

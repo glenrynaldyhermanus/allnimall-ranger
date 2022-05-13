@@ -21,6 +21,10 @@
         {
           "fieldPath": "scheduled_at",
           "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
         }
       ]
     }
