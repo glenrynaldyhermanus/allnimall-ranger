@@ -63,21 +63,24 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                   Navigator.pop(context);
                 },
               ),
-              FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30,
-                borderWidth: 1,
-                buttonSize: 60,
-                icon: Icon(
-                  Icons.delete_forever_outlined,
-                  color: FlutterFlowTheme.of(context).secondaryColor,
-                  size: 30,
+              if ((currentUserDocument?.role) == 'Admin')
+                AuthUserStreamWidget(
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    borderWidth: 1,
+                    buttonSize: 60,
+                    icon: Icon(
+                      Icons.delete_forever_outlined,
+                      color: FlutterFlowTheme.of(context).secondaryColor,
+                      size: 30,
+                    ),
+                    onPressed: () async {
+                      await widget.order.reference.delete();
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
-                onPressed: () async {
-                  await widget.order.reference.delete();
-                  Navigator.pop(context);
-                },
-              ),
             ],
           ),
         ],

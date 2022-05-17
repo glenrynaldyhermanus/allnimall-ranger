@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/rejection_reasons_widget.dart';
 import '../components/request_time_picker_widget.dart';
@@ -43,20 +44,25 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
               ),
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.delete_forever_outlined,
-              color: FlutterFlowTheme.of(context).secondaryColor,
-              size: 30,
+          Visibility(
+            visible: (currentUserDocument?.role) == 'Admin',
+            child: AuthUserStreamWidget(
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 60,
+                icon: Icon(
+                  Icons.delete_forever_outlined,
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  size: 30,
+                ),
+                onPressed: () async {
+                  await widget.order.reference.delete();
+                  Navigator.pop(context);
+                },
+              ),
             ),
-            onPressed: () async {
-              await widget.order.reference.delete();
-              Navigator.pop(context);
-            },
           ),
         ],
         centerTitle: false,

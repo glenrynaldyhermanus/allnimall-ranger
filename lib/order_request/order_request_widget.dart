@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../menu/menu_widget.dart';
 import '../request_detail/request_detail_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -61,8 +62,13 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                 color: Color(0xFF57636C),
                 size: 24,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuWidget(),
+                  ),
+                );
               },
             ),
           ),

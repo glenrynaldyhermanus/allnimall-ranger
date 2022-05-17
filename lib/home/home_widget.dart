@@ -1,10 +1,16 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/calendar_picker_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../menu/menu_widget.dart';
 import '../order_detail/order_detail_widget.dart';
+import '../custom_code/actions/index.dart' as actions;
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -24,6 +30,16 @@ class _HomeWidgetState extends State<HomeWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() => FFAppState().filterDate = getCurrentTimestamp);
+      await actions.refreshState();
+    });
+  }
+
+  @override
   void dispose() {
     _streamSubscriptions.forEach((s) => s?.cancel());
     super.dispose();
@@ -36,17 +52,50 @@ class _HomeWidgetState extends State<HomeWidget> {
       appBar: AppBar(
         backgroundColor: Color(0xFFF1F4F8),
         automaticallyImplyLeading: false,
-        title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-          child: Text(
-            'Hari Ini',
-            style: FlutterFlowTheme.of(context).title1.override(
-                  fontFamily: 'Outfit',
-                  color: Color(0xFF0F1113),
-                  fontSize: 32,
-                  fontWeight: FontWeight.w500,
+        title: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                'Hari Ini',
+                style: FlutterFlowTheme.of(context).title1.override(
+                      fontFamily: 'Outfit',
+                      color: Color(0xFF0F1113),
+                      fontSize: 32,
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 20,
+                borderWidth: 1,
+                buttonSize: 40,
+                fillColor: Color(0x27EF487F),
+                icon: Icon(
+                  Icons.date_range_outlined,
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  size: 20,
                 ),
-          ),
+                onPressed: () async {
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: CalendarPickerWidget(),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
         actions: [
           Padding(
@@ -61,8 +110,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                 color: Color(0xFF57636C),
                 size: 24,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuWidget(),
+                  ),
+                );
               },
             ),
           ),
@@ -83,7 +137,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'Task untukmu hari ini',
+                      'Jadwal kamu hari ${dateTimeFormat('MMMMEEEEd', FFAppState().filterDate)}',
                       style: FlutterFlowTheme.of(context).bodyText2.override(
                             fontFamily: 'Outfit',
                             color: Color(0xFF57636C),
@@ -99,12 +153,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                 child: PagedListView<DocumentSnapshot<Object>, OrdersRecord>(
                   pagingController: () {
                     final Query<Object> Function(Query<Object>) queryBuilder =
-                        (ordersRecord) => ordersRecord.where('status',
-                                whereIn: [
-                                  "Confirmed",
-                                  "OnTheWay",
-                                  "Working"
-                                ]).orderBy('scheduled_at');
+                        (ordersRecord) => ordersRecord
+                            .where('status',
+                                whereIn: ["Confirmed", "OnTheWay", "Working"])
+                            .where('ranger_uid',
+                                isEqualTo: currentUserReference)
+                            .where('scheduled_at',
+                                isGreaterThanOrEqualTo: functions
+                                    .dateStart(FFAppState().filterDate))
+                            .where('scheduled_at',
+                                isLessThanOrEqualTo:
+                                    functions.dateEnd(FFAppState().filterDate))
+                            .orderBy('scheduled_at');
                     if (_pagingController != null) {
                       final query = queryBuilder(OrdersRecord.collection);
                       if (query != _pagingQuery) {
@@ -122,11 +182,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                     _pagingController.addPageRequestListener((nextPageMarker) {
                       queryOrdersRecordPage(
                         queryBuilder: (ordersRecord) => ordersRecord
-                            .where('status', whereIn: [
-                          "Confirmed",
-                          "OnTheWay",
-                          "Working"
-                        ]).orderBy('scheduled_at'),
+                            .where('status',
+                                whereIn: ["Confirmed", "OnTheWay", "Working"])
+                            .where('ranger_uid',
+                                isEqualTo: currentUserReference)
+                            .where('scheduled_at',
+                                isGreaterThanOrEqualTo: functions
+                                    .dateStart(FFAppState().filterDate))
+                            .where('scheduled_at',
+                                isLessThanOrEqualTo:
+                                    functions.dateEnd(FFAppState().filterDate))
+                            .orderBy('scheduled_at'),
                         nextPageMarker: nextPageMarker,
                         pageSize: 25,
                         isStream: true,
