@@ -53,17 +53,6 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: Container(
-                width: 50,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Color(0xFFDBE2E7),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
-            Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
