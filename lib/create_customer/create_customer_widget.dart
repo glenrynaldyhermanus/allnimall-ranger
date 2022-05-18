@@ -1,22 +1,20 @@
-import '../customer_list/customer_list_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../ranger_list/ranger_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CreateOrderWidget extends StatefulWidget {
-  const CreateOrderWidget({Key key}) : super(key: key);
+class CreateCustomerWidget extends StatefulWidget {
+  const CreateCustomerWidget({Key key}) : super(key: key);
 
   @override
-  _CreateOrderWidgetState createState() => _CreateOrderWidgetState();
+  _CreateCustomerWidgetState createState() => _CreateCustomerWidgetState();
 }
 
-class _CreateOrderWidgetState extends State<CreateOrderWidget> {
+class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
   DateTime datePicked;
   String petCategoryListValue;
   String petServiceListValue;
@@ -25,6 +23,9 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
   String timeListValue;
   TextEditingController endTimeController;
   TextEditingController startTimeController;
+  String customerListValue1;
+  TextEditingController customerAddressController;
+  String customerListValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -33,6 +34,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
     amountController = TextEditingController();
     endTimeController = TextEditingController();
     startTimeController = TextEditingController();
+    customerAddressController = TextEditingController();
   }
 
   @override
@@ -89,7 +91,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24, 10, 0, 0),
                 child: Text(
-                  'Create Order',
+                  'Create Customer',
                   style: FlutterFlowTheme.of(context).title1.override(
                         fontFamily: 'Outfit',
                         color: Color(0xFF0F1113),
@@ -352,118 +354,73 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBtnText,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        valueOrDefault<String>(
-                          FFAppState().selectedCustomerName,
-                          'Pilih Customer',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyText2,
-                      ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
-                        icon: Icon(
-                          Icons.people_outline_rounded,
-                          color: Color(0xFF1F2126),
-                          size: 24,
-                        ),
-                        onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CustomerListWidget(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+              child: FlutterFlowDropDown(
+                options: ['Glen'].toList(),
+                onChanged: (val) => setState(() => customerListValue1 = val),
+                height: 50,
+                textStyle: FlutterFlowTheme.of(context).bodyText2,
+                hintText: 'Customer',
+                fillColor: Colors.white,
+                elevation: 2,
+                borderColor: Colors.transparent,
+                borderWidth: 0,
+                borderRadius: 0,
+                margin: EdgeInsetsDirectional.fromSTEB(22, 4, 12, 4),
+                hidesUnderline: true,
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBtnText,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        valueOrDefault<String>(
-                          FFAppState().selectedCustomerAddress,
-                          'Alamat Customer',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyText2,
-                      ),
-                    ],
+              child: TextFormField(
+                controller: customerAddressController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Alamat Customer',
+                  labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                  hintText: '65000',
+                  hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 0,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 0,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                 ),
+                style: FlutterFlowTheme.of(context).bodyText2,
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBtnText,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        valueOrDefault<String>(
-                          FFAppState().selectedRangerName,
-                          'Pilih Ranger',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyText2,
-                      ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
-                        icon: Icon(
-                          Icons.people_outline_rounded,
-                          color: Color(0xFF1F2126),
-                          size: 24,
-                        ),
-                        onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RangerListWidget(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+              child: FlutterFlowDropDown(
+                options: ['Glen'].toList(),
+                onChanged: (val) => setState(() => customerListValue2 = val),
+                height: 50,
+                textStyle: FlutterFlowTheme.of(context).bodyText2,
+                hintText: 'Ranger',
+                fillColor: Colors.white,
+                elevation: 2,
+                borderColor: Colors.transparent,
+                borderWidth: 0,
+                borderRadius: 0,
+                margin: EdgeInsetsDirectional.fromSTEB(22, 4, 12, 4),
+                hidesUnderline: true,
               ),
             ),
             Padding(
