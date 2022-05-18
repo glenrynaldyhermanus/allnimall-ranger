@@ -1,12 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/rejection_reasons_widget.dart';
+import '../components/request_time_picker_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,20 +44,25 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
               ),
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.delete_forever_outlined,
-              color: FlutterFlowTheme.of(context).secondaryColor,
-              size: 30,
+          Visibility(
+            visible: (currentUserDocument?.role) == 'Admin',
+            child: AuthUserStreamWidget(
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 60,
+                icon: Icon(
+                  Icons.delete_forever_outlined,
+                  color: FlutterFlowTheme.of(context).secondaryColor,
+                  size: 30,
+                ),
+                onPressed: () async {
+                  await widget.order.reference.delete();
+                  Navigator.pop(context);
+                },
+              ),
             ),
-            onPressed: () async {
-              await widget.order.reference.delete();
-              Navigator.pop(context);
-            },
           ),
         ],
         centerTitle: false,
@@ -254,6 +260,13 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                           googleMapsCenter = latLng,
                                       initialLocation: googleMapsCenter ??=
                                           widget.order.customerLatlng,
+                                      markers: [
+                                        if (widget.order != null)
+                                          FlutterFlowMarker(
+                                            widget.order.reference.path,
+                                            widget.order.customerLatlng,
+                                          ),
+                                      ],
                                       markerColor: GoogleMarkerColor.violet,
                                       mapType: MapType.normal,
                                       style: GoogleMapStyle.standard,
@@ -314,17 +327,22 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       queryBuilder:
                                           (ordersRecord) =>
                                               ordersRecord
-                                                  .where('scheduled_at',
+                                                  .where(
+                                                      'scheduled_at',
                                                       isGreaterThanOrEqualTo:
-                                                          functions.dateStart(
-                                                              widget.order
+                                                          functions
+                                                              .dateStart(widget
+                                                                  .order
                                                                   .scheduledAt))
-                                                  .where('scheduled_at',
+                                                  .where(
+                                                      'scheduled_at',
                                                       isLessThanOrEqualTo:
                                                           functions
                                                               .dateEnd(widget
                                                                   .order
                                                                   .scheduledAt))
+                                                  .where('status',
+                                                      isEqualTo: 'Confirmed')
                                                   .orderBy('scheduled_at'),
                                     ),
                                     builder: (context, snapshot) {
@@ -363,15 +381,24 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    '14:00',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText2
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 12,
-                                                        ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 2, 0, 0),
+                                                    child: Text(
+                                                      columnOrdersRecord
+                                                          .startTime,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 12,
+                                                              ),
+                                                    ),
                                                   ),
                                                   Expanded(
                                                     child: Padding(
@@ -451,11 +478,19 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            final ordersUpdateData = createOrdersRecordData(
-                              status: 'Rejected',
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: RejectionReasonsWidget(
+                                    order: widget.order,
+                                  ),
+                                );
+                              },
                             );
-                            await widget.order.reference
-                                .update(ordersUpdateData);
                           },
                           text: 'Tolak',
                           icon: Icon(
@@ -488,11 +523,19 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            final ordersUpdateData = createOrdersRecordData(
-                              status: 'Confirmed',
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: RequestTimePickerWidget(
+                                    order: widget.order,
+                                  ),
+                                );
+                              },
                             );
-                            await widget.order.reference
-                                .update(ordersUpdateData);
                           },
                           text: 'Ambil ',
                           icon: Icon(

@@ -1,9 +1,9 @@
 import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,10 +15,10 @@ class SignInWidget extends StatefulWidget {
 }
 
 class _SignInWidgetState extends State<SignInWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailAddressController;
   TextEditingController passwordController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -51,7 +51,23 @@ class _SignInWidgetState extends State<SignInWidget> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [],
+                    children: [
+                      InkWell(
+                        onLongPress: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpWidget(),
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          'assets/images/Artboard1_4.png',
+                          height: 64,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Image.asset(
@@ -92,21 +108,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ),
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 44,
-                              fillColor: Colors.white,
-                              icon: Icon(
-                                Icons.phone_enabled,
-                                color: Color(0xFF57636C),
-                                size: 24,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
                             ),
                           ],
                         ),
@@ -250,33 +251,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 16),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('ButtonForgotPassword pressed ...');
-                              },
-                              text: 'Forgot Password?',
-                              options: FFButtonOptions(
-                                width: 120,
-                                height: 40,
-                                color: Colors.white,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF0F1113),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                elevation: 0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: 12,
-                              ),
-                            ),
                             FFButtonWidget(
                               onPressed: () async {
                                 final user = await signInWithEmail(
