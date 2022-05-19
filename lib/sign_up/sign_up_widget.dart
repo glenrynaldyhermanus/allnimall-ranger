@@ -16,7 +16,6 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  LatLng currentUserLocationValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController confirmPasswordController;
   bool confirmPasswordVisibility;
@@ -536,8 +535,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                currentUserLocationValue = await getCurrentUserLocation(
-                    defaultLocation: LatLng(0.0, 0.0));
                 if (passwordController.text != confirmPasswordController.text) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -558,16 +555,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   return;
                 }
 
-                final usersCreateData = createUsersRecordData(
+                final rangersCreateData = createRangersRecordData(
                   displayName: fullNameController.text,
                   phoneNumber: phoneController.text,
-                  role: rolerController.text,
+                  role: 'Groomer',
                   createdTime: getCurrentTimestamp,
-                  latLng: currentUserLocationValue,
                 );
-                await UsersRecord.collection
+                await RangersRecord.collection
                     .doc(user.uid)
-                    .update(usersCreateData);
+                    .update(rangersCreateData);
 
                 await Navigator.pushAndRemoveUntil(
                   context,

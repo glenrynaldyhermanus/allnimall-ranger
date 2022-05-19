@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/lat_lng.dart';
 
 class FFAppState {
@@ -19,6 +21,24 @@ class FFAppState {
   SharedPreferences prefs;
 
   DateTime filterDate;
+
+  DocumentReference selectedCustomer;
+
+  String selectedCustomerName = '';
+
+  String selectedCustomerAddress = '';
+
+  DocumentReference selectedRanger;
+
+  String selectedRangerName = '';
+
+  String selectedCustomerPhone = '';
+
+  LatLng selectedCustomerLatLng;
+
+  String selectedRangerPhone = '';
+
+  String selectedRangerPicture;
 }
 
 LatLng _latLngFromString(String val) {
