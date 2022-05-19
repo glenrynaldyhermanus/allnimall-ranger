@@ -67,8 +67,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                   color: FlutterFlowTheme.of(context).secondaryColor,
                   size: 20,
                 ),
-                onPressed: () async {
-                  await showModalBottomSheet(
+                onPressed: () {
+                  showModalBottomSheet(
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
                     context: context,
@@ -78,7 +78,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: CalendarPickerWidget(),
                       );
                     },
-                  );
+                  ).then((value){
+                    setState(() {});
+                  });
                 },
               ),
             ),
