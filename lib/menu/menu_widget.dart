@@ -125,28 +125,6 @@ class _MenuWidgetState extends State<MenuWidget> {
               ),
             ],
           ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
-                    child: Text(
-                      'Account Settings',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
