@@ -23,11 +23,11 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "scheduled_at",
+          "fieldPath": "status",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "status",
+          "fieldPath": "scheduled_at",
           "order": "ASCENDING"
         }
       ]
@@ -37,11 +37,11 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "status",
+          "fieldPath": "scheduled_at",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "scheduled_at",
+          "fieldPath": "status",
           "order": "ASCENDING"
         }
       ]
