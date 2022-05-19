@@ -1,4 +1,3 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../create_customer/create_customer_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -196,11 +195,8 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                  child: StreamBuilder<List<UsersRecord>>(
-                    stream: queryUsersRecord(
-                      queryBuilder: (usersRecord) =>
-                          usersRecord.where('role', isEqualTo: 'Customer'),
-                    ),
+                  child: StreamBuilder<List<CustomersRecord>>(
+                    stream: queryCustomersRecord(),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -214,16 +210,15 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                           ),
                         );
                       }
-                      List<UsersRecord> columnUsersRecordList = snapshot.data
-                          .where((u) => u.uid != currentUserUid)
-                          .toList();
+                      List<CustomersRecord> columnCustomersRecordList =
+                          snapshot.data;
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnUsersRecordList.length,
-                              (columnIndex) {
-                            final columnUsersRecord =
-                                columnUsersRecordList[columnIndex];
+                          children: List.generate(
+                              columnCustomersRecordList.length, (columnIndex) {
+                            final columnCustomersRecord =
+                                columnCustomersRecordList[columnIndex];
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
@@ -231,11 +226,18 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                                 onTap: () async {
                                   setState(() =>
                                       FFAppState().selectedCustomerName =
-                                          columnUsersRecord.displayName);
+                                          columnCustomersRecord.displayName);
                                   setState(() => FFAppState().selectedCustomer =
-                                      columnUsersRecord.reference);
-                                  setState(() => FFAppState()
-                                      .selectedCustomerAddress = 'Jaln jalan');
+                                      columnCustomersRecord.reference);
+                                  setState(() =>
+                                      FFAppState().selectedCustomerAddress =
+                                          columnCustomersRecord.orderAddress);
+                                  setState(() =>
+                                      FFAppState().selectedCustomerPhone =
+                                          columnCustomersRecord.phoneNumber);
+                                  setState(() =>
+                                      FFAppState().selectedCustomerLatLng =
+                                          columnCustomersRecord.orderLatlng);
                                   Navigator.pop(context);
                                 },
                                 child: Container(
@@ -288,7 +290,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnUsersRecord
+                                                      columnCustomersRecord
                                                           .displayName,
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -302,7 +304,9 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnUsersRecord.email,
+                                                      columnCustomersRecord
+                                                          .orderAddress,
+                                                      maxLines: 1,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -315,7 +319,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnUsersRecord
+                                                      columnCustomersRecord
                                                           .phoneNumber,
                                                       style:
                                                           FlutterFlowTheme.of(

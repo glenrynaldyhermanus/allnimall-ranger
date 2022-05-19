@@ -194,10 +194,10 @@ class _RangerListWidgetState extends State<RangerListWidget> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                  child: StreamBuilder<List<UsersRecord>>(
-                    stream: queryUsersRecord(
-                      queryBuilder: (usersRecord) =>
-                          usersRecord.where('role', isEqualTo: 'Groomer'),
+                  child: StreamBuilder<List<RangersRecord>>(
+                    stream: queryRangersRecord(
+                      queryBuilder: (rangersRecord) =>
+                          rangersRecord.where('role', isEqualTo: 'Groomer'),
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -212,26 +212,33 @@ class _RangerListWidgetState extends State<RangerListWidget> {
                           ),
                         );
                       }
-                      List<UsersRecord> columnUsersRecordList = snapshot.data
+                      List<RangersRecord> columnRangersRecordList = snapshot
+                          .data
                           .where((u) => u.uid != currentUserUid)
                           .toList();
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnUsersRecordList.length,
-                              (columnIndex) {
-                            final columnUsersRecord =
-                                columnUsersRecordList[columnIndex];
+                          children: List.generate(
+                              columnRangersRecordList.length, (columnIndex) {
+                            final columnRangersRecord =
+                                columnRangersRecordList[columnIndex];
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
                               child: InkWell(
                                 onTap: () async {
                                   setState(() => FFAppState().selectedRanger =
-                                      columnUsersRecord.reference);
+                                      columnRangersRecord.reference);
                                   setState(() =>
                                       FFAppState().selectedRangerName =
-                                          columnUsersRecord.displayName);
+                                          columnRangersRecord.displayName);
+                                  setState(() =>
+                                      FFAppState().selectedRangerPhone =
+                                          columnRangersRecord.phoneNumber);
+                                  setState(() =>
+                                      FFAppState().selectedRangerPicture =
+                                          columnRangersRecord.photoUrl);
                                   Navigator.pop(context);
                                 },
                                 child: Container(
@@ -284,7 +291,7 @@ class _RangerListWidgetState extends State<RangerListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnUsersRecord
+                                                      columnRangersRecord
                                                           .displayName,
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -298,7 +305,7 @@ class _RangerListWidgetState extends State<RangerListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnUsersRecord.email,
+                                                      columnRangersRecord.email,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -311,7 +318,7 @@ class _RangerListWidgetState extends State<RangerListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnUsersRecord.role,
+                                                      columnRangersRecord.role,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

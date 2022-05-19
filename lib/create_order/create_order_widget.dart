@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../customer_list/customer_list_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -5,6 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../ranger_list/ranger_list_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +23,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
   DateTime datePicked;
   String petCategoryListValue;
   String petServiceListValue;
-  String quantityListValue;
+  TextEditingController quantityController;
   TextEditingController amountController;
   String timeListValue;
   TextEditingController endTimeController;
@@ -31,6 +34,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
   void initState() {
     super.initState();
     amountController = TextEditingController();
+    quantityController = TextEditingController();
     endTimeController = TextEditingController();
     startTimeController = TextEditingController();
   }
@@ -145,19 +149,40 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
-              child: FlutterFlowDropDown(
-                options: ['1', '2', '3', '4', '5', '6', '7', '8', '9'].toList(),
-                onChanged: (val) => setState(() => quantityListValue = val),
-                height: 50,
-                textStyle: FlutterFlowTheme.of(context).bodyText2,
-                hintText: 'Jumlah',
-                fillColor: Colors.white,
-                elevation: 2,
-                borderColor: Colors.transparent,
-                borderWidth: 0,
-                borderRadius: 0,
-                margin: EdgeInsetsDirectional.fromSTEB(22, 4, 12, 4),
-                hidesUnderline: true,
+              child: TextFormField(
+                controller: quantityController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Jumlah',
+                  labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                  hintText: '10',
+                  hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 0,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 0,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                ),
+                style: FlutterFlowTheme.of(context).bodyText2,
+                keyboardType: TextInputType.number,
               ),
             ),
             Padding(
@@ -195,6 +220,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                   contentPadding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                 ),
                 style: FlutterFlowTheme.of(context).bodyText2,
+                keyboardType: TextInputType.number,
               ),
             ),
             Padding(
@@ -469,8 +495,35 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
               child: FFButtonWidget(
-                onPressed: () {
-                  print('Button-Login pressed ...');
+                onPressed: () async {
+                  final ordersCreateData = createOrdersRecordData(
+                    createdAt: getCurrentTimestamp,
+                    orderNo: 'OrderNO',
+                    petCategory: petCategoryListValue,
+                    name: 'Groom',
+                    scheduledAt: datePicked,
+                    service: petServiceListValue,
+                    quantity: int.parse(quantityController.text),
+                    amount: double.parse(amountController.text),
+                    status: 'Confirmed',
+                    customerAddress: FFAppState().selectedCustomerAddress,
+                    customerLatlng: FFAppState().selectedCustomerLatLng,
+                    customerName: FFAppState().selectedCustomerName,
+                    paymentStatus: 'Unpaid',
+                    prefferedTime: timeListValue,
+                    notes: '',
+                    startTime: startTimeController.text,
+                    endTime: endTimeController.text,
+                    rangerName: FFAppState().selectedRangerName,
+                    rangerPhone: FFAppState().selectedRangerPhone,
+                    rangerProfilePicture: FFAppState().selectedRangerPicture,
+                    confirmedAt: getCurrentTimestamp,
+                    customerPhone: FFAppState().selectedCustomerPhone,
+                    customerUid: FFAppState().selectedCustomer,
+                    rangerUid: FFAppState().selectedRanger,
+                  );
+                  await OrdersRecord.collection.doc().set(ordersCreateData);
+                  Navigator.pop(context);
                 },
                 text: 'Create Order',
                 options: FFButtonOptions(
