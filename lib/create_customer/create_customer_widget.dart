@@ -219,31 +219,46 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                 style: FlutterFlowTheme.of(context).bodyText2,
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 240,
-              decoration: BoxDecoration(
-                color: Color(0xFFEEEEEE),
-              ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
-                child: FlutterFlowGoogleMap(
-                  controller: googleMapsController,
-                  onCameraIdle: (latLng) => googleMapsCenter = latLng,
-                  initialLocation: googleMapsCenter ??=
-                      LatLng(13.106061, -59.613158),
-                  markerColor: GoogleMarkerColor.violet,
-                  mapType: MapType.normal,
-                  style: GoogleMapStyle.standard,
-                  initialZoom: 14,
-                  allowInteraction: true,
-                  allowZoom: true,
-                  showZoomControls: true,
-                  showLocation: true,
-                  showCompass: false,
-                  showMapToolbar: false,
-                  showTraffic: false,
-                  centerMapOnMarkerTap: true,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 240,
+                decoration: BoxDecoration(
+                  color: Color(0xFFEEEEEE),
+                ),
+                child: Stack(
+                  children: [
+                    FlutterFlowGoogleMap(
+                      controller: googleMapsController,
+                      onCameraIdle: (latLng) => googleMapsCenter = latLng,
+                      initialLocation: googleMapsCenter ??=
+                          LatLng(-6.3455171, 106.8316923),
+                      markerColor: GoogleMarkerColor.violet,
+                      mapType: MapType.normal,
+                      style: GoogleMapStyle.standard,
+                      initialZoom: 14,
+                      allowInteraction: true,
+                      allowZoom: true,
+                      showZoomControls: true,
+                      showLocation: true,
+                      showCompass: false,
+                      showMapToolbar: false,
+                      showTraffic: false,
+                      centerMapOnMarkerTap: true,
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0, 0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                        child: Icon(
+                          Icons.location_on_rounded,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 48,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
