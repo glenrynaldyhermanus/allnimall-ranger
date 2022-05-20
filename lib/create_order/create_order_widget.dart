@@ -263,6 +263,12 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                             },
                             currentTime: getCurrentTimestamp,
                             minTime: getCurrentTimestamp,
+                            locale: LocaleType.values.firstWhere(
+                              (l) =>
+                                  l.name ==
+                                  FFLocalizations.of(context).languageCode,
+                              orElse: null,
+                            ),
                           );
                         },
                       ),

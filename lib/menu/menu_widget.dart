@@ -130,7 +130,7 @@ class _MenuWidgetState extends State<MenuWidget> {
               padding: EdgeInsets.zero,
               scrollDirection: Axis.vertical,
               children: [
-                if ((currentUserDocument?.role) == 'Admin')
+                if ((valueOrDefault(currentUserDocument?.role, '')) == 'Admin')
                   AuthUserStreamWidget(
                     child: Row(
                       mainAxisSize: MainAxisSize.max,

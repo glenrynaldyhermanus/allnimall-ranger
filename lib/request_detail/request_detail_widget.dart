@@ -45,7 +45,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
         ),
         actions: [
           Visibility(
-            visible: (currentUserDocument?.role) == 'Admin',
+            visible: (valueOrDefault(currentUserDocument?.role, '')) == 'Admin',
             child: AuthUserStreamWidget(
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,

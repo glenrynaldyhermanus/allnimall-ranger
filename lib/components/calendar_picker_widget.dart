@@ -82,12 +82,13 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
               dateStyle: TextStyle(),
               selectedDateStyle: TextStyle(),
               inactiveDateStyle: TextStyle(),
+              locale: FFLocalizations.of(context).languageCode,
             ),
             Expanded(
               child: FFButtonWidget(
                 onPressed: () async {
                   setState(
-                      () => FFAppState().filterDate = calendarSelectedDay.end);
+                      () => FFAppState().filterDate = calendarSelectedDay?.end);
                   Navigator.pop(context);
                 },
                 text: 'Pilih',

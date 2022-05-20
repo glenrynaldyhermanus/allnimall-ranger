@@ -27,7 +27,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
+    SchedulerBinding.instance?.addPostFrameCallback((_) async {
       setState(() => FFAppState().filterDate = getCurrentTimestamp);
     });
   }
@@ -135,7 +135,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ],
                 ),
               ),
-              if ((currentUserDocument?.role) != 'Admin')
+              if ((valueOrDefault(currentUserDocument?.role, '')) != 'Admin')
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                   child: AuthUserStreamWidget(
@@ -332,7 +332,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                   ),
                 ),
-              if ((currentUserDocument?.role) == 'Admin')
+              if ((valueOrDefault(currentUserDocument?.role, '')) == 'Admin')
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                   child: AuthUserStreamWidget(
