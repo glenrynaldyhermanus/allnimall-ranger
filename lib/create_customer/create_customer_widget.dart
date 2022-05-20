@@ -2,9 +2,12 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/place.dart';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +23,7 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
   LatLng googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   TextEditingController addressController;
+  var placePickerValue = FFPlace();
   TextEditingController handphoneController;
   TextEditingController nameController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -184,39 +188,79 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
-              child: TextFormField(
-                controller: addressController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Alamat',
-                  labelStyle: FlutterFlowTheme.of(context).bodyText2,
-                  hintText: 'Jalan Lenteng Agung Raya No 62 Jakarta Selatan',
-                  hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 0,
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      topRight: Radius.circular(4.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: addressController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: 'Alamat',
+                        labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                        hintText:
+                            'Jalan Lenteng Agung Raya No 62 Jakarta Selatan',
+                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 0,
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4.0),
+                            topRight: Radius.circular(4.0),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 0,
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4.0),
+                            topRight: Radius.circular(4.0),
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding:
+                            EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyText2,
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 0,
+                  FlutterFlowPlacePicker(
+                    iOSGoogleMapsApiKey:
+                        'AIzaSyAX9Kl_giqmL8K8JGZlFN6RaPLxq6g6Xp0',
+                    androidGoogleMapsApiKey:
+                        'AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw',
+                    webGoogleMapsApiKey:
+                        'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
+                    onSelect: (place) =>
+                        setState(() => placePickerValue = place),
+                    defaultText: '',
+                    icon: Icon(
+                      Icons.place,
+                      color: Colors.white,
+                      size: 20,
                     ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      topRight: Radius.circular(4.0),
+                    buttonOptions: FFButtonOptions(
+                      width: 44,
+                      height: 44,
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      textStyle:
+                          FlutterFlowTheme.of(context).subtitle2.override(
+                                fontFamily: 'Poppins',
+                                color: Colors.white,
+                              ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: 0,
                     ),
                   ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                ),
-                style: FlutterFlowTheme.of(context).bodyText2,
+                ],
               ),
             ),
             Padding(

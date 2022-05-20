@@ -127,7 +127,7 @@ class _CalendarPickersWidgetState extends State<CalendarPickersWidget> {
                             onChange: (DateTimeRange newSelectedDate) async {
                               calendarSelectedDay = newSelectedDate;
                               setState(() => FFAppState().filterDate =
-                                  calendarSelectedDay.end);
+                                  calendarSelectedDay?.end);
                               Navigator.pop(context);
                               setState(() {});
                             },
@@ -136,6 +136,7 @@ class _CalendarPickersWidgetState extends State<CalendarPickersWidget> {
                             dateStyle: TextStyle(),
                             selectedDateStyle: TextStyle(),
                             inactiveDateStyle: TextStyle(),
+                            locale: FFLocalizations.of(context).languageCode,
                           ),
                         ],
                       ),

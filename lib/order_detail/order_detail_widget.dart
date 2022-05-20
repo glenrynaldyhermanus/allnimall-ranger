@@ -80,7 +80,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                       Navigator.pop(context);
                     },
                   ),
-                  if ((currentUserDocument?.role) == 'Admin')
+                  if ((valueOrDefault(currentUserDocument?.role, '')) ==
+                      'Admin')
                     AuthUserStreamWidget(
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
