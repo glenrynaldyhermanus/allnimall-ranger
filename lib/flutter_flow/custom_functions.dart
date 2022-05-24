@@ -39,3 +39,18 @@ String generateOrderNo() {
   // unique order number from timestamp
   return "GRM-" + DateFormat('ddMMhhmmss').format(DateTime.now());
 }
+
+String titleByDate(DateTime date) {
+  DateTime now = DateTime.now();
+  var days = 0;
+
+  days = (date.difference(now).inHours / 24).round();
+
+  if (days == 0) {
+    return "Hari Ini";
+  } else if (days == 1) {
+    return "Besok";
+  }
+
+  return DateFormat("EEEE, dd MMM", "id_ID").format(DateTime.now());
+}
