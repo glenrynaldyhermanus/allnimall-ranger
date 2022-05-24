@@ -101,12 +101,8 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
               weekFormat: false,
               weekStartsMonday: false,
               initialDate: FFAppState().filterDate,
-              onChange: (DateTimeRange newSelectedDate) async {
-                calendarSelectedDay = newSelectedDate;
-                setState(
-                    () => FFAppState().filterDate = calendarSelectedDay?.end);
-                Navigator.pop(context);
-                setState(() {});
+              onChange: (DateTimeRange newSelectedDate) {
+                setState(() => calendarSelectedDay = newSelectedDate);
               },
               titleStyle: TextStyle(),
               dayOfWeekStyle: TextStyle(),
