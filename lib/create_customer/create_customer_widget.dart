@@ -277,7 +277,7 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                       controller: googleMapsController,
                       onCameraIdle: (latLng) => googleMapsCenter = latLng,
                       initialLocation: googleMapsCenter ??=
-                          LatLng(-6.3455171, 106.8316923),
+                          placePickerValue.latLng,
                       markerColor: GoogleMarkerColor.violet,
                       mapType: MapType.normal,
                       style: GoogleMapStyle.standard,
