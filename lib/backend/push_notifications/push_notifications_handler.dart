@@ -65,7 +65,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: Colors.transparent,
+          color: FlutterFlowTheme.of(context).primaryBtnText,
           child: Center(
             child: Builder(
               builder: (context) => Image.asset(
