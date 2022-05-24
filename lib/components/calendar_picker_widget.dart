@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,7 +38,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
       ),
       child: Container(
         width: double.infinity,
-        height: 460,
+        height: 420,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -74,8 +73,12 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
               weekFormat: false,
               weekStartsMonday: false,
               initialDate: FFAppState().filterDate,
-              onChange: (DateTimeRange newSelectedDate) {
-                setState(() => calendarSelectedDay = newSelectedDate);
+              onChange: (DateTimeRange newSelectedDate) async {
+                calendarSelectedDay = newSelectedDate;
+                setState(
+                    () => FFAppState().filterDate = calendarSelectedDay?.end);
+                Navigator.pop(context);
+                setState(() {});
               },
               titleStyle: TextStyle(),
               dayOfWeekStyle: TextStyle(),
@@ -83,33 +86,6 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
               selectedDateStyle: TextStyle(),
               inactiveDateStyle: TextStyle(),
               locale: FFLocalizations.of(context).languageCode,
-            ),
-            Expanded(
-              child: FFButtonWidget(
-                onPressed: () async {
-                  setState(
-                      () => FFAppState().filterDate = calendarSelectedDay?.end);
-                  Navigator.pop(context);
-                },
-                text: 'Pilih',
-                options: FFButtonOptions(
-                  width: double.infinity,
-                  height: 60,
-                  color: FlutterFlowTheme.of(context).primaryColor,
-                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                  elevation: 3,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
-                  ),
-                  borderRadius: 8,
-                ),
-              ),
             ),
           ],
         ),
