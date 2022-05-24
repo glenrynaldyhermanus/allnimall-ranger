@@ -52,5 +52,9 @@ String titleByDate(DateTime date) {
     return "Besok";
   }
 
-  return DateFormat("EEEE, dd MMM", "id_ID").format(DateTime.now());
+  return DateFormat("EEEE, dd MMM", "id_ID").format(date);
+}
+
+String localDateString(DateTime date) {
+  return DateFormat("EEEE, dd MMM yyyy", "id_ID").format(date);
 }

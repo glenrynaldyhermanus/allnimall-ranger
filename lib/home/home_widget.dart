@@ -124,7 +124,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'Jadwal kamu hari ${dateTimeFormat('MMMMEEEEd', FFAppState().filterDate)}',
+                      'Jadwal kamu hari ${functions.localDateString(FFAppState().filterDate)}',
                       style: FlutterFlowTheme.of(context).bodyText2.override(
                             fontFamily: 'Outfit',
                             color: Color(0xFF57636C),

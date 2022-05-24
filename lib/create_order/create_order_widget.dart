@@ -508,7 +508,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     orderNo: functions.generateOrderNo(),
                     petCategory: petCategoryListValue,
                     name:
-                        '${petServiceListValue}${quantityController.text} ${petCategoryListValue}',
+                        '${petServiceListValue} ${quantityController.text} ${petCategoryListValue}',
                     scheduledAt: datePicked,
                     service: petServiceListValue,
                     quantity: int.parse(quantityController.text),
