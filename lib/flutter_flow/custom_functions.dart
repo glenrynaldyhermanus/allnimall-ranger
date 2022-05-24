@@ -29,3 +29,13 @@ String countEndTimeForOrder(
 
   return "$workHourString:00";
 }
+
+String generateWhatsAppUrl(String phone) {
+  phone = phone.replaceAll("+", "").trim();
+  return "https://api.whatsapp.com/send?phone=" + phone;
+}
+
+String generateOrderNo() {
+  // unique order number from timestamp
+  return "GRM-" + DateFormat('ddMMhhmmss').format(DateTime.now());
+}

@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../ranger_list/ranger_list_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -504,9 +505,10 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                 onPressed: () async {
                   final ordersCreateData = createOrdersRecordData(
                     createdAt: getCurrentTimestamp,
-                    orderNo: 'OrderNO',
+                    orderNo: functions.generateOrderNo(),
                     petCategory: petCategoryListValue,
-                    name: 'Groom',
+                    name:
+                        '${petServiceListValue}${quantityController.text} ${petCategoryListValue}',
                     scheduledAt: datePicked,
                     service: petServiceListValue,
                     quantity: int.parse(quantityController.text),
