@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../customer_list/customer_list_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -531,6 +532,16 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     rangerUid: FFAppState().selectedRanger,
                   );
                   await OrdersRecord.collection.doc().set(ordersCreateData);
+                  triggerPushNotification(
+                    notificationTitle:
+                        'Kerjaan ${functions.localDateString(datePicked)}',
+                    notificationText:
+                        'Ada kerjaan baru yang ditambahkan untukmu',
+                    notificationSound: 'default',
+                    userRefs: [FFAppState().selectedRanger],
+                    initialPageName: 'Home',
+                    parameterData: {},
+                  );
                   Navigator.pop(context);
                 },
                 text: 'Create Order',
