@@ -294,7 +294,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 4, 8, 0),
+                                                                  0, 4, 0, 0),
                                                       child: AutoSizeText(
                                                         'Jam : ',
                                                         textAlign:
