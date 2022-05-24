@@ -31,7 +31,7 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
   @override
   void initState() {
     super.initState();
-    addressController = TextEditingController();
+    addressController = TextEditingController(text: placePickerValue.address);
     handphoneController = TextEditingController();
     nameController = TextEditingController();
   }
