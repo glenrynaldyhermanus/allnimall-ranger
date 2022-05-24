@@ -1,4 +1,4 @@
-# AllnimallRanger
+# Allnimall Ranger
 
 A new Flutter project.
 
