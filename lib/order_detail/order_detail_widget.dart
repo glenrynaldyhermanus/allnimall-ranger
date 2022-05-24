@@ -355,42 +355,47 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               ),
                                             ),
                                           ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                await launchMap(
-                                                  location:
-                                                      orderDetailOrdersRecord
-                                                          .customerLatlng,
-                                                  title: orderDetailOrdersRecord
-                                                      .customerAddress,
-                                                );
-                                              },
-                                              text: 'Navigasi',
-                                              options: FFButtonOptions(
-                                                width: 84,
-                                                height: 40,
-                                                color: Color(0x19EF487F),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .title3
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryColor,
-                                                          fontSize: 14,
-                                                        ),
-                                                elevation: 0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
+                                          if ((orderDetailOrdersRecord
+                                                  .status) ==
+                                              'OnTheWay')
+                                            Expanded(
+                                              flex: 1,
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  await launchMap(
+                                                    location:
+                                                        orderDetailOrdersRecord
+                                                            .customerLatlng,
+                                                    title:
+                                                        orderDetailOrdersRecord
+                                                            .customerAddress,
+                                                  );
+                                                },
+                                                text: 'Navigasi',
+                                                options: FFButtonOptions(
+                                                  width: 84,
+                                                  height: 40,
+                                                  color: Color(0x19EF487F),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .title3
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryColor,
+                                                        fontSize: 14,
+                                                      ),
+                                                  elevation: 0,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius: 12,
                                                 ),
-                                                borderRadius: 12,
                                               ),
                                             ),
-                                          ),
                                         ],
                                       ),
                                     ),
