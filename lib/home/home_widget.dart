@@ -505,19 +505,65 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  listViewOrdersRecord.name,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .title3
-                                                      .override(
-                                                        fontFamily: 'Outfit',
-                                                        color:
-                                                            Color(0xFF0F1113),
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.emoji_people,
+                                                      color: Colors.black,
+                                                      size: 16,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 4, 8, 0),
+                                                      child: AutoSizeText(
+                                                        listViewOrdersRecord
+                                                            .rangerName
+                                                            .maybeHandleOverflow(
+                                                          maxChars: 70,
+                                                          replacement: '…',
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  color: Color(
+                                                                      0xFF57636C),
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
                                                       ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 5, 0, 0),
+                                                  child: Text(
+                                                    listViewOrdersRecord.name,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .title3
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          color:
+                                                              Color(0xFF0F1113),
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                  ),
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
@@ -548,10 +594,31 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Icon(
-                                                      Icons.emoji_people,
-                                                      color: Colors.black,
-                                                      size: 16,
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 4, 0, 0),
+                                                      child: AutoSizeText(
+                                                        'Jam : ',
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  color: Color(
+                                                                      0xFF57636C),
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -560,7 +627,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   0, 4, 8, 0),
                                                       child: AutoSizeText(
                                                         listViewOrdersRecord
-                                                            .rangerName
+                                                            .startTime
                                                             .maybeHandleOverflow(
                                                           maxChars: 70,
                                                           replacement: '…',
