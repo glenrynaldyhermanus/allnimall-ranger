@@ -476,7 +476,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 15, 20, 10),
+                                                  .fromSTEB(20, 15, 20, 20),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -594,7 +594,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 10),
+                                                  .fromSTEB(20, 0, 20, 20),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -712,7 +712,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 10),
+                                                  .fromSTEB(20, 0, 20, 20),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -830,7 +830,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 10),
+                                                  .fromSTEB(20, 0, 20, 20),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
