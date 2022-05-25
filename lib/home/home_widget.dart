@@ -151,7 +151,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                             .where('scheduled_at',
                                 isLessThanOrEqualTo:
                                     functions.dateEnd(FFAppState().filterDate))
-                            .orderBy('scheduled_at'),
+                            .orderBy('scheduled_at')
+                            .orderBy('start_time'),
                         limit: 10,
                       ),
                       builder: (context, snapshot) {
