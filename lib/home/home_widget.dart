@@ -142,8 +142,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                     child: StreamBuilder<List<OrdersRecord>>(
                       stream: queryOrdersRecord(
                         queryBuilder: (ordersRecord) => ordersRecord
-                            .where('status',
-                                whereIn: ["Confirmed", "OnTheWay", "Working"])
                             .where('ranger_uid',
                                 isEqualTo: currentUserReference)
                             .where('scheduled_at',
@@ -402,8 +400,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                     child: StreamBuilder<List<OrdersRecord>>(
                       stream: queryOrdersRecord(
                         queryBuilder: (ordersRecord) => ordersRecord
-                            .where('status',
-                                whereIn: ["Confirmed", "OnTheWay", "Working"])
                             .where('scheduled_at',
                                 isGreaterThanOrEqualTo: functions
                                     .dateStart(FFAppState().filterDate))
