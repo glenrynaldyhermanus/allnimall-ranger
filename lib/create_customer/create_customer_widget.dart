@@ -23,7 +23,7 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
   LatLng googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   TextEditingController addressController;
-  var placePickerValue = FFPlace();
+  var placePickerValue = FFPlace(latLng: LatLng(-6.3455171, 106.8316923));
   TextEditingController handphoneController;
   TextEditingController nameController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -77,12 +77,15 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                       child: Text(
                         'Back',
-                        style: FlutterFlowTheme.of(context).title1.override(
-                              fontFamily: 'Outfit',
-                              color: Color(0xFF0F1113),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                        style: FlutterFlowTheme
+                            .of(context)
+                            .title1
+                            .override(
+                          fontFamily: 'Outfit',
+                          color: Color(0xFF0F1113),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
@@ -92,12 +95,15 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(24, 10, 0, 0),
                 child: Text(
                   'Create Customer',
-                  style: FlutterFlowTheme.of(context).title1.override(
-                        fontFamily: 'Outfit',
-                        color: Color(0xFF0F1113),
-                        fontSize: 32,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  style: FlutterFlowTheme
+                      .of(context)
+                      .title1
+                      .override(
+                    fontFamily: 'Outfit',
+                    color: Color(0xFF0F1113),
+                    fontSize: 32,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
@@ -118,9 +124,13 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                 obscureText: false,
                 decoration: InputDecoration(
                   labelText: 'Nama Lengkap',
-                  labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                  labelStyle: FlutterFlowTheme
+                      .of(context)
+                      .bodyText2,
                   hintText: 'Glen Rynaldy Hermanus',
-                  hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                  hintStyle: FlutterFlowTheme
+                      .of(context)
+                      .bodyText2,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0x00000000),
@@ -145,7 +155,9 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                   fillColor: Colors.white,
                   contentPadding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                 ),
-                style: FlutterFlowTheme.of(context).bodyText2,
+                style: FlutterFlowTheme
+                    .of(context)
+                    .bodyText2,
               ),
             ),
             Padding(
@@ -155,9 +167,13 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                 obscureText: false,
                 decoration: InputDecoration(
                   labelText: 'Handphone',
-                  labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                  labelStyle: FlutterFlowTheme
+                      .of(context)
+                      .bodyText2,
                   hintText: '+6281314169140',
-                  hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                  hintStyle: FlutterFlowTheme
+                      .of(context)
+                      .bodyText2,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0x00000000),
@@ -182,7 +198,9 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                   fillColor: Colors.white,
                   contentPadding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                 ),
-                style: FlutterFlowTheme.of(context).bodyText2,
+                style: FlutterFlowTheme
+                    .of(context)
+                    .bodyText2,
                 keyboardType: TextInputType.phone,
               ),
             ),
@@ -197,10 +215,14 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'Alamat',
-                        labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                        labelStyle: FlutterFlowTheme
+                            .of(context)
+                            .bodyText2,
                         hintText:
-                            'Jalan Lenteng Agung Raya No 62 Jakarta Selatan',
-                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                        'Jalan Lenteng Agung Raya No 62 Jakarta Selatan',
+                        hintStyle: FlutterFlowTheme
+                            .of(context)
+                            .bodyText2,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
@@ -224,20 +246,34 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                        EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText2,
+                      style: FlutterFlowTheme
+                          .of(context)
+                          .bodyText2,
                     ),
                   ),
                   FlutterFlowPlacePicker(
                     iOSGoogleMapsApiKey:
-                        'AIzaSyAX9Kl_giqmL8K8JGZlFN6RaPLxq6g6Xp0',
+                    'AIzaSyAX9Kl_giqmL8K8JGZlFN6RaPLxq6g6Xp0',
                     androidGoogleMapsApiKey:
-                        'AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw',
+                    'AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw',
                     webGoogleMapsApiKey:
-                        'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
+                    'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
                     onSelect: (place) =>
-                        setState(() => placePickerValue = place),
+                        setState(() {
+                          placePickerValue = place;
+                          var newPosition = CameraPosition(
+                              target: placePickerValue.latLng.toGoogleMaps(),
+                              zoom: 16);
+                          CameraUpdate update = CameraUpdate.newCameraPosition(
+                              newPosition);
+                          CameraUpdate zoom = CameraUpdate.zoomTo(16);
+                          googleMapsController.future.then((controller) {
+                            controller.animateCamera(update);
+                          });
+                          addressController.text = placePickerValue.address;
+                        }),
                     defaultText: '',
                     icon: Icon(
                       Icons.place,
@@ -247,12 +283,17 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                     buttonOptions: FFButtonOptions(
                       width: 44,
                       height: 44,
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme
+                          .of(context)
+                          .primaryColor,
                       textStyle:
-                          FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                              ),
+                      FlutterFlowTheme
+                          .of(context)
+                          .subtitle2
+                          .override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1,
@@ -266,7 +307,10 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
               child: Container(
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 height: 240,
                 decoration: BoxDecoration(
                   color: Color(0xFFEEEEEE),
@@ -297,7 +341,9 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
                         child: Icon(
                           Icons.location_on_rounded,
-                          color: FlutterFlowTheme.of(context).primaryColor,
+                          color: FlutterFlowTheme
+                              .of(context)
+                              .primaryColor,
                           size: 48,
                         ),
                       ),
@@ -327,12 +373,15 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                   width: 270,
                   height: 50,
                   color: Color(0xFF0F1113),
-                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Outfit',
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
+                  textStyle: FlutterFlowTheme
+                      .of(context)
+                      .subtitle2
+                      .override(
+                    fontFamily: 'Outfit',
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ),
                   elevation: 3,
                   borderSide: BorderSide(
                     color: Colors.transparent,
