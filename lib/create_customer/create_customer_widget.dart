@@ -208,6 +208,7 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: TextFormField(
@@ -248,9 +249,9 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                         contentPadding:
                         EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                       ),
-                      style: FlutterFlowTheme
-                          .of(context)
-                          .bodyText2,
+                      style: FlutterFlowTheme.of(context).bodyText2,
+                      maxLines: 5,
+                      keyboardType: TextInputType.multiline,
                     ),
                   ),
                   FlutterFlowPlacePicker(
