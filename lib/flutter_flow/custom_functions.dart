@@ -58,3 +58,8 @@ String titleByDate(DateTime date) {
 String localDateString(DateTime date) {
   return DateFormat("EEEE, dd MMM yyyy", "id_ID").format(date);
 }
+
+String generateMapsUrl(LatLng latLng) {
+  // google maps url from latlng
+  return "https://www.google.com/maps/search/?api=1&query=${latLng.latitude},${latLng.longitude}";
+}

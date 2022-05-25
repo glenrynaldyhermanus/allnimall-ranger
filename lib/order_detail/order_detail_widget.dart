@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
-import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -361,14 +360,10 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               flex: 1,
                                               child: FFButtonWidget(
                                                 onPressed: () async {
-                                                  await launchMap(
-                                                    location:
-                                                        orderDetailOrdersRecord
-                                                            .customerLatlng,
-                                                    title:
-                                                        orderDetailOrdersRecord
-                                                            .customerAddress,
-                                                  );
+                                                  await launchURL(
+                                                      functions.generateMapsUrl(
+                                                          orderDetailOrdersRecord
+                                                              .customerLatlng));
                                                 },
                                                 text: 'Navigasi',
                                                 options: FFButtonOptions(
