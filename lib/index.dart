@@ -12,3 +12,5 @@ export 'calendar_pickers/calendar_pickers_widget.dart'
 export 'create_customer/create_customer_widget.dart' show CreateCustomerWidget;
 export 'customer_list/customer_list_widget.dart' show CustomerListWidget;
 export 'ranger_list/ranger_list_widget.dart' show RangerListWidget;
+export 'create_historical_order/create_historical_order_widget.dart'
+    show CreateHistoricalOrderWidget;
