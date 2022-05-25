@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/on_the_way_notification_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -982,18 +981,6 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 );
                                 await widget.order.reference
                                     .update(ordersUpdateData);
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
-                                      child: OnTheWayNotificationWidget(),
-                                    );
-                                  },
-                                );
                               },
                               text: 'Menuju Lokasi',
                               icon: Icon(
