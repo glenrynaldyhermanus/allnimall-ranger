@@ -10,10 +10,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../auth/auth_util.dart';
 
 DateTime dateStart(DateTime timestamp) {
+  if(timestamp == null){
+    timestamp = DateTime.now();
+  }
   return DateTime(timestamp.year, timestamp.month, timestamp.day, 0, 0, 0);
 }
 
 DateTime dateEnd(DateTime timestamp) {
+  if(timestamp == null){
+    timestamp = DateTime.now();
+  }
   return DateTime(timestamp.year, timestamp.month, timestamp.day, 23, 59, 59);
 }
 
@@ -43,7 +49,9 @@ String generateOrderNo() {
 String titleByDate(DateTime date) {
   DateTime now = DateTime.now();
   var days = 0;
-
+  if(date == null){
+    date = DateTime.now();
+  }
   days = (date.difference(now).inHours / 24).round();
 
   if (days == 0) {
@@ -56,5 +64,8 @@ String titleByDate(DateTime date) {
 }
 
 String localDateString(DateTime date) {
+  if(date == null){
+    date = DateTime.now();
+  }
   return DateFormat("EEEE, dd MMM yyyy", "id_ID").format(date);
 }
