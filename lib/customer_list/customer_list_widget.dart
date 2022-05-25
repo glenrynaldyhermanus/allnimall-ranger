@@ -303,14 +303,21 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Text(
-                                                      columnCustomersRecord
-                                                          .orderAddress,
-                                                      maxLines: 1,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                    Expanded(
+                                                      child: Text(
+                                                        columnCustomersRecord
+                                                            .orderAddress,
+                                                        maxLines: 1,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText2
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 12,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
