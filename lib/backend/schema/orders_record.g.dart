@@ -217,6 +217,20 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType(Object)])));
     }
+    value = object.paidAt;
+    if (value != null) {
+      result
+        ..add('paid_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.paymentMethod;
+    if (value != null) {
+      result
+        ..add('payment_method')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -355,6 +369,14 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
                       DocumentReference, const [const FullType(Object)]))
               as DocumentReference<Object>;
           break;
+        case 'paid_at':
+          result.paidAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'payment_method':
+          result.paymentMethod = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -426,6 +448,10 @@ class _$OrdersRecord extends OrdersRecord {
   @override
   final DocumentReference<Object> rangerUid;
   @override
+  final DateTime paidAt;
+  @override
+  final String paymentMethod;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$OrdersRecord([void Function(OrdersRecordBuilder) updates]) =>
@@ -460,6 +486,8 @@ class _$OrdersRecord extends OrdersRecord {
       this.finishAt,
       this.customerUid,
       this.rangerUid,
+      this.paidAt,
+      this.paymentMethod,
       this.reference})
       : super._();
 
@@ -502,6 +530,8 @@ class _$OrdersRecord extends OrdersRecord {
         finishAt == other.finishAt &&
         customerUid == other.customerUid &&
         rangerUid == other.rangerUid &&
+        paidAt == other.paidAt &&
+        paymentMethod == other.paymentMethod &&
         reference == other.reference;
   }
 
@@ -525,25 +555,25 @@ class _$OrdersRecord extends OrdersRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode),
-                                                                                customerLatlng.hashCode),
-                                                                            customerName.hashCode),
-                                                                        paymentStatus.hashCode),
-                                                                    prefferedTime.hashCode),
-                                                                discount.hashCode),
-                                                            notes.hashCode),
-                                                        startTime.hashCode),
-                                                    endTime.hashCode),
-                                                rangerName.hashCode),
-                                            rangerPhone.hashCode),
-                                        rangerProfilePicture.hashCode),
-                                    confirmedAt.hashCode),
-                                customerPhone.hashCode),
-                            onthewayAt.hashCode),
-                        workingAt.hashCode),
-                    finishAt.hashCode),
-                customerUid.hashCode),
-            rangerUid.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode),
+                                                                                paymentStatus.hashCode),
+                                                                            prefferedTime.hashCode),
+                                                                        discount.hashCode),
+                                                                    notes.hashCode),
+                                                                startTime.hashCode),
+                                                            endTime.hashCode),
+                                                        rangerName.hashCode),
+                                                    rangerPhone.hashCode),
+                                                rangerProfilePicture.hashCode),
+                                            confirmedAt.hashCode),
+                                        customerPhone.hashCode),
+                                    onthewayAt.hashCode),
+                                workingAt.hashCode),
+                            finishAt.hashCode),
+                        customerUid.hashCode),
+                    rangerUid.hashCode),
+                paidAt.hashCode),
+            paymentMethod.hashCode),
         reference.hashCode));
   }
 
@@ -578,6 +608,8 @@ class _$OrdersRecord extends OrdersRecord {
           ..add('finishAt', finishAt)
           ..add('customerUid', customerUid)
           ..add('rangerUid', rangerUid)
+          ..add('paidAt', paidAt)
+          ..add('paymentMethod', paymentMethod)
           ..add('reference', reference))
         .toString();
   }
@@ -707,6 +739,15 @@ class OrdersRecordBuilder
   set rangerUid(DocumentReference<Object> rangerUid) =>
       _$this._rangerUid = rangerUid;
 
+  DateTime _paidAt;
+  DateTime get paidAt => _$this._paidAt;
+  set paidAt(DateTime paidAt) => _$this._paidAt = paidAt;
+
+  String _paymentMethod;
+  String get paymentMethod => _$this._paymentMethod;
+  set paymentMethod(String paymentMethod) =>
+      _$this._paymentMethod = paymentMethod;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -747,6 +788,8 @@ class OrdersRecordBuilder
       _finishAt = $v.finishAt;
       _customerUid = $v.customerUid;
       _rangerUid = $v.rangerUid;
+      _paidAt = $v.paidAt;
+      _paymentMethod = $v.paymentMethod;
       _reference = $v.reference;
       _$v = null;
     }
@@ -796,6 +839,8 @@ class OrdersRecordBuilder
             finishAt: finishAt,
             customerUid: customerUid,
             rangerUid: rangerUid,
+            paidAt: paidAt,
+            paymentMethod: paymentMethod,
             reference: reference);
     replace(_$result);
     return _$result;
