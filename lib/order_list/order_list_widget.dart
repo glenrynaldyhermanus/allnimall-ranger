@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../order_detail/order_detail_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -304,53 +305,101 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                               return Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 1),
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 15, 10, 15),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                if ((columnOrdersRecord
-                                                                        .status) !=
-                                                                    'Finish')
-                                                                  Container(
-                                                                    width: 64,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Color(
-                                                                          0x34EF487F),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              16),
-                                                                    ),
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            OrderDetailWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(10, 15,
+                                                                  10, 15),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  if ((columnOrdersRecord
+                                                                          .status) !=
+                                                                      'Finish')
+                                                                    Container(
+                                                                      width: 64,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Color(
+                                                                            0x34EF487F),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(16),
+                                                                      ),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0,
-                                                                              0),
+                                                                              5,
+                                                                              0,
+                                                                              5),
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            columnOrdersRecord.startTime.maybeHandleOverflow(
+                                                                              maxChars: 70,
+                                                                              replacement: '…',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                            maxLines:
+                                                                                1,
+                                                                            style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                  fontFamily: 'Outfit',
+                                                                                  color: Color(0xFF3B4043),
+                                                                                  fontSize: 14,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if ((columnOrdersRecord
+                                                                          .status) ==
+                                                                      'Finish')
+                                                                    Container(
+                                                                      width: 64,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary400,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(16),
+                                                                      ),
                                                                       child:
                                                                           Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -359,167 +408,73 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                             0,
                                                                             5),
                                                                         child:
-                                                                            AutoSizeText(
-                                                                          columnOrdersRecord
-                                                                              .startTime
-                                                                              .maybeHandleOverflow(
-                                                                            maxChars:
-                                                                                70,
-                                                                            replacement:
-                                                                                '…',
-                                                                          ),
+                                                                            Text(
+                                                                          'Selesai',
                                                                           textAlign:
-                                                                              TextAlign.start,
-                                                                          maxLines:
-                                                                              1,
+                                                                              TextAlign.center,
                                                                           style: FlutterFlowTheme.of(context)
-                                                                              .bodyText2
+                                                                              .bodyText1
                                                                               .override(
                                                                                 fontFamily: 'Outfit',
-                                                                                color: Color(0xFF3B4043),
+                                                                                color: FlutterFlowTheme.of(context).primaryBtnText,
                                                                                 fontSize: 14,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                if ((columnOrdersRecord
-                                                                        .status) ==
-                                                                    'Finish')
-                                                                  Container(
-                                                                    width: 64,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary400,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              16),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              5,
-                                                                              0,
-                                                                              5),
-                                                                      child:
-                                                                          Text(
-                                                                        'Selesai',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                              fontSize: 14,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10,
-                                                                        0,
-                                                                        10,
-                                                                        0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  columnOrdersRecord
-                                                                      .name,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .title3
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: Color(
-                                                                            0xFF0F1113),
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Icon(
-                                                                          Icons
-                                                                              .emoji_people,
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          10,
+                                                                          0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    columnOrdersRecord
+                                                                        .name,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .title3
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Outfit',
                                                                           color:
-                                                                              Colors.black,
-                                                                          size:
+                                                                              Color(0xFF0F1113),
+                                                                          fontSize:
                                                                               16,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              8,
-                                                                              0),
-                                                                          child:
-                                                                              AutoSizeText(
-                                                                            columnOrdersRecord.rangerName.maybeHandleOverflow(
-                                                                              maxChars: 70,
-                                                                              replacement: '…',
-                                                                            ),
-                                                                            textAlign:
-                                                                                TextAlign.start,
-                                                                            maxLines:
-                                                                                2,
-                                                                            style: FlutterFlowTheme.of(context).bodyText2.override(
-                                                                                  fontFamily: 'Poppins',
-                                                                                  fontSize: 12,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              5,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Row(
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Icon(
-                                                                            Icons.attach_money_rounded,
+                                                                            Icons.emoji_people,
                                                                             color:
                                                                                 Colors.black,
                                                                             size:
@@ -532,17 +487,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                                 8,
                                                                                 0),
                                                                             child:
-                                                                                Text(
-                                                                              formatNumber(
-                                                                                columnOrdersRecord.amount,
-                                                                                formatType: FormatType.decimal,
-                                                                                decimalType: DecimalType.commaDecimal,
-                                                                                currency: 'Rp',
+                                                                                AutoSizeText(
+                                                                              columnOrdersRecord.rangerName.maybeHandleOverflow(
+                                                                                maxChars: 70,
+                                                                                replacement: '…',
                                                                               ),
-                                                                              textAlign: TextAlign.end,
+                                                                              textAlign: TextAlign.start,
+                                                                              maxLines: 2,
                                                                               style: FlutterFlowTheme.of(context).bodyText2.override(
                                                                                     fontFamily: 'Poppins',
-                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                     fontSize: 12,
                                                                                     fontWeight: FontWeight.normal,
                                                                                   ),
@@ -550,50 +503,88 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          8,
-                                                                          0),
-                                                                  child:
-                                                                      AutoSizeText(
-                                                                    columnOrdersRecord
-                                                                        .customerAddress
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          70,
-                                                                      replacement:
-                                                                          '…',
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    maxLines: 2,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          color:
-                                                                              Color(0xFF57636C),
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Icon(
+                                                                              Icons.attach_money_rounded,
+                                                                              color: Colors.black,
+                                                                              size: 16,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  columnOrdersRecord.amount,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.commaDecimal,
+                                                                                  currency: 'Rp',
+                                                                                ),
+                                                                                textAlign: TextAlign.end,
+                                                                                style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                      fontSize: 12,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            8,
+                                                                            0),
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      columnOrdersRecord
+                                                                          .customerAddress
+                                                                          .maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            70,
+                                                                        replacement:
+                                                                            '…',
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF57636C),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -784,53 +775,101 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                               return Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 1),
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 15, 10, 15),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                if ((columnOrdersRecord
-                                                                        .status) !=
-                                                                    'Finish')
-                                                                  Container(
-                                                                    width: 64,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Color(
-                                                                          0x34EF487F),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              16),
-                                                                    ),
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            OrderDetailWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(10, 15,
+                                                                  10, 15),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  if ((columnOrdersRecord
+                                                                          .status) !=
+                                                                      'Finish')
+                                                                    Container(
+                                                                      width: 64,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Color(
+                                                                            0x34EF487F),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(16),
+                                                                      ),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0,
-                                                                              0),
+                                                                              5,
+                                                                              0,
+                                                                              5),
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            columnOrdersRecord.startTime.maybeHandleOverflow(
+                                                                              maxChars: 70,
+                                                                              replacement: '…',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                            maxLines:
+                                                                                1,
+                                                                            style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                  fontFamily: 'Outfit',
+                                                                                  color: Color(0xFF3B4043),
+                                                                                  fontSize: 14,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if ((columnOrdersRecord
+                                                                          .status) ==
+                                                                      'Finish')
+                                                                    Container(
+                                                                      width: 64,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary400,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(16),
+                                                                      ),
                                                                       child:
                                                                           Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -839,167 +878,73 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                             0,
                                                                             5),
                                                                         child:
-                                                                            AutoSizeText(
-                                                                          columnOrdersRecord
-                                                                              .startTime
-                                                                              .maybeHandleOverflow(
-                                                                            maxChars:
-                                                                                70,
-                                                                            replacement:
-                                                                                '…',
-                                                                          ),
+                                                                            Text(
+                                                                          'Selesai',
                                                                           textAlign:
-                                                                              TextAlign.start,
-                                                                          maxLines:
-                                                                              1,
+                                                                              TextAlign.center,
                                                                           style: FlutterFlowTheme.of(context)
-                                                                              .bodyText2
+                                                                              .bodyText1
                                                                               .override(
                                                                                 fontFamily: 'Outfit',
-                                                                                color: Color(0xFF3B4043),
+                                                                                color: FlutterFlowTheme.of(context).primaryBtnText,
                                                                                 fontSize: 14,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                if ((columnOrdersRecord
-                                                                        .status) ==
-                                                                    'Finish')
-                                                                  Container(
-                                                                    width: 64,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary400,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              16),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              5,
-                                                                              0,
-                                                                              5),
-                                                                      child:
-                                                                          Text(
-                                                                        'Selesai',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                              fontSize: 14,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10,
-                                                                        0,
-                                                                        10,
-                                                                        0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  columnOrdersRecord
-                                                                      .name,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .title3
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: Color(
-                                                                            0xFF0F1113),
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Icon(
-                                                                          Icons
-                                                                              .emoji_people,
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          10,
+                                                                          0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    columnOrdersRecord
+                                                                        .name,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .title3
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Outfit',
                                                                           color:
-                                                                              Colors.black,
-                                                                          size:
+                                                                              Color(0xFF0F1113),
+                                                                          fontSize:
                                                                               16,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              8,
-                                                                              0),
-                                                                          child:
-                                                                              AutoSizeText(
-                                                                            columnOrdersRecord.rangerName.maybeHandleOverflow(
-                                                                              maxChars: 70,
-                                                                              replacement: '…',
-                                                                            ),
-                                                                            textAlign:
-                                                                                TextAlign.start,
-                                                                            maxLines:
-                                                                                2,
-                                                                            style: FlutterFlowTheme.of(context).bodyText2.override(
-                                                                                  fontFamily: 'Poppins',
-                                                                                  fontSize: 12,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              5,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Row(
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Icon(
-                                                                            Icons.attach_money_rounded,
+                                                                            Icons.emoji_people,
                                                                             color:
                                                                                 Colors.black,
                                                                             size:
@@ -1012,17 +957,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                                 8,
                                                                                 0),
                                                                             child:
-                                                                                Text(
-                                                                              formatNumber(
-                                                                                columnOrdersRecord.amount,
-                                                                                formatType: FormatType.decimal,
-                                                                                decimalType: DecimalType.commaDecimal,
-                                                                                currency: 'Rp',
+                                                                                AutoSizeText(
+                                                                              columnOrdersRecord.rangerName.maybeHandleOverflow(
+                                                                                maxChars: 70,
+                                                                                replacement: '…',
                                                                               ),
-                                                                              textAlign: TextAlign.end,
+                                                                              textAlign: TextAlign.start,
+                                                                              maxLines: 2,
                                                                               style: FlutterFlowTheme.of(context).bodyText2.override(
                                                                                     fontFamily: 'Poppins',
-                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                     fontSize: 12,
                                                                                     fontWeight: FontWeight.normal,
                                                                                   ),
@@ -1030,50 +973,88 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          8,
-                                                                          0),
-                                                                  child:
-                                                                      AutoSizeText(
-                                                                    columnOrdersRecord
-                                                                        .customerAddress
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          70,
-                                                                      replacement:
-                                                                          '…',
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    maxLines: 2,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          color:
-                                                                              Color(0xFF57636C),
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Icon(
+                                                                              Icons.attach_money_rounded,
+                                                                              color: Colors.black,
+                                                                              size: 16,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  columnOrdersRecord.amount,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.commaDecimal,
+                                                                                  currency: 'Rp',
+                                                                                ),
+                                                                                textAlign: TextAlign.end,
+                                                                                style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                      fontSize: 12,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            8,
+                                                                            0),
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      columnOrdersRecord
+                                                                          .customerAddress
+                                                                          .maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            70,
+                                                                        replacement:
+                                                                            '…',
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF57636C),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -1264,53 +1245,101 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                               return Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 1),
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 15, 10, 15),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                if ((columnOrdersRecord
-                                                                        .status) !=
-                                                                    'Finish')
-                                                                  Container(
-                                                                    width: 64,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Color(
-                                                                          0x34EF487F),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              16),
-                                                                    ),
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            OrderDetailWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(10, 15,
+                                                                  10, 15),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  if ((columnOrdersRecord
+                                                                          .status) !=
+                                                                      'Finish')
+                                                                    Container(
+                                                                      width: 64,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Color(
+                                                                            0x34EF487F),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(16),
+                                                                      ),
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0,
-                                                                              0),
+                                                                              5,
+                                                                              0,
+                                                                              5),
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            columnOrdersRecord.startTime.maybeHandleOverflow(
+                                                                              maxChars: 70,
+                                                                              replacement: '…',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                            maxLines:
+                                                                                1,
+                                                                            style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                  fontFamily: 'Outfit',
+                                                                                  color: Color(0xFF3B4043),
+                                                                                  fontSize: 14,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if ((columnOrdersRecord
+                                                                          .status) ==
+                                                                      'Finish')
+                                                                    Container(
+                                                                      width: 64,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary400,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(16),
+                                                                      ),
                                                                       child:
                                                                           Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -1319,167 +1348,73 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                             0,
                                                                             5),
                                                                         child:
-                                                                            AutoSizeText(
-                                                                          columnOrdersRecord
-                                                                              .startTime
-                                                                              .maybeHandleOverflow(
-                                                                            maxChars:
-                                                                                70,
-                                                                            replacement:
-                                                                                '…',
-                                                                          ),
+                                                                            Text(
+                                                                          'Selesai',
                                                                           textAlign:
-                                                                              TextAlign.start,
-                                                                          maxLines:
-                                                                              1,
+                                                                              TextAlign.center,
                                                                           style: FlutterFlowTheme.of(context)
-                                                                              .bodyText2
+                                                                              .bodyText1
                                                                               .override(
                                                                                 fontFamily: 'Outfit',
-                                                                                color: Color(0xFF3B4043),
+                                                                                color: FlutterFlowTheme.of(context).primaryBtnText,
                                                                                 fontSize: 14,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                if ((columnOrdersRecord
-                                                                        .status) ==
-                                                                    'Finish')
-                                                                  Container(
-                                                                    width: 64,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary400,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              16),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              5,
-                                                                              0,
-                                                                              5),
-                                                                      child:
-                                                                          Text(
-                                                                        'Selesai',
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                              fontSize: 14,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10,
-                                                                        0,
-                                                                        10,
-                                                                        0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  columnOrdersRecord
-                                                                      .name,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .title3
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: Color(
-                                                                            0xFF0F1113),
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Icon(
-                                                                          Icons
-                                                                              .emoji_people,
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          10,
+                                                                          0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    columnOrdersRecord
+                                                                        .name,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .title3
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Outfit',
                                                                           color:
-                                                                              Colors.black,
-                                                                          size:
+                                                                              Color(0xFF0F1113),
+                                                                          fontSize:
                                                                               16,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              8,
-                                                                              0),
-                                                                          child:
-                                                                              AutoSizeText(
-                                                                            columnOrdersRecord.rangerName.maybeHandleOverflow(
-                                                                              maxChars: 70,
-                                                                              replacement: '…',
-                                                                            ),
-                                                                            textAlign:
-                                                                                TextAlign.start,
-                                                                            maxLines:
-                                                                                2,
-                                                                            style: FlutterFlowTheme.of(context).bodyText2.override(
-                                                                                  fontFamily: 'Poppins',
-                                                                                  fontSize: 12,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              5,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Row(
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Icon(
-                                                                            Icons.attach_money_rounded,
+                                                                            Icons.emoji_people,
                                                                             color:
                                                                                 Colors.black,
                                                                             size:
@@ -1492,17 +1427,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                                 8,
                                                                                 0),
                                                                             child:
-                                                                                Text(
-                                                                              formatNumber(
-                                                                                columnOrdersRecord.amount,
-                                                                                formatType: FormatType.decimal,
-                                                                                decimalType: DecimalType.commaDecimal,
-                                                                                currency: 'Rp',
+                                                                                AutoSizeText(
+                                                                              columnOrdersRecord.rangerName.maybeHandleOverflow(
+                                                                                maxChars: 70,
+                                                                                replacement: '…',
                                                                               ),
-                                                                              textAlign: TextAlign.end,
+                                                                              textAlign: TextAlign.start,
+                                                                              maxLines: 2,
                                                                               style: FlutterFlowTheme.of(context).bodyText2.override(
                                                                                     fontFamily: 'Poppins',
-                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                     fontSize: 12,
                                                                                     fontWeight: FontWeight.normal,
                                                                                   ),
@@ -1510,50 +1443,88 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          8,
-                                                                          0),
-                                                                  child:
-                                                                      AutoSizeText(
-                                                                    columnOrdersRecord
-                                                                        .customerAddress
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          70,
-                                                                      replacement:
-                                                                          '…',
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    maxLines: 2,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          color:
-                                                                              Color(0xFF57636C),
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Icon(
+                                                                              Icons.attach_money_rounded,
+                                                                              color: Colors.black,
+                                                                              size: 16,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  columnOrdersRecord.amount,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.commaDecimal,
+                                                                                  currency: 'Rp',
+                                                                                ),
+                                                                                textAlign: TextAlign.end,
+                                                                                style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                      fontSize: 12,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            8,
+                                                                            0),
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      columnOrdersRecord
+                                                                          .customerAddress
+                                                                          .maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            70,
+                                                                        replacement:
+                                                                            '…',
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF57636C),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
