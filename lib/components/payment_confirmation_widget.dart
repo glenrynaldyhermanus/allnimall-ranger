@@ -96,13 +96,13 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Payment Confirmation',
+                            'Pembayaran',
                             style: FlutterFlowTheme.of(context).title3,
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                             child: Text(
-                              'Fill in the information below to place your order.',
+                              'Kirim invoice pembayaran dan konfirmasi di sini',
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
                           ),
@@ -121,7 +121,41 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await launchURL(
+                            '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order.service} x ${widget.order.quantity.toString()} ${widget.order.petCategory} = ${formatNumber(
+                          widget.order.amount,
+                          formatType: FormatType.decimal,
+                          decimalType: DecimalType.commaDecimal,
+                          currency: 'Rp',
+                        )}+%0D%0A%0D%0AUntuk+pembayaran%2C+silahkan+transfer+ke+rekening+berikut%2C%0D%0A%0D%0AMandiri%0D%0A1230005921541++%0D%0A%0D%0ABCA%0D%0A5790285478%0D%0A%0D%0AJika+sudah+ditransfer%2C+mohon+untuk+dishare+juga+bukti+transfernya+ya+kak.%0D%0ATerima+kasih.');
+                      },
+                      text: 'Kirim Invoice',
+                      options: FFButtonOptions(
+                        width: 270,
+                        height: 50,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Outfit',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                        elevation: 2,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 12,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
                     child: FlutterFlowDropDown(
                       options: ['Transfer Bank Mandiri', 'Transfer Bank BCA']
                           .toList(),
@@ -143,14 +177,9 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order.service} x ${widget.order.quantity.toString()} ${widget.order.petCategory} = ${formatNumber(
-                          widget.order.amount,
-                          formatType: FormatType.decimal,
-                          decimalType: DecimalType.commaDecimal,
-                          currency: 'Rp',
-                        )}+%0D%0A%0D%0AUntuk+pembayaran%2C+silahkan+transfer+ke+rekening+berikut%2C%0D%0A%0D%0AMandiri%0D%0A1230005921541++%0D%0A%0D%0ABCA%0D%0A5790285478%0D%0A%0D%0AJika+sudah+ditransfer%2C+mohon+untuk+dishare+juga+bukti+transfernya+ya+kak.%0D%0ATerima+kasih.');
+                            '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Terima+kasih+atas+konfirmasi+dan+kepercayaan+kakak+telah+menggunakan+jasa+Allnimall.');
                       },
-                      text: 'Thank You Message',
+                      text: 'Kirim Pembayaran Terkonfirmasi',
                       options: FFButtonOptions(
                         width: 270,
                         height: 50,
@@ -175,7 +204,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: Text(
-                      '',
+                      ' ',
                       style: FlutterFlowTheme.of(context).bodyText2,
                     ),
                   ),
@@ -195,7 +224,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                       options: FFButtonOptions(
                         width: 270,
                         height: 50,
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
                                   fontFamily: 'Outfit',
