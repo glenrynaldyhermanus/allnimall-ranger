@@ -1093,8 +1093,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if ((widget.order.status) ==
-                                              'Working')
+                                          if ((widget.order.status) == 'Finish')
                                             Expanded(
                                               child: FFButtonWidget(
                                                 onPressed: () async {
