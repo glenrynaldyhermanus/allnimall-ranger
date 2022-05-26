@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/payment_confirmation_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -982,6 +983,14 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     );
                                     await widget.order.reference
                                         .update(ordersUpdateData);
+                                    triggerPushNotification(
+                                      notificationTitle: 'FYI',
+                                      notificationText: 'Groomer is on the way',
+                                      notificationSound: 'default',
+                                      userRefs: FFAppState().adminList.toList(),
+                                      initialPageName: 'Home',
+                                      parameterData: {},
+                                    );
                                   },
                                   text: 'Menuju Lokasi',
                                   icon: Icon(
@@ -1021,6 +1030,14 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     );
                                     await widget.order.reference
                                         .update(ordersUpdateData);
+                                    triggerPushNotification(
+                                      notificationTitle: 'FYI',
+                                      notificationText: 'Groomer start working',
+                                      notificationSound: 'default',
+                                      userRefs: FFAppState().adminList.toList(),
+                                      initialPageName: 'Home',
+                                      parameterData: {},
+                                    );
                                   },
                                   text: 'Mulai Pengerjaan',
                                   icon: Icon(
@@ -1060,6 +1077,14 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     );
                                     await widget.order.reference
                                         .update(ordersUpdateData);
+                                    triggerPushNotification(
+                                      notificationTitle: 'FYI',
+                                      notificationText: 'Order finished',
+                                      notificationSound: 'default',
+                                      userRefs: FFAppState().adminList.toList(),
+                                      initialPageName: 'Home',
+                                      parameterData: {},
+                                    );
                                   },
                                   text: 'Selesai',
                                   icon: Icon(
