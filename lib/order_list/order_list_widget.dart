@@ -311,7 +311,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            OrderDetailWidget(),
+                                                            OrderDetailWidget(
+                                                          order:
+                                                              columnOrdersRecord,
+                                                        ),
                                                       ),
                                                     );
                                                   },
@@ -781,7 +784,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            OrderDetailWidget(),
+                                                            OrderDetailWidget(
+                                                          order:
+                                                              columnOrdersRecord,
+                                                        ),
                                                       ),
                                                     );
                                                   },
@@ -1251,7 +1257,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            OrderDetailWidget(),
+                                                            OrderDetailWidget(
+                                                          order:
+                                                              columnOrdersRecord,
+                                                        ),
                                                       ),
                                                     );
                                                   },
