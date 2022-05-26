@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/payment_confirmation_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -1077,6 +1078,81 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   width: 1,
                                 ),
                                 borderRadius: 8,
+                              ),
+                            ),
+                          ),
+                        if ((valueOrDefault(currentUserDocument?.role, '')) ==
+                            'Admin')
+                          Expanded(
+                            child: AuthUserStreamWidget(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  if ((widget.order.paymentStatus) == 'Unpaid')
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          if ((widget.order.status) ==
+                                              'Working')
+                                            Expanded(
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return Padding(
+                                                        padding: MediaQuery.of(
+                                                                context)
+                                                            .viewInsets,
+                                                        child:
+                                                            PaymentConfirmationWidget(
+                                                          order:
+                                                              orderDetailOrdersRecord,
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                                text: 'Sudah Bayar',
+                                                icon: Icon(
+                                                  Icons.check_rounded,
+                                                  size: 15,
+                                                ),
+                                                options: FFButtonOptions(
+                                                  width: double.infinity,
+                                                  height: 60,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .subtitle2
+                                                          .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                  elevation: 3,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius: 8,
+                                                ),
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
