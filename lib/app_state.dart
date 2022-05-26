@@ -39,6 +39,10 @@ class FFAppState {
   String selectedRangerPhone = '';
 
   String selectedRangerPicture;
+
+  List<DocumentReference> adminList = [
+    FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32')
+  ];
 }
 
 LatLng _latLngFromString(String val) {

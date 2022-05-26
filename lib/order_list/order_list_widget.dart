@@ -1,5 +1,5 @@
 import '../backend/backend.dart';
-import '../create_customer/create_customer_widget.dart';
+import '../create_order/create_order_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -1571,7 +1571,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                   await Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CreateCustomerWidget(),
+                      builder: (context) => CreateOrderWidget(),
                     ),
                   );
                 },
