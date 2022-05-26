@@ -269,7 +269,11 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 10, 0, 0),
                                     child: StreamBuilder<List<OrdersRecord>>(
-                                      stream: queryOrdersRecord(),
+                                      stream: queryOrdersRecord(
+                                        queryBuilder: (ordersRecord) =>
+                                            ordersRecord.where('status',
+                                                isNotEqualTo: 'Finish'),
+                                      ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -302,7 +306,6 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                     .fromSTEB(0, 0, 0, 1),
                                                 child: Container(
                                                   width: double.infinity,
-                                                  height: 90,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -743,7 +746,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 10, 0, 0),
                                     child: StreamBuilder<List<OrdersRecord>>(
-                                      stream: queryOrdersRecord(),
+                                      stream: queryOrdersRecord(
+                                        queryBuilder: (ordersRecord) =>
+                                            ordersRecord
+                                                .where('status',
+                                                    isEqualTo: 'Finish')
+                                                .where('payment_status',
+                                                    isEqualTo: 'Unpaid'),
+                                      ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -776,7 +786,6 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                     .fromSTEB(0, 0, 0, 1),
                                                 child: Container(
                                                   width: double.infinity,
-                                                  height: 90,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -1217,7 +1226,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 10, 0, 0),
                                     child: StreamBuilder<List<OrdersRecord>>(
-                                      stream: queryOrdersRecord(),
+                                      stream: queryOrdersRecord(
+                                        queryBuilder: (ordersRecord) =>
+                                            ordersRecord
+                                                .where('status',
+                                                    isEqualTo: 'Finish')
+                                                .where('payment_status',
+                                                    isEqualTo: 'Paid'),
+                                      ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -1250,7 +1266,6 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                     .fromSTEB(0, 0, 0, 1),
                                                 child: Container(
                                                   width: double.infinity,
-                                                  height: 90,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
