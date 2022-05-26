@@ -63,24 +63,25 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 1,
-                    buttonSize: 60,
-                    icon: Icon(
-                      Icons.cancel_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryColor,
-                      size: 30,
+                  if ((orderDetailOrdersRecord.status) != 'Finish')
+                    FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 30,
+                      borderWidth: 1,
+                      buttonSize: 60,
+                      icon: Icon(
+                        Icons.cancel_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryColor,
+                        size: 30,
+                      ),
+                      onPressed: () async {
+                        final ordersUpdateData = createOrdersRecordData(
+                          status: 'CanceledByGroomer',
+                        );
+                        await widget.order.reference.update(ordersUpdateData);
+                        Navigator.pop(context);
+                      },
                     ),
-                    onPressed: () async {
-                      final ordersUpdateData = createOrdersRecordData(
-                        status: 'CanceledByGroomer',
-                      );
-                      await widget.order.reference.update(ordersUpdateData);
-                      Navigator.pop(context);
-                    },
-                  ),
                   if ((valueOrDefault(currentUserDocument?.role, '')) ==
                       'Admin')
                     AuthUserStreamWidget(
@@ -962,203 +963,207 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                   ),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        if ((orderDetailOrdersRecord.status) == 'Confirmed')
-                          Expanded(
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                final ordersUpdateData = createOrdersRecordData(
-                                  status: 'OnTheWay',
-                                  onthewayAt: getCurrentTimestamp,
-                                );
-                                await widget.order.reference
-                                    .update(ordersUpdateData);
-                              },
-                              text: 'Menuju Lokasi',
-                              icon: Icon(
-                                Icons.check_rounded,
-                                size: 15,
-                              ),
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 60,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if ((orderDetailOrdersRecord.status) == 'Confirmed')
+                              Expanded(
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final ordersUpdateData =
+                                        createOrdersRecordData(
+                                      status: 'OnTheWay',
+                                      onthewayAt: getCurrentTimestamp,
+                                    );
+                                    await widget.order.reference
+                                        .update(ordersUpdateData);
+                                  },
+                                  text: 'Menuju Lokasi',
+                                  icon: Icon(
+                                    Icons.check_rounded,
+                                    size: 15,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 60,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    elevation: 3,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
                                     ),
-                                elevation: 3,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
+                                    borderRadius: 8,
+                                  ),
                                 ),
-                                borderRadius: 8,
                               ),
-                            ),
-                          ),
-                        if ((orderDetailOrdersRecord.status) == 'OnTheWay')
-                          Expanded(
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                final ordersUpdateData = createOrdersRecordData(
-                                  status: 'Working',
-                                  workingAt: getCurrentTimestamp,
-                                );
-                                await widget.order.reference
-                                    .update(ordersUpdateData);
-                              },
-                              text: 'Mulai Pengerjaan',
-                              icon: Icon(
-                                Icons.check_rounded,
-                                size: 15,
-                              ),
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 60,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                            if ((orderDetailOrdersRecord.status) == 'OnTheWay')
+                              Expanded(
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final ordersUpdateData =
+                                        createOrdersRecordData(
+                                      status: 'Working',
+                                      workingAt: getCurrentTimestamp,
+                                    );
+                                    await widget.order.reference
+                                        .update(ordersUpdateData);
+                                  },
+                                  text: 'Mulai Pengerjaan',
+                                  icon: Icon(
+                                    Icons.check_rounded,
+                                    size: 15,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 60,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    elevation: 3,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
                                     ),
-                                elevation: 3,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
+                                    borderRadius: 8,
+                                  ),
                                 ),
-                                borderRadius: 8,
                               ),
-                            ),
-                          ),
-                        if ((orderDetailOrdersRecord.status) == 'Working')
-                          Expanded(
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                final ordersUpdateData = createOrdersRecordData(
-                                  status: 'Finish',
-                                  finishAt: getCurrentTimestamp,
-                                );
-                                await widget.order.reference
-                                    .update(ordersUpdateData);
-                              },
-                              text: 'Selesai',
-                              icon: Icon(
-                                Icons.check_rounded,
-                                size: 15,
-                              ),
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 60,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                            if ((orderDetailOrdersRecord.status) == 'Working')
+                              Expanded(
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final ordersUpdateData =
+                                        createOrdersRecordData(
+                                      status: 'Finish',
+                                      finishAt: getCurrentTimestamp,
+                                    );
+                                    await widget.order.reference
+                                        .update(ordersUpdateData);
+                                  },
+                                  text: 'Selesai',
+                                  icon: Icon(
+                                    Icons.check_rounded,
+                                    size: 15,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 60,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    elevation: 3,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
                                     ),
-                                elevation: 3,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
+                                    borderRadius: 8,
+                                  ),
                                 ),
-                                borderRadius: 8,
                               ),
-                            ),
-                          ),
-                        if ((valueOrDefault(currentUserDocument?.role, '')) ==
-                            'Admin')
-                          Expanded(
-                            child: AuthUserStreamWidget(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  if ((widget.order.paymentStatus) == 'Unpaid')
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          if ((orderDetailOrdersRecord
-                                                  .status) ==
-                                              'Finish')
-                                            Expanded(
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  await showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return Padding(
-                                                        padding: MediaQuery.of(
-                                                                context)
+                          ],
+                        ),
+                      ),
+                      if ((valueOrDefault(currentUserDocument?.role, '')) ==
+                          'Admin')
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+                          child: AuthUserStreamWidget(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if ((widget.order.paymentStatus) == 'Unpaid')
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
+                                                        MediaQuery.of(context)
                                                             .viewInsets,
-                                                        child:
-                                                            PaymentConfirmationWidget(
-                                                          order:
-                                                              orderDetailOrdersRecord,
-                                                        ),
-                                                      );
-                                                    },
+                                                    child:
+                                                        PaymentConfirmationWidget(
+                                                      order:
+                                                          orderDetailOrdersRecord,
+                                                    ),
                                                   );
                                                 },
-                                                text: 'Sudah Bayar',
-                                                icon: Icon(
-                                                  Icons.check_rounded,
-                                                  size: 15,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  width: double.infinity,
-                                                  height: 60,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Colors.white,
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                  elevation: 3,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius: 8,
-                                                ),
-                                              ),
+                                              );
+                                            },
+                                            text: 'Sudah Bayar',
+                                            icon: Icon(
+                                              Icons.check_rounded,
+                                              size: 15,
                                             ),
-                                        ],
-                                      ),
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 60,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                              elevation: 3,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 8,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                ],
-                              ),
+                                  ),
+                              ],
                             ),
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 ),
               ),

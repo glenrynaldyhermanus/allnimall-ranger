@@ -272,8 +272,12 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     child: StreamBuilder<List<OrdersRecord>>(
                                       stream: queryOrdersRecord(
                                         queryBuilder: (ordersRecord) =>
-                                            ordersRecord.where('status',
-                                                isNotEqualTo: 'Finish'),
+                                            ordersRecord
+                                                .where('status',
+                                                    isNotEqualTo: 'Finish')
+                                                .orderBy('start_time')
+                                                .orderBy('scheduled_at',
+                                                    descending: true),
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
