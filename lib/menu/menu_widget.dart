@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../order_list/order_list_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -254,42 +255,78 @@ class _MenuWidgetState extends State<MenuWidget> {
                       ],
                     ),
                   ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBtnText,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                            child: Text(
-                              'Order History',
-                              style: FlutterFlowTheme.of(context).bodyText2,
+                if ((valueOrDefault(currentUserDocument?.role, '')) == 'Admin')
+                  AuthUserStreamWidget(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => OrderListWidget(),
+                                ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24, 0, 0, 0),
+                                      child: Text(
+                                        'Order List',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText2,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          4, 0, 0, 0),
+                                      child: Text(
+                                        'New!',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText2
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              fontSize: 12,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.9, 0),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Color(0xFF95A1AC),
+                                      size: 18,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color(0xFF95A1AC),
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                   child: Row(
