@@ -1,6 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/push_notifications/push_notifications_util.dart';
+import '../components/cancelation_reasons_widget.dart';
+import '../components/delete_confirmation_widget.dart';
 import '../components/payment_confirmation_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -76,11 +78,19 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
-                        final ordersUpdateData = createOrdersRecordData(
-                          status: 'CanceledByGroomer',
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.of(context).viewInsets,
+                              child: CancelationReasonsWidget(
+                                order: orderDetailOrdersRecord,
+                              ),
+                            );
+                          },
                         );
-                        await widget.order.reference.update(ordersUpdateData);
-                        Navigator.pop(context);
                       },
                     ),
                   if ((valueOrDefault(currentUserDocument?.role, '')) ==
@@ -97,8 +107,19 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await widget.order.reference.delete();
-                          Navigator.pop(context);
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: DeleteConfirmationWidget(
+                                  order: orderDetailOrdersRecord,
+                                ),
+                              );
+                            },
+                          );
                         },
                       ),
                     ),

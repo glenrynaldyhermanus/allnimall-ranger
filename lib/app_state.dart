@@ -41,7 +41,8 @@ class FFAppState {
   String selectedRangerPicture;
 
   List<DocumentReference> adminList = [
-    FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32')
+    FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32'),
+    FirebaseFirestore.instance.doc('/rangers/i8VUfLEhKmPYS9NgoisxHgueTgl2')
   ];
 }
 
