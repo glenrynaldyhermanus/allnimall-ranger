@@ -398,12 +398,14 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          FFAppState().selectedCustomerName,
-                          'Pilih Customer',
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            FFAppState().selectedCustomerName,
+                            'Pilih Customer',
+                          ),
+                          style: FlutterFlowTheme.of(context).bodyText2,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText2,
                       ),
                       FlutterFlowIconButton(
                         borderColor: Colors.transparent,
@@ -438,17 +440,20 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                   color: FlutterFlowTheme.of(context).primaryBtnText,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          FFAppState().selectedCustomerAddress,
-                          'Alamat Customer',
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            FFAppState().selectedCustomerAddress,
+                            'Alamat Customer',
+                          ),
+                          maxLines: 2,
+                          style: FlutterFlowTheme.of(context).bodyText2,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText2,
                       ),
                     ],
                   ),
@@ -469,12 +474,14 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          FFAppState().selectedRangerName,
-                          'Pilih Ranger',
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            FFAppState().selectedRangerName,
+                            'Pilih Ranger',
+                          ),
+                          style: FlutterFlowTheme.of(context).bodyText2,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText2,
                       ),
                       FlutterFlowIconButton(
                         borderColor: Colors.transparent,
