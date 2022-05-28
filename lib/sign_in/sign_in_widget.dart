@@ -135,6 +135,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
+                                    hintText: 'Enter your email here...',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -197,6 +198,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
+                                    hintText: 'Enter your password here...',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -229,6 +231,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         () => passwordVisibility =
                                             !passwordVisibility,
                                       ),
+                                      focusNode: FocusNode(skipTraversal: true),
                                       child: Icon(
                                         passwordVisibility
                                             ? Icons.visibility_outlined

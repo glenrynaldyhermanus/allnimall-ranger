@@ -252,6 +252,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     onTap: () => setState(
                       () => passwordVisibility = !passwordVisibility,
                     ),
+                    focusNode: FocusNode(skipTraversal: true),
                     child: Icon(
                       passwordVisibility
                           ? Icons.visibility_outlined
@@ -327,6 +328,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       () => confirmPasswordVisibility =
                           !confirmPasswordVisibility,
                     ),
+                    focusNode: FocusNode(skipTraversal: true),
                     child: Icon(
                       confirmPasswordVisibility
                           ? Icons.visibility_outlined
