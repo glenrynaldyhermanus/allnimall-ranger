@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/push_notifications/push_notifications_util.dart';
+import '../components/order_created_widget.dart';
 import '../customer_list/customer_list_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -30,6 +31,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
   String timeListValue;
   TextEditingController endTimeController;
   TextEditingController startTimeController;
+  OrdersRecord createdOrder;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -538,7 +540,10 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     customerUid: FFAppState().selectedCustomer,
                     rangerUid: FFAppState().selectedRanger,
                   );
-                  await OrdersRecord.collection.doc().set(ordersCreateData);
+                  var ordersRecordReference = OrdersRecord.collection.doc();
+                  await ordersRecordReference.set(ordersCreateData);
+                  createdOrder = OrdersRecord.getDocumentFromData(
+                      ordersCreateData, ordersRecordReference);
                   triggerPushNotification(
                     notificationTitle:
                         'Kerjaan ${functions.localDateString(datePicked)}',
@@ -550,6 +555,21 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     parameterData: {},
                   );
                   Navigator.pop(context);
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: OrderCreatedWidget(
+                          order: createdOrder,
+                        ),
+                      );
+                    },
+                  );
+
+                  setState(() {});
                 },
                 text: 'Create Order',
                 options: FFButtonOptions(
