@@ -15,3 +15,5 @@ export 'ranger_list/ranger_list_widget.dart' show RangerListWidget;
 export 'create_historical_order/create_historical_order_widget.dart'
     show CreateHistoricalOrderWidget;
 export 'order_list/order_list_widget.dart' show OrderListWidget;
+export 'order_detail_copy/order_detail_copy_widget.dart'
+    show OrderDetailCopyWidget;
