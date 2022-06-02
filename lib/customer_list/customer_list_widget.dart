@@ -48,7 +48,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -99,7 +99,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                             ),
                             onPressed: () async {
                               await Share.share(
-                                  'Silahkan+masukkan+data-data+kakak+di+sini+ya%2C%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Fregistration');
+                                  'Silahkan masukkan data-data kakak di sini ya, https://allnimall.web.app/#/registration');
                             },
                           ),
                           Padding(
