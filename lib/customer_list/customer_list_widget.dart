@@ -47,91 +47,85 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 8),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                      child: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 50,
-                        icon: Icon(
-                          Icons.arrow_back_rounded,
-                          color: Color(0xFF0F1113),
-                          size: 24,
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                    child: FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 30,
+                      borderWidth: 1,
+                      buttonSize: 50,
+                      icon: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Color(0xFF0F1113),
+                        size: 24,
+                      ),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                    child: Text(
+                      'Back',
+                      style: FlutterFlowTheme.of(context).title1.override(
+                            fontFamily: 'Outfit',
+                            color: Color(0xFF0F1113),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 30,
+                          borderWidth: 1,
+                          buttonSize: 60,
+                          icon: FaIcon(
+                            FontAwesomeIcons.shareSquare,
+                            color: FlutterFlowTheme.of(context).secondaryColor,
+                            size: 20,
+                          ),
+                          onPressed: () async {
+                            await Share.share(
+                                'Silahkan masukkan data-data kakak di sini ya, https://allnimall.web.app/#/registration');
+                          },
                         ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                      child: Text(
-                        'Back',
-                        style: FlutterFlowTheme.of(context).title1.override(
-                              fontFamily: 'Outfit',
-                              color: Color(0xFF0F1113),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          FlutterFlowIconButton(
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                          child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 30,
                             borderWidth: 1,
                             buttonSize: 60,
-                            icon: FaIcon(
-                              FontAwesomeIcons.shareSquare,
+                            icon: Icon(
+                              Icons.group_add,
                               color:
                                   FlutterFlowTheme.of(context).secondaryColor,
-                              size: 20,
+                              size: 24,
                             ),
                             onPressed: () async {
-                              await Share.share(
-                                  'Silahkan masukkan data-data kakak di sini ya, https://allnimall.web.app/#/registration');
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CreateCustomerWidget(),
+                                ),
+                              );
                             },
                           ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 60,
-                              icon: Icon(
-                                Icons.group_add,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryColor,
-                                size: 24,
-                              ),
-                              onPressed: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        CreateCustomerWidget(),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24, 10, 0, 0),
