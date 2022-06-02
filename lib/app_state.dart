@@ -42,8 +42,11 @@ class FFAppState {
 
   List<DocumentReference> adminList = [
     FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32'),
-    FirebaseFirestore.instance.doc('/rangers/i8VUfLEhKmPYS9NgoisxHgueTgl2')
+    FirebaseFirestore.instance.doc('/rangers/i8VUfLEhKmPYS9NgoisxHgueTgl2'),
+    FirebaseFirestore.instance.doc('/rangers/Q5BvEteqpThJrenAzga36UCdQei2')
   ];
+
+  String searchQuery = '';
 }
 
 LatLng _latLngFromString(String val) {

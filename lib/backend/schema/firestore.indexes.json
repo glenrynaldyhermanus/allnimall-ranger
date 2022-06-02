@@ -31,6 +31,10 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "start_time",
           "order": "ASCENDING"
         }

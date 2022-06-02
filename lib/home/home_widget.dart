@@ -369,6 +369,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                             .where('scheduled_at',
                                 isLessThanOrEqualTo:
                                     functions.dateEnd(FFAppState().filterDate))
+                            .where('status', whereIn: [
+                              "Confirmed",
+                              "OnTheWay",
+                              "Working",
+                              "Finish"
+                            ])
                             .orderBy('scheduled_at')
                             .orderBy('start_time'),
                         limit: 10,
