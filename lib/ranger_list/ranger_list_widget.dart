@@ -3,11 +3,17 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../rate_comment_list/rate_comment_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RangerListWidget extends StatefulWidget {
-  const RangerListWidget({Key key}) : super(key: key);
+  const RangerListWidget({
+    Key key,
+    this.isSelection,
+  }) : super(key: key);
+
+  final bool isSelection;
 
   @override
   _RangerListWidgetState createState() => _RangerListWidgetState();
@@ -228,18 +234,30 @@ class _RangerListWidgetState extends State<RangerListWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
                               child: InkWell(
                                 onTap: () async {
-                                  setState(() => FFAppState().selectedRanger =
-                                      columnRangersRecord.reference);
-                                  setState(() =>
-                                      FFAppState().selectedRangerName =
-                                          columnRangersRecord.displayName);
-                                  setState(() =>
-                                      FFAppState().selectedRangerPhone =
-                                          columnRangersRecord.phoneNumber);
-                                  setState(() =>
-                                      FFAppState().selectedRangerPicture =
-                                          columnRangersRecord.photoUrl);
-                                  Navigator.pop(context);
+                                  if (widget.isSelection) {
+                                    setState(() => FFAppState().selectedRanger =
+                                        columnRangersRecord.reference);
+                                    setState(() =>
+                                        FFAppState().selectedRangerName =
+                                            columnRangersRecord.displayName);
+                                    setState(() =>
+                                        FFAppState().selectedRangerPhone =
+                                            columnRangersRecord.phoneNumber);
+                                    setState(() =>
+                                        FFAppState().selectedRangerPicture =
+                                            columnRangersRecord.photoUrl);
+                                    Navigator.pop(context);
+                                  } else {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            RateCommentListWidget(
+                                          ranger: columnRangersRecord.reference,
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 },
                                 child: Container(
                                   width: double.infinity,

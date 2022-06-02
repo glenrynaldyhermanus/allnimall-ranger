@@ -119,7 +119,7 @@ class _CreateHistoricalOrderWidgetState
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
               child: FlutterFlowDropDown(
-                options: ['Kucing'].toList(),
+                options: ['Kucing'],
                 onChanged: (val) => setState(() => petCategoryListValue = val),
                 height: 50,
                 textStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -136,7 +136,7 @@ class _CreateHistoricalOrderWidgetState
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
               child: FlutterFlowDropDown(
-                options: ['Mandi Lengkap', 'Mandi Sehat', 'Shaving'].toList(),
+                options: ['Mandi Lengkap', 'Mandi Sehat', 'Shaving'],
                 onChanged: (val) => setState(() => petServiceListValue = val),
                 height: 50,
                 textStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -283,7 +283,7 @@ class _CreateHistoricalOrderWidgetState
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
               child: FlutterFlowDropDown(
-                options: ['Pagi', 'Siang', 'Sore'].toList(),
+                options: ['Pagi', 'Siang', 'Sore'],
                 onChanged: (val) => setState(() => timeListValue = val),
                 height: 50,
                 textStyle: FlutterFlowTheme.of(context).bodyText2,

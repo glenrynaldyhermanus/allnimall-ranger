@@ -75,3 +75,33 @@ String generateMapsUrl(LatLng latLng) {
   // google maps url from latlng
   return "https://www.google.com/maps/search/?api=1&query=${latLng.latitude},${latLng.longitude}";
 }
+
+double countRating(List<RatingsRecord> rateList) {
+  var rate = 0.0;
+  for (var ratings in rateList) {
+    rate += ratings.rate;
+  }
+
+  return rate / rateList.length;
+}
+
+bool isOnQuery(
+  CustomersRecord customer,
+  String query,
+) {
+  //if no query then show all
+  if (query.isEmpty) {
+    return true;
+  }
+
+  //if query is phone, normalize WA format
+  if (query.contains("+62")) {
+    query = query.replaceAll("+62 ", "").replaceAll("-", "");
+  }
+
+  if (customer.displayName.contains(query) ||
+      customer.phoneNumber.contains(query)) {
+    return true;
+  }
+  return false;
+}

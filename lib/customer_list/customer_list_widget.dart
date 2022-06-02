@@ -4,8 +4,12 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CustomerListWidget extends StatefulWidget {
   const CustomerListWidget({Key key}) : super(key: key);
@@ -21,6 +25,11 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+      setState(() => FFAppState().searchQuery = '');
+    });
+
     textController = TextEditingController();
   }
 
@@ -72,6 +81,55 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                             ),
                       ),
                     ),
+                    Expanded(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            icon: FaIcon(
+                              FontAwesomeIcons.shareSquare,
+                              color:
+                                  FlutterFlowTheme.of(context).secondaryColor,
+                              size: 20,
+                            ),
+                            onPressed: () async {
+                              await Share.share(
+                                  'Silahkan+masukkan+data-data+kakak+di+sini+ya%2C%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Fregistration');
+                            },
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30,
+                              borderWidth: 1,
+                              buttonSize: 60,
+                              icon: Icon(
+                                Icons.group_add,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryColor,
+                                size: 24,
+                              ),
+                              onPressed: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CreateCustomerWidget(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -112,7 +170,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             height: 50,
@@ -150,7 +208,7 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                                         controller: textController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: 'Search events here...',
+                                          labelText: 'Search name or phone',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyText2,
@@ -188,6 +246,32 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 20, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            setState(() =>
+                                FFAppState().searchQuery = textController.text);
+                          },
+                          text: 'Search',
+                          options: FFButtonOptions(
+                            width: 80,
+                            height: 50,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -219,153 +303,159 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                               columnCustomersRecordList.length, (columnIndex) {
                             final columnCustomersRecord =
                                 columnCustomersRecordList[columnIndex];
-                            return Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() =>
-                                      FFAppState().selectedCustomerName =
-                                          columnCustomersRecord.displayName);
-                                  setState(() => FFAppState().selectedCustomer =
-                                      columnCustomersRecord.reference);
-                                  setState(() =>
-                                      FFAppState().selectedCustomerAddress =
-                                          columnCustomersRecord.orderAddress);
-                                  setState(() =>
-                                      FFAppState().selectedCustomerPhone =
-                                          columnCustomersRecord.phoneNumber);
-                                  setState(() =>
-                                      FFAppState().selectedCustomerLatLng =
-                                          columnCustomersRecord.orderLatlng);
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 90,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 2, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 0, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                child: Image.network(
-                                                  'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3RvcmV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
-                                                  width: 74,
-                                                  height: 74,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
+                            return Visibility(
+                              visible: functions.isOnQuery(
+                                      columnCustomersRecord,
+                                      FFAppState().searchQuery) ??
+                                  true,
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
+                                child: InkWell(
+                                  onTap: () async {
+                                    setState(() =>
+                                        FFAppState().selectedCustomerName =
+                                            columnCustomersRecord.displayName);
+                                    setState(() =>
+                                        FFAppState().selectedCustomer =
+                                            columnCustomersRecord.reference);
+                                    setState(() =>
+                                        FFAppState().selectedCustomerAddress =
+                                            columnCustomersRecord.orderAddress);
+                                    setState(() =>
+                                        FFAppState().selectedCustomerPhone =
+                                            columnCustomersRecord.phoneNumber);
+                                    setState(() =>
+                                        FFAppState().selectedCustomerLatLng =
+                                            columnCustomersRecord.orderLatlng);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 90,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 2, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 0, 0),
+                                                    20, 0, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      columnCustomersRecord
-                                                          .displayName,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        columnCustomersRecord
-                                                            .orderAddress,
-                                                        maxLines: 1,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontSize: 12,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      columnCustomersRecord
-                                                          .phoneNumber,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                    ),
-                                                  ],
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  child: Image.network(
+                                                    'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3RvcmV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
+                                                    width: 74,
+                                                    height: 74,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 8, 0),
-                                                child: Icon(
-                                                  Icons.chevron_right_outlined,
-                                                  color: Color(0xFF95A1AC),
-                                                  size: 24,
-                                                ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 0, 0, 0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        columnCustomersRecord
+                                                            .displayName,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          columnCustomersRecord
+                                                              .orderAddress,
+                                                          maxLines: 1,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 12,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        columnCustomersRecord
+                                                            .phoneNumber,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ],
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 8, 0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .chevron_right_outlined,
+                                                    color: Color(0xFF95A1AC),
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -379,38 +469,6 @@ class _CustomerListWidgetState extends State<CustomerListWidget> {
                 ),
               ),
             ],
-          ),
-          Align(
-            alignment: AlignmentDirectional(1, 1),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 20),
-              child: FFButtonWidget(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreateCustomerWidget(),
-                    ),
-                  );
-                },
-                text: 'Add New',
-                options: FFButtonOptions(
-                  width: 95,
-                  height: 40,
-                  color: FlutterFlowTheme.of(context).primaryColor,
-                  textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                  elevation: 2,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
-                  ),
-                  borderRadius: 8,
-                ),
-              ),
-            ),
           ),
         ],
       ),

@@ -222,7 +222,7 @@ class _OrderCreatedWidgetState extends State<OrderCreatedWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     await launchURL(
-                        '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Jadwal+kakak+sudah+berhasil+didaftarkan%2C%0D%0AUntuk+melihat+detail+reservasi+kakak+silahkan+buka+link+berikut+ya%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order.orderNo}');
+                        '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Jadwal+kakak+sudah+berhasil+didaftarkan+dengan+nomor+order+%3A+${widget.order.orderNo}%0D%0AUntuk+melihat+detail+reservasi+kakak+silahkan+buka+link+berikut+ya%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order.orderNo}');
                   },
                   text: 'Share Order Tracking',
                   options: FFButtonOptions(

@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../custom_code/actions/index.dart' as actions;
@@ -104,6 +105,14 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           cancelledAt: getCurrentTimestamp,
                         );
                         await widget.order.reference.update(ordersUpdateData);
+                        triggerPushNotification(
+                          notificationTitle: 'Order Canceled',
+                          notificationText:
+                              'Order dibatalkan - ${widget.order.orderNo}',
+                          userRefs: FFAppState().adminList.toList(),
+                          initialPageName: 'OrderList',
+                          parameterData: {},
+                        );
                         await actions.backToRoot(
                           context,
                         );

@@ -118,9 +118,85 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).primaryBtnText,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            FFAppState().selectedCustomerName,
+                            'Pilih Customer',
+                          ),
+                          style: FlutterFlowTheme.of(context).bodyText2,
+                        ),
+                      ),
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 1,
+                        buttonSize: 60,
+                        icon: Icon(
+                          Icons.people_outline_rounded,
+                          color: Color(0xFF1F2126),
+                          size: 24,
+                        ),
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomerListWidget(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).primaryBtnText,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 16, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            FFAppState().selectedCustomerAddress,
+                            'Alamat Customer',
+                          ),
+                          maxLines: 2,
+                          style: FlutterFlowTheme.of(context).bodyText2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
               child: FlutterFlowDropDown(
-                options: ['Kucing'].toList(),
+                options: ['Kucing'],
                 onChanged: (val) => setState(() => petCategoryListValue = val),
                 height: 50,
                 textStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -137,7 +213,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
               child: FlutterFlowDropDown(
-                options: ['Mandi Lengkap', 'Mandi Sehat', 'Shaving'].toList(),
+                options: ['Mandi Lengkap', 'Mandi Sehat', 'Shaving'],
                 onChanged: (val) => setState(() => petServiceListValue = val),
                 height: 50,
                 textStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -284,7 +360,7 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
               child: FlutterFlowDropDown(
-                options: ['Pagi', 'Siang', 'Sore'].toList(),
+                options: ['Pagi', 'Siang', 'Sore'],
                 onChanged: (val) => setState(() => timeListValue = val),
                 height: 50,
                 textStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -403,82 +479,6 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                       Expanded(
                         child: Text(
                           valueOrDefault<String>(
-                            FFAppState().selectedCustomerName,
-                            'Pilih Customer',
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyText2,
-                        ),
-                      ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
-                        icon: Icon(
-                          Icons.people_outline_rounded,
-                          color: Color(0xFF1F2126),
-                          size: 24,
-                        ),
-                        onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CustomerListWidget(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24, 14, 24, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBtnText,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 16, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          valueOrDefault<String>(
-                            FFAppState().selectedCustomerAddress,
-                            'Alamat Customer',
-                          ),
-                          maxLines: 2,
-                          style: FlutterFlowTheme.of(context).bodyText2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBtnText,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          valueOrDefault<String>(
                             FFAppState().selectedRangerName,
                             'Pilih Ranger',
                           ),
@@ -499,7 +499,9 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RangerListWidget(),
+                              builder: (context) => RangerListWidget(
+                                isSelection: true,
+                              ),
                             ),
                           );
                         },
@@ -552,6 +554,15 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                     notificationSound: 'default',
                     userRefs: [FFAppState().selectedRanger],
                     initialPageName: 'Home',
+                    parameterData: {},
+                  );
+                  triggerPushNotification(
+                    notificationTitle:
+                        'New order ${functions.localDateString(datePicked)}',
+                    notificationText:
+                        'You get this message because your an Admin',
+                    userRefs: FFAppState().adminList.toList(),
+                    initialPageName: 'OrderList',
                     parameterData: {},
                   );
                   Navigator.pop(context);

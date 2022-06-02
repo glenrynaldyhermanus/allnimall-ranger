@@ -96,12 +96,13 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'CalendarPickers': (data) async => CalendarPickersWidget(),
   'CreateCustomer': (data) async => CreateCustomerWidget(),
   'CustomerList': (data) async => CustomerListWidget(),
-  'RangerList': (data) async => RangerListWidget(),
+  'RangerList': (data) async => RangerListWidget(
+        isSelection: getParameter(data, 'isSelection'),
+      ),
   'CreateHistoricalOrder': (data) async => CreateHistoricalOrderWidget(),
   'OrderList': (data) async => OrderListWidget(),
-  'OrderDetailCopy': (data) async => OrderDetailCopyWidget(
-        order:
-            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
+  'RateCommentList': (data) async => RateCommentListWidget(
+        ranger: getParameter(data, 'ranger'),
       ),
 };
 
