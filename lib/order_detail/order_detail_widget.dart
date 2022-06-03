@@ -2,7 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/cancelation_reasons_widget.dart';
-import '../components/delete_confirmation_widget.dart';
+import '../components/order_menu_widget.dart';
 import '../components/payment_confirmation_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -102,8 +102,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         borderWidth: 1,
                         buttonSize: 60,
                         icon: Icon(
-                          Icons.delete_forever_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryColor,
+                          Icons.more_vert,
+                          color: FlutterFlowTheme.of(context).white,
                           size: 30,
                         ),
                         onPressed: () async {
@@ -114,7 +114,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             builder: (context) {
                               return Padding(
                                 padding: MediaQuery.of(context).viewInsets,
-                                child: DeleteConfirmationWidget(
+                                child: OrderMenuWidget(
                                   order: orderDetailOrdersRecord,
                                 ),
                               );
