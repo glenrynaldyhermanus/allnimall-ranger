@@ -358,8 +358,17 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
               child: FFButtonWidget(
                 onPressed: () async {
-                  if (functions
-                      .isCustomerExistsByPhone(handphoneController.text)) {
+
+                  var phone = handphoneController.text;
+                  if (phone.contains("+62")) {
+                    phone = phone.replaceAll("+62 ", "+62").replaceAll("-", "");
+                  }else {
+                    phone = phone.replaceFirst("08", "+628");
+                  }
+                  var isCustomerExists = await functions
+                      .isCustomerExistsByPhone(phone);
+
+                  if (isCustomerExists) {
                     await showDialog(
                       context: context,
                       builder: (alertDialogContext) {
@@ -380,7 +389,7 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                   } else {
                     final customersCreateData = createCustomersRecordData(
                       displayName: nameController.text,
-                      phoneNumber: handphoneController.text,
+                      phoneNumber: phone,
                       orderLatlng: googleMapsCenter,
                       orderAddress: addressController.text,
                       createdTime: getCurrentTimestamp,

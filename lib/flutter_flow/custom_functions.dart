@@ -106,15 +106,15 @@ bool isOnQuery(
   return false;
 }
 
-bool isCustomerExistsByPhone(String phoneNumber) {
+Future<bool> isCustomerExistsByPhone(String phoneNumber) async {
   // check if document in firebase where phone number exists
-  bool exists = false;
-  FirebaseFirestore.instance
+  var snapshot = await FirebaseFirestore.instance
       .collection('customers')
-      .where('phoneNumber', isEqualTo: phoneNumber)
-      .get()
-      .then((QuerySnapshot snapshot) {
-    exists = snapshot.docs.isNotEmpty;
-  });
-  return exists;
+      .where('phone_number', isEqualTo: phoneNumber)
+      .get();
+
+  if(snapshot.docs.isNotEmpty)
+    return true;
+  else
+    return false;
 }
