@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/place.dart';
 import 'dart:io';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -357,17 +358,38 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
               child: FFButtonWidget(
                 onPressed: () async {
-                  final customersCreateData = createCustomersRecordData(
-                    displayName: nameController.text,
-                    phoneNumber: handphoneController.text,
-                    orderLatlng: googleMapsCenter,
-                    orderAddress: addressController.text,
-                    createdTime: getCurrentTimestamp,
-                  );
-                  await CustomersRecord.collection
-                      .doc()
-                      .set(customersCreateData);
-                  Navigator.pop(context);
+                  if (functions
+                      .isCustomerExistsByPhone(handphoneController.text)) {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: Text('Failed insert'),
+                          content: Text(
+                              'Customer with this phone number already exists'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    final customersCreateData = createCustomersRecordData(
+                      displayName: nameController.text,
+                      phoneNumber: handphoneController.text,
+                      orderLatlng: googleMapsCenter,
+                      orderAddress: addressController.text,
+                      createdTime: getCurrentTimestamp,
+                    );
+                    await CustomersRecord.collection
+                        .doc()
+                        .set(customersCreateData);
+                    Navigator.pop(context);
+                  }
                 },
                 text: 'Create Customer',
                 options: FFButtonOptions(

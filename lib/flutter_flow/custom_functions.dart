@@ -105,3 +105,16 @@ bool isOnQuery(
   }
   return false;
 }
+
+bool isCustomerExistsByPhone(String phoneNumber) {
+  // check if document in firebase where phone number exists
+  bool exists = false;
+  FirebaseFirestore.instance
+      .collection('customers')
+      .where('phoneNumber', isEqualTo: phoneNumber)
+      .get()
+      .then((QuerySnapshot snapshot) {
+    exists = snapshot.docs.isNotEmpty;
+  });
+  return exists;
+}
