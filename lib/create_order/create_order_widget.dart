@@ -150,13 +150,15 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                           color: Color(0xFF1F2126),
                           size: 24,
                         ),
-                        onPressed: () async {
-                          await Navigator.push(
+                        onPressed: () {
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => CustomerListWidget(),
                             ),
-                          );
+                          ).then((value){
+                            setState(() {});
+                          });
                         },
                       ),
                     ],
@@ -495,15 +497,17 @@ class _CreateOrderWidgetState extends State<CreateOrderWidget> {
                           color: Color(0xFF1F2126),
                           size: 24,
                         ),
-                        onPressed: () async {
-                          await Navigator.push(
+                        onPressed: () {
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => RangerListWidget(
                                 isSelection: true,
                               ),
                             ),
-                          );
+                          ).then((value) {
+                            setState(() {});
+                          });
                         },
                       ),
                     ],

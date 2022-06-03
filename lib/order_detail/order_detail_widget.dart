@@ -1153,8 +1153,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       children: [
                                         Expanded(
                                           child: FFButtonWidget(
-                                            onPressed: () async {
-                                              await showModalBottomSheet(
+                                            onPressed: () {
+                                              showModalBottomSheet(
                                                 isScrollControlled: true,
                                                 backgroundColor:
                                                     Colors.transparent,
@@ -1171,7 +1171,9 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     ),
                                                   );
                                                 },
-                                              );
+                                              ).then((value) {
+                                                setState(() {});
+                                              });
                                             },
                                             text: 'Sudah Bayar',
                                             icon: Icon(
