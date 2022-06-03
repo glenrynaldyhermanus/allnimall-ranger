@@ -17,3 +17,9 @@ export 'create_historical_order/create_historical_order_widget.dart'
 export 'order_list/order_list_widget.dart' show OrderListWidget;
 export 'rate_comment_list/rate_comment_list_widget.dart'
     show RateCommentListWidget;
+export 'edit_customer_for_order/edit_customer_for_order_widget.dart'
+    show EditCustomerForOrderWidget;
+export 'edit_order_information/edit_order_information_widget.dart'
+    show EditOrderInformationWidget;
+export 'edit_order_schedule/edit_order_schedule_widget.dart'
+    show EditOrderScheduleWidget;

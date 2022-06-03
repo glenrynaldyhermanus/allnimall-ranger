@@ -37,7 +37,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
       ),
       child: Container(
         width: double.infinity,
-        height: 520,
+        height: 560,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -348,6 +348,59 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                             children: [
                               Text(
                                 'Customer tidak di tempat',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              Icon(
+                                Icons.chevron_right_rounded,
+                                color: Color(0xFF7C8791),
+                                size: 24,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        final ordersUpdateData = createOrdersRecordData(
+                          status: 'CancelledByRanger',
+                          notes: 'Pet tidak dapat di-grooming',
+                          cancelledAt: getCurrentTimestamp,
+                        );
+                        await widget.order.reference.update(ordersUpdateData);
+                        await actions.backToRoot(
+                          context,
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Color(0xFFF1F4F8),
+                            width: 2,
+                          ),
+                        ),
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Pet tidak dapat di-grooming',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
