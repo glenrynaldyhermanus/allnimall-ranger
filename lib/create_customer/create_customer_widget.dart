@@ -240,8 +240,11 @@ class _CreateCustomerWidgetState extends State<CreateCustomerWidget> {
                         'AIzaSyBydXSoppRjB-gdhCkIckjS0O_t9hzMgtw',
                     webGoogleMapsApiKey:
                         'AIzaSyAVmO1JRU552L2OhuDi0sdRhwgleBPNO3c',
-                    onSelect: (place) =>
-                        setState(() => placePickerValue = place),
+                    onSelect: (place) async {
+                      setState(() => placePickerValue = place);
+                      (await googleMapsController.future).animateCamera(
+                          CameraUpdate.newLatLng(place.latLng.toGoogleMaps()));
+                    },
                     defaultText: '',
                     icon: Icon(
                       Icons.place,

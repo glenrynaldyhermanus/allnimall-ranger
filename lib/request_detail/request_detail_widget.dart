@@ -297,6 +297,35 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                               .subtitle2,
                                         ),
                                       ),
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          await launchURL(
+                                              functions.generateWhatsAppUrl(
+                                                  widget.order.customerPhone));
+                                        },
+                                        text: 'Call',
+                                        options: FFButtonOptions(
+                                          width: 64,
+                                          height: 40,
+                                          color: Color(0x19EF487F),
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .title3
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                fontSize: 14,
+                                              ),
+                                          elevation: 0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 12,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
