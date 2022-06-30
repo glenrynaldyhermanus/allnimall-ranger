@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../order_list/order_list_widget.dart';
 import '../ranger_list/ranger_list_widget.dart';
 import '../rate_comment_list/rate_comment_list_widget.dart';
+import '../service_list/service_list_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -339,6 +340,82 @@ class _MenuWidgetState extends State<MenuWidget> {
                                             'Order List',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText2,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(0.9, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    if ((valueOrDefault(currentUserDocument?.role, '')) ==
+                        'Admin')
+                      AuthUserStreamWidget(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ServiceListWidget(),
+                                    ),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24, 0, 0, 0),
+                                          child: Text(
+                                            'Service List',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  4, 0, 0, 0),
+                                          child: Text(
+                                            'New!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryColor,
+                                                  fontSize: 12,
+                                                  fontStyle: FontStyle.italic,
+                                                ),
                                           ),
                                         ),
                                       ],

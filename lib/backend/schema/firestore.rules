@@ -29,6 +29,32 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    match /service_categories/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /services/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /services/{parent}/activities/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/activities/{document} {
+      allow read: if true;
+    }
+
+
     match /ff_user_push_notifications/{id} {
       allow read, update, delete: if false;
       allow create: if /databases/$(database)/documents/rangers/$(request.auth.uid) == request.resource.data.sender;
