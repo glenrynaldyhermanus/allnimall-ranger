@@ -24,3 +24,4 @@ export 'edit_order_information/edit_order_information_widget.dart'
 export 'edit_order_schedule/edit_order_schedule_widget.dart'
     show EditOrderScheduleWidget;
 export 'service_list/service_list_widget.dart' show ServiceListWidget;
+export 'performance/performance_widget.dart' show PerformanceWidget;
