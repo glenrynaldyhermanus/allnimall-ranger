@@ -105,31 +105,65 @@ class _PerformanceWidgetState extends State<PerformanceWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(25, 50, 25, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(25, 20, 25, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Success Order',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
-                                ),
-                                Text(
-                                  functions
-                                      .countSuccessOrder(
-                                          performanceOrdersRecordList.toList())
-                                      .toString(),
-                                  style: FlutterFlowTheme.of(context).subtitle2,
-                                ),
-                              ],
-                            ),
-                          ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Success Order',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
+                                  ),
+                                  Text(
+                                    functions
+                                        .countSuccessOrder(
+                                            performanceOrdersRecordList
+                                                .toList())
+                                        .toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).subtitle2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Num Of Pets',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
+                                  ),
+                                  Text(
+                                    functions
+                                        .countTotalPets(
+                                            performanceOrdersRecordList
+                                                .toList())
+                                        .toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).subtitle2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

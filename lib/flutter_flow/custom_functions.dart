@@ -111,8 +111,23 @@ bool isCustomerExistsByPhone(String phoneNumber) {
 int countSuccessOrder(List<OrdersRecord> orderList) {
   // count total of success order this month
   List<OrdersRecord> _orderList = orderList;
-  _orderList.retainWhere((element) => element.status == 'finish');
+  _orderList.retainWhere((element) => element.status == "Finish");
   _orderList.retainWhere(
       (element) => element.scheduledAt.month == DateTime.now().month);
   return _orderList.length;
+}
+
+int countTotalPets(List<OrdersRecord> orderList) {
+  // count total of success order this month
+  List<OrdersRecord> _orderList = orderList;
+  _orderList.retainWhere((element) => element.status == "Finish");
+  _orderList.retainWhere(
+      (element) => element.scheduledAt.month == DateTime.now().month);
+
+  int petCount = 0;
+  for (var _rec in _orderList) {
+    petCount += _rec.quantity;
+  }
+
+  return petCount;
 }
