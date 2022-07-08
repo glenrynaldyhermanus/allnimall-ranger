@@ -132,6 +132,10 @@ abstract class OrdersRecord
   DateTime get onlocationAt;
 
   @nullable
+  @BuiltValueField(wireName: 'customer_city')
+  String get customerCity;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -155,7 +159,8 @@ abstract class OrdersRecord
     ..rangerPhone = ''
     ..rangerProfilePicture = ''
     ..customerPhone = ''
-    ..paymentMethod = '';
+    ..paymentMethod = ''
+    ..customerCity = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('orders');
@@ -211,6 +216,7 @@ Map<String, dynamic> createOrdersRecordData({
   String paymentMethod,
   DateTime cancelledAt,
   DateTime onlocationAt,
+  String customerCity,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -246,4 +252,5 @@ Map<String, dynamic> createOrdersRecordData({
           ..paidAt = paidAt
           ..paymentMethod = paymentMethod
           ..cancelledAt = cancelledAt
-          ..onlocationAt = onlocationAt));
+          ..onlocationAt = onlocationAt
+          ..customerCity = customerCity));
