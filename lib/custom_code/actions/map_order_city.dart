@@ -9,4 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 Future mapOrderCity(List<OrdersRecord> orders) async {
   // Add your function code here!
+  List<OrdersRecord> _orderList = orders;
+  _orderList.retainWhere((element) => element.status == "Finish");
+  _orderList.retainWhere(
+          (element) => element.scheduledAt.month == DateTime.now().month);
 }
