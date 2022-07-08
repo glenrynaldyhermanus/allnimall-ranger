@@ -1589,7 +1589,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                     color: Colors.transparent,
                     width: 1,
                   ),
-                  borderRadius: 8,
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),

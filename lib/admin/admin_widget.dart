@@ -2,18 +2,19 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PerformanceWidget extends StatefulWidget {
-  const PerformanceWidget({Key key}) : super(key: key);
+class AdminWidget extends StatefulWidget {
+  const AdminWidget({Key key}) : super(key: key);
 
   @override
-  _PerformanceWidgetState createState() => _PerformanceWidgetState();
+  _AdminWidgetState createState() => _AdminWidgetState();
 }
 
-class _PerformanceWidgetState extends State<PerformanceWidget> {
+class _AdminWidgetState extends State<AdminWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -33,7 +34,7 @@ class _PerformanceWidgetState extends State<PerformanceWidget> {
             ),
           );
         }
-        List<OrdersRecord> performanceOrdersRecordList = snapshot.data;
+        List<OrdersRecord> adminOrdersRecordList = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: PreferredSize(
@@ -83,7 +84,7 @@ class _PerformanceWidgetState extends State<PerformanceWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(24, 10, 0, 0),
                     child: Text(
-                      'Performances',
+                      'Admin',
                       style: FlutterFlowTheme.of(context).title1.override(
                             fontFamily: 'Outfit',
                             color: Color(0xFF0F1113),
@@ -126,8 +127,7 @@ class _PerformanceWidgetState extends State<PerformanceWidget> {
                                   Text(
                                     functions
                                         .countSuccessOrder(
-                                            performanceOrdersRecordList
-                                                .toList())
+                                            adminOrdersRecordList.toList())
                                         .toString(),
                                     style:
                                         FlutterFlowTheme.of(context).subtitle2,
@@ -154,8 +154,7 @@ class _PerformanceWidgetState extends State<PerformanceWidget> {
                                   Text(
                                     functions
                                         .countTotalPets(
-                                            performanceOrdersRecordList
-                                                .toList())
+                                            adminOrdersRecordList.toList())
                                         .toString(),
                                     style:
                                         FlutterFlowTheme.of(context).subtitle2,
@@ -164,6 +163,59 @@ class _PerformanceWidgetState extends State<PerformanceWidget> {
                               ),
                             ],
                           ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                              child: Text(
+                                'Actions',
+                                style: FlutterFlowTheme.of(context)
+                                    .title1
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: Color(0xFF0F1113),
+                                      fontSize: 32,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Generate User City',
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                            FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: 'Start',
+                              options: FFButtonOptions(
+                                width: 130,
+                                height: 40,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

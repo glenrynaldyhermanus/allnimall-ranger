@@ -142,3 +142,11 @@ int countTotalPets(List<OrdersRecord> orderList) {
 
   return petCount;
 }
+
+String countAgeString(DateTime dateTime) {
+  // string age from datetime
+  var age = DateTime.now().difference(dateTime);
+  String years = 'year${(age.inDays / 365).floor() > 1 ? 's' : ''}';
+  String months = 'month${(age.inDays / 30).floor() > 1 ? 's' : ''}';
+  return '${age.inDays ~/ 365} $years ${age.inDays ~/ 30} $months';
+}

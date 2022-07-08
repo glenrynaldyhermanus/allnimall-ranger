@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../order_detail_pet/order_detail_pet_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -410,7 +411,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                     color: Colors.transparent,
                                                     width: 1,
                                                   ),
-                                                  borderRadius: 12,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
                                                 ),
                                               ),
                                             ),
@@ -479,7 +481,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ],
@@ -1036,12 +1039,61 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 8,
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
                               ),
                             if ((orderDetailOrdersRecord.status) == 'OnTheWay')
                               Expanded(
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final ordersUpdateData =
+                                        createOrdersRecordData(
+                                      status: 'OnTheLocation',
+                                      onlocationAt: getCurrentTimestamp,
+                                    );
+                                    await widget.order.reference
+                                        .update(ordersUpdateData);
+                                    triggerPushNotification(
+                                      notificationTitle: 'FYI',
+                                      notificationText: 'Groomer start working',
+                                      notificationSound: 'default',
+                                      userRefs: FFAppState().adminList.toList(),
+                                      initialPageName: 'Home',
+                                      parameterData: {},
+                                    );
+                                  },
+                                  text: 'Sampai Lokasi',
+                                  icon: Icon(
+                                    Icons.check_rounded,
+                                    size: 15,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 60,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    elevation: 3,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            if ((orderDetailOrdersRecord.status) ==
+                                'OnTheLocation')
+                              Expanded(
+                                flex: 8,
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final ordersUpdateData =
@@ -1083,7 +1135,53 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 8,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            if ((orderDetailOrdersRecord.status) ==
+                                'OnTheLocation')
+                              Expanded(
+                                flex: 2,
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              OrderDetailPetWidget(
+                                            order: orderDetailOrdersRecord,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    text: '',
+                                    icon: Icon(
+                                      Icons.pets,
+                                      size: 15,
+                                    ),
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 60,
+                                      color: Colors.white,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                      elevation: 3,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1130,7 +1228,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 8,
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
                               ),
@@ -1200,7 +1298,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 8,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                         ),

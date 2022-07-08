@@ -128,6 +128,10 @@ abstract class OrdersRecord
   DateTime get cancelledAt;
 
   @nullable
+  @BuiltValueField(wireName: 'onlocation_at')
+  DateTime get onlocationAt;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -206,6 +210,7 @@ Map<String, dynamic> createOrdersRecordData({
   DateTime paidAt,
   String paymentMethod,
   DateTime cancelledAt,
+  DateTime onlocationAt,
 }) =>
     serializers.toFirestore(
         OrdersRecord.serializer,
@@ -240,4 +245,5 @@ Map<String, dynamic> createOrdersRecordData({
           ..rangerUid = rangerUid
           ..paidAt = paidAt
           ..paymentMethod = paymentMethod
-          ..cancelledAt = cancelledAt));
+          ..cancelledAt = cancelledAt
+          ..onlocationAt = onlocationAt));
