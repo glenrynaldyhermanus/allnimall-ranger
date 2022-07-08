@@ -11,6 +11,8 @@ import 'schema/ratings_record.dart';
 import 'schema/service_categories_record.dart';
 import 'schema/services_record.dart';
 import 'schema/activities_record.dart';
+import 'schema/pets_record.dart';
+import 'schema/order_pets_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -25,6 +27,8 @@ export 'schema/ratings_record.dart';
 export 'schema/service_categories_record.dart';
 export 'schema/services_record.dart';
 export 'schema/activities_record.dart';
+export 'schema/pets_record.dart';
+export 'schema/order_pets_record.dart';
 
 /// Functions to query OrdersRecords (as a Stream and as a Future).
 Stream<List<OrdersRecord>> queryOrdersRecord({
@@ -321,6 +325,93 @@ Future<FFFirestorePage<ActivitiesRecord>> queryActivitiesRecordPage({
     queryCollectionPage(
       ActivitiesRecord.collection(parent),
       ActivitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query PetsRecords (as a Stream and as a Future).
+Stream<List<PetsRecord>> queryPetsRecord({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      PetsRecord.collection,
+      PetsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<PetsRecord>> queryPetsRecordOnce({
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      PetsRecord.collection,
+      PetsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<PetsRecord>> queryPetsRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      PetsRecord.collection,
+      PetsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query OrderPetsRecords (as a Stream and as a Future).
+Stream<List<OrderPetsRecord>> queryOrderPetsRecord({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      OrderPetsRecord.collection(parent),
+      OrderPetsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<OrderPetsRecord>> queryOrderPetsRecordOnce({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      OrderPetsRecord.collection(parent),
+      OrderPetsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<OrderPetsRecord>> queryOrderPetsRecordPage({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      OrderPetsRecord.collection(parent),
+      OrderPetsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

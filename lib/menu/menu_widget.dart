@@ -1,3 +1,4 @@
+import '../admin/admin_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../create_historical_order/create_historical_order_widget.dart';
@@ -7,7 +8,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../order_list/order_list_widget.dart';
-import '../performance/performance_widget.dart';
 import '../ranger_list/ranger_list_widget.dart';
 import '../rate_comment_list/rate_comment_list_widget.dart';
 import '../service_list/service_list_widget.dart';
@@ -495,7 +495,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PerformanceWidget(),
+                                builder: (context) => AdminWidget(),
                               ),
                             );
                           },
@@ -521,7 +521,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   24, 0, 0, 0),
                                           child: Text(
-                                            'Performance',
+                                            'Admin Page',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText2,
                                           ),
@@ -603,7 +603,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                 color: Colors.transparent,
                                 width: 1,
                               ),
-                              borderRadius: 8,
+                              borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                         ],

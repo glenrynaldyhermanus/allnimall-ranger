@@ -55,6 +55,25 @@ service cloud.firestore {
     }
 
 
+    match /pets/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /orders/{parent}/order_pets/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/order_pets/{document} {
+      allow read: if true;
+    }
+
+
     match /ff_user_push_notifications/{id} {
       allow read, update, delete: if false;
       allow create: if /databases/$(database)/documents/rangers/$(request.auth.uid) == request.resource.data.sender;
