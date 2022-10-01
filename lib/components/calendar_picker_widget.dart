@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CalendarPickerWidget extends StatefulWidget {
-  const CalendarPickerWidget({Key key}) : super(key: key);
+  const CalendarPickerWidget({Key? key}) : super(key: key);
 
   @override
   _CalendarPickerWidgetState createState() => _CalendarPickerWidgetState();
 }
 
 class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
-  DateTimeRange calendarSelectedDay;
+  DateTimeRange? calendarSelectedDay;
 
   @override
   void initState() {
@@ -71,7 +71,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                     onPressed: () async {
                       setState(() =>
                           FFAppState().filterDate = calendarSelectedDay?.end);
-                      Navigator.pop(context);
+                      context.pop();
                     },
                     text: 'Pilih',
                     options: FFButtonOptions(
@@ -101,7 +101,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
               weekFormat: false,
               weekStartsMonday: false,
               initialDate: FFAppState().filterDate,
-              onChange: (DateTimeRange newSelectedDate) {
+              onChange: (DateTimeRange? newSelectedDate) {
                 setState(() => calendarSelectedDay = newSelectedDate);
               },
               titleStyle: TextStyle(),

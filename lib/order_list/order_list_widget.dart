@@ -1,25 +1,22 @@
 import '../backend/backend.dart';
-import '../create_order/create_order_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../order_detail/order_detail_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderListWidget extends StatefulWidget {
-  const OrderListWidget({Key key}) : super(key: key);
+  const OrderListWidget({Key? key}) : super(key: key);
 
   @override
   _OrderListWidgetState createState() => _OrderListWidgetState();
 }
 
 class _OrderListWidgetState extends State<OrderListWidget> {
-  TextEditingController textController1;
-  TextEditingController textController2;
-  TextEditingController textController3;
+  TextEditingController? textController1;
+  TextEditingController? textController2;
+  TextEditingController? textController3;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,6 +25,14 @@ class _OrderListWidgetState extends State<OrderListWidget> {
     textController1 = TextEditingController();
     textController2 = TextEditingController();
     textController3 = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textController1?.dispose();
+    textController2?.dispose();
+    textController3?.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,7 +67,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                     ),
@@ -248,6 +253,44 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                         4.0),
                                                               ),
                                                             ),
+                                                            errorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                              ),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                              ),
+                                                            ),
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -273,7 +316,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                       stream: queryOrdersRecord(
                                         queryBuilder: (ordersRecord) =>
                                             ordersRecord
-                                                .where('status', whereIn: [
+                                                .whereIn('status', [
                                                   "Confirmed",
                                                   "OnTheWay",
                                                   "Working"
@@ -298,7 +341,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         }
                                         List<OrdersRecord>
                                             columnOrdersRecordList =
-                                            snapshot.data;
+                                            snapshot.data!;
                                         return SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -313,15 +356,17 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                     .fromSTEB(0, 0, 0, 1),
                                                 child: InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            OrderDetailWidget(
-                                                          order:
-                                                              columnOrdersRecord,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'OrderDetail',
+                                                      queryParams: {
+                                                        'order': serializeParam(
+                                                            columnOrdersRecord,
+                                                            ParamType.Document),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        'order':
+                                                            columnOrdersRecord,
+                                                      },
                                                     );
                                                   },
                                                   child: Container(
@@ -353,8 +398,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  if ((columnOrdersRecord
-                                                                          .status) !=
+                                                                  if (columnOrdersRecord
+                                                                          .status !=
                                                                       'Finish')
                                                                     Container(
                                                                       width: 64,
@@ -379,7 +424,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                               5),
                                                                           child:
                                                                               AutoSizeText(
-                                                                            columnOrdersRecord.startTime.maybeHandleOverflow(
+                                                                            columnOrdersRecord.startTime!.maybeHandleOverflow(
                                                                               maxChars: 70,
                                                                               replacement: '…',
                                                                             ),
@@ -397,8 +442,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  if ((columnOrdersRecord
-                                                                          .status) ==
+                                                                  if (columnOrdersRecord
+                                                                          .status ==
                                                                       'Finish')
                                                                     Container(
                                                                       width: 64,
@@ -458,7 +503,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                 children: [
                                                                   Text(
                                                                     columnOrdersRecord
-                                                                        .name,
+                                                                        .name!,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .title3
@@ -497,7 +542,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                                 0),
                                                                             child:
                                                                                 AutoSizeText(
-                                                                              columnOrdersRecord.rangerName.maybeHandleOverflow(
+                                                                              columnOrdersRecord.rangerName!.maybeHandleOverflow(
                                                                                 maxChars: 70,
                                                                                 replacement: '…',
                                                                               ),
@@ -532,7 +577,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
                                                                               child: Text(
                                                                                 formatNumber(
-                                                                                  columnOrdersRecord.amount,
+                                                                                  columnOrdersRecord.amount!,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.commaDecimal,
                                                                                   currency: 'Rp',
@@ -561,7 +606,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                     child:
                                                                         AutoSizeText(
                                                                       columnOrdersRecord
-                                                                          .customerAddress
+                                                                          .customerAddress!
                                                                           .maybeHandleOverflow(
                                                                         maxChars:
                                                                             70,
@@ -724,6 +769,44 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                         4.0),
                                                               ),
                                                             ),
+                                                            errorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                              ),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                              ),
+                                                            ),
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -771,7 +854,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         }
                                         List<OrdersRecord>
                                             columnOrdersRecordList =
-                                            snapshot.data;
+                                            snapshot.data!;
                                         return SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -786,15 +869,17 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                     .fromSTEB(0, 0, 0, 1),
                                                 child: InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            OrderDetailWidget(
-                                                          order:
-                                                              columnOrdersRecord,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'OrderDetail',
+                                                      queryParams: {
+                                                        'order': serializeParam(
+                                                            columnOrdersRecord,
+                                                            ParamType.Document),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        'order':
+                                                            columnOrdersRecord,
+                                                      },
                                                     );
                                                   },
                                                   child: Container(
@@ -826,8 +911,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  if ((columnOrdersRecord
-                                                                          .status) !=
+                                                                  if (columnOrdersRecord
+                                                                          .status !=
                                                                       'Finish')
                                                                     Container(
                                                                       width: 64,
@@ -852,7 +937,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                               5),
                                                                           child:
                                                                               AutoSizeText(
-                                                                            columnOrdersRecord.startTime.maybeHandleOverflow(
+                                                                            columnOrdersRecord.startTime!.maybeHandleOverflow(
                                                                               maxChars: 70,
                                                                               replacement: '…',
                                                                             ),
@@ -870,8 +955,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  if ((columnOrdersRecord
-                                                                          .status) ==
+                                                                  if (columnOrdersRecord
+                                                                          .status ==
                                                                       'Finish')
                                                                     Container(
                                                                       width: 64,
@@ -931,7 +1016,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                 children: [
                                                                   Text(
                                                                     columnOrdersRecord
-                                                                        .name,
+                                                                        .name!,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .title3
@@ -970,7 +1055,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                                 0),
                                                                             child:
                                                                                 AutoSizeText(
-                                                                              columnOrdersRecord.rangerName.maybeHandleOverflow(
+                                                                              columnOrdersRecord.rangerName!.maybeHandleOverflow(
                                                                                 maxChars: 70,
                                                                                 replacement: '…',
                                                                               ),
@@ -1005,7 +1090,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
                                                                               child: Text(
                                                                                 formatNumber(
-                                                                                  columnOrdersRecord.amount,
+                                                                                  columnOrdersRecord.amount!,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.commaDecimal,
                                                                                   currency: 'Rp',
@@ -1034,7 +1119,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                     child:
                                                                         AutoSizeText(
                                                                       columnOrdersRecord
-                                                                          .customerAddress
+                                                                          .customerAddress!
                                                                           .maybeHandleOverflow(
                                                                         maxChars:
                                                                             70,
@@ -1197,6 +1282,44 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                         4.0),
                                                               ),
                                                             ),
+                                                            errorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                              ),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        4.0),
+                                                              ),
+                                                            ),
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1244,7 +1367,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                         }
                                         List<OrdersRecord>
                                             columnOrdersRecordList =
-                                            snapshot.data;
+                                            snapshot.data!;
                                         return SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1259,15 +1382,17 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                     .fromSTEB(0, 0, 0, 1),
                                                 child: InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            OrderDetailWidget(
-                                                          order:
-                                                              columnOrdersRecord,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'OrderDetail',
+                                                      queryParams: {
+                                                        'order': serializeParam(
+                                                            columnOrdersRecord,
+                                                            ParamType.Document),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        'order':
+                                                            columnOrdersRecord,
+                                                      },
                                                     );
                                                   },
                                                   child: Container(
@@ -1299,8 +1424,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  if ((columnOrdersRecord
-                                                                          .status) !=
+                                                                  if (columnOrdersRecord
+                                                                          .status !=
                                                                       'Finish')
                                                                     Container(
                                                                       width: 64,
@@ -1325,7 +1450,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                               5),
                                                                           child:
                                                                               AutoSizeText(
-                                                                            columnOrdersRecord.startTime.maybeHandleOverflow(
+                                                                            columnOrdersRecord.startTime!.maybeHandleOverflow(
                                                                               maxChars: 70,
                                                                               replacement: '…',
                                                                             ),
@@ -1343,8 +1468,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  if ((columnOrdersRecord
-                                                                          .status) ==
+                                                                  if (columnOrdersRecord
+                                                                          .status ==
                                                                       'Finish')
                                                                     Container(
                                                                       width: 64,
@@ -1404,7 +1529,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                 children: [
                                                                   Text(
                                                                     columnOrdersRecord
-                                                                        .name,
+                                                                        .name!,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .title3
@@ -1443,7 +1568,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                                 0),
                                                                             child:
                                                                                 AutoSizeText(
-                                                                              columnOrdersRecord.rangerName.maybeHandleOverflow(
+                                                                              columnOrdersRecord.rangerName!.maybeHandleOverflow(
                                                                                 maxChars: 70,
                                                                                 replacement: '…',
                                                                               ),
@@ -1478,7 +1603,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
                                                                               child: Text(
                                                                                 formatNumber(
-                                                                                  columnOrdersRecord.amount,
+                                                                                  columnOrdersRecord.amount!,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.commaDecimal,
                                                                                   currency: 'Rp',
@@ -1507,7 +1632,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                                     child:
                                                                         AutoSizeText(
                                                                       columnOrdersRecord
-                                                                          .customerAddress
+                                                                          .customerAddress!
                                                                           .maybeHandleOverflow(
                                                                         maxChars:
                                                                             70,
@@ -1561,38 +1686,6 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                 ),
               ),
             ],
-          ),
-          Align(
-            alignment: AlignmentDirectional(1, 1),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 20),
-              child: FFButtonWidget(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreateOrderWidget(),
-                    ),
-                  );
-                },
-                text: 'Add New',
-                options: FFButtonOptions(
-                  width: 95,
-                  height: 40,
-                  color: FlutterFlowTheme.of(context).primaryColor,
-                  textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                  elevation: 2,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
           ),
         ],
       ),

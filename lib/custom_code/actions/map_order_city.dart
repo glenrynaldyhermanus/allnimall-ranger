@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 
 // Begin custom action code
-Future mapOrderCity(List<OrdersRecord> orders) async {
+Future mapOrderCity(List<OrdersRecord>? orders) async {
   // Add your function code here!
   List<OrdersRecord> _orderList = orders;
   _orderList.retainWhere((element) => element.customerCity.isEmpty);

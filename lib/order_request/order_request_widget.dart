@@ -2,15 +2,13 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../menu/menu_widget.dart';
-import '../request_detail/request_detail_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderRequestWidget extends StatefulWidget {
-  const OrderRequestWidget({Key key}) : super(key: key);
+  const OrderRequestWidget({Key? key}) : super(key: key);
 
   @override
   _OrderRequestWidgetState createState() => _OrderRequestWidgetState();
@@ -52,12 +50,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                 size: 24,
               ),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MenuWidget(),
-                  ),
-                );
+                context.pushNamed('Menu');
               },
             ),
           ),
@@ -111,7 +104,8 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                         ),
                       );
                     }
-                    List<OrdersRecord> listViewOrdersRecordList = snapshot.data;
+                    List<OrdersRecord> listViewOrdersRecordList =
+                        snapshot.data!;
                     return ListView.builder(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -126,13 +120,15 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                               EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RequestDetailWidget(
-                                    order: listViewOrdersRecord,
-                                  ),
-                                ),
+                              context.pushNamed(
+                                'RequestDetail',
+                                queryParams: {
+                                  'order': serializeParam(
+                                      listViewOrdersRecord, ParamType.Document),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  'order': listViewOrdersRecord,
+                                },
                               );
                             },
                             child: Container(
@@ -184,7 +180,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              listViewOrdersRecord.name,
+                                              listViewOrdersRecord.name!,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .title3
@@ -200,7 +196,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                                   .fromSTEB(0, 4, 8, 0),
                                               child: AutoSizeText(
                                                 listViewOrdersRecord
-                                                    .customerAddress
+                                                    .customerAddress!
                                                     .maybeHandleOverflow(
                                                   maxChars: 70,
                                                   replacement: '…',
@@ -233,7 +229,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget> {
                                       children: [
                                         Text(
                                           formatNumber(
-                                            listViewOrdersRecord.amount,
+                                            listViewOrdersRecord.amount!,
                                             formatType: FormatType.decimal,
                                             decimalType:
                                                 DecimalType.commaDecimal,

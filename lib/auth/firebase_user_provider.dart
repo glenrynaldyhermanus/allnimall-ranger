@@ -3,11 +3,11 @@ import 'package:rxdart/rxdart.dart';
 
 class GroomerFirebaseUser {
   GroomerFirebaseUser(this.user);
-  User user;
+  User? user;
   bool get loggedIn => user != null;
 }
 
-GroomerFirebaseUser currentUser;
+GroomerFirebaseUser? currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;
 Stream<GroomerFirebaseUser> groomerFirebaseUserStream() => FirebaseAuth.instance
     .authStateChanges()

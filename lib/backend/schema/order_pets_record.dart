@@ -11,23 +11,21 @@ abstract class OrderPetsRecord
   static Serializer<OrderPetsRecord> get serializer =>
       _$orderPetsRecordSerializer;
 
-  @nullable
   @BuiltValueField(wireName: 'order_uid')
-  DocumentReference get orderUid;
+  DocumentReference? get orderUid;
 
-  @nullable
   @BuiltValueField(wireName: 'pet_uid')
-  DocumentReference get petUid;
+  DocumentReference? get petUid;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
-  DocumentReference get parentReference => reference.parent.parent;
+  DocumentReference get parentReference => reference.parent.parent!;
 
   static void _initializeBuilder(OrderPetsRecordBuilder builder) => builder;
 
-  static Query<Map<String, dynamic>> collection([DocumentReference parent]) =>
+  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
           ? parent.collection('order_pets')
           : FirebaseFirestore.instance.collectionGroup('order_pets');
@@ -37,11 +35,11 @@ abstract class OrderPetsRecord
 
   static Stream<OrderPetsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<OrderPetsRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   OrderPetsRecord._();
   factory OrderPetsRecord([void Function(OrderPetsRecordBuilder) updates]) =
@@ -50,15 +48,21 @@ abstract class OrderPetsRecord
   static OrderPetsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createOrderPetsRecordData({
-  DocumentReference orderUid,
-  DocumentReference petUid,
-}) =>
-    serializers.toFirestore(
-        OrderPetsRecord.serializer,
-        OrderPetsRecord((o) => o
-          ..orderUid = orderUid
-          ..petUid = petUid));
+  DocumentReference? orderUid,
+  DocumentReference? petUid,
+}) {
+  final firestoreData = serializers.toFirestore(
+    OrderPetsRecord.serializer,
+    OrderPetsRecord(
+      (o) => o
+        ..orderUid = orderUid
+        ..petUid = petUid,
+    ),
+  );
+
+  return firestoreData;
+}
