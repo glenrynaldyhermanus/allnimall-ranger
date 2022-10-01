@@ -238,6 +238,20 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.onlocationAt;
+    if (value != null) {
+      result
+        ..add('onlocation_at')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.customerCity;
+    if (value != null) {
+      result
+        ..add('customer_city')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -388,6 +402,14 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
           result.cancelledAt = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime;
           break;
+        case 'onlocation_at':
+          result.onlocationAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime;
+          break;
+        case 'customer_city':
+          result.customerCity = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -465,6 +487,10 @@ class _$OrdersRecord extends OrdersRecord {
   @override
   final DateTime cancelledAt;
   @override
+  final DateTime onlocationAt;
+  @override
+  final String customerCity;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$OrdersRecord([void Function(OrdersRecordBuilder) updates]) =>
@@ -502,6 +528,8 @@ class _$OrdersRecord extends OrdersRecord {
       this.paidAt,
       this.paymentMethod,
       this.cancelledAt,
+      this.onlocationAt,
+      this.customerCity,
       this.reference})
       : super._();
 
@@ -547,6 +575,8 @@ class _$OrdersRecord extends OrdersRecord {
         paidAt == other.paidAt &&
         paymentMethod == other.paymentMethod &&
         cancelledAt == other.cancelledAt &&
+        onlocationAt == other.onlocationAt &&
+        customerCity == other.customerCity &&
         reference == other.reference;
   }
 
@@ -570,25 +600,25 @@ class _$OrdersRecord extends OrdersRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode),
-                                                                                prefferedTime.hashCode),
-                                                                            discount.hashCode),
-                                                                        notes.hashCode),
-                                                                    startTime.hashCode),
-                                                                endTime.hashCode),
-                                                            rangerName.hashCode),
-                                                        rangerPhone.hashCode),
-                                                    rangerProfilePicture.hashCode),
-                                                confirmedAt.hashCode),
-                                            customerPhone.hashCode),
-                                        onthewayAt.hashCode),
-                                    workingAt.hashCode),
-                                finishAt.hashCode),
-                            customerUid.hashCode),
-                        rangerUid.hashCode),
-                    paidAt.hashCode),
-                paymentMethod.hashCode),
-            cancelledAt.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, createdAt.hashCode), orderNo.hashCode), petCategory.hashCode), name.hashCode), scheduledAt.hashCode), service.hashCode), quantity.hashCode), amount.hashCode), status.hashCode), customerAddress.hashCode), customerLatlng.hashCode), customerName.hashCode), paymentStatus.hashCode), prefferedTime.hashCode), discount.hashCode),
+                                                                                notes.hashCode),
+                                                                            startTime.hashCode),
+                                                                        endTime.hashCode),
+                                                                    rangerName.hashCode),
+                                                                rangerPhone.hashCode),
+                                                            rangerProfilePicture.hashCode),
+                                                        confirmedAt.hashCode),
+                                                    customerPhone.hashCode),
+                                                onthewayAt.hashCode),
+                                            workingAt.hashCode),
+                                        finishAt.hashCode),
+                                    customerUid.hashCode),
+                                rangerUid.hashCode),
+                            paidAt.hashCode),
+                        paymentMethod.hashCode),
+                    cancelledAt.hashCode),
+                onlocationAt.hashCode),
+            customerCity.hashCode),
         reference.hashCode));
   }
 
@@ -626,6 +656,8 @@ class _$OrdersRecord extends OrdersRecord {
           ..add('paidAt', paidAt)
           ..add('paymentMethod', paymentMethod)
           ..add('cancelledAt', cancelledAt)
+          ..add('onlocationAt', onlocationAt)
+          ..add('customerCity', customerCity)
           ..add('reference', reference))
         .toString();
   }
@@ -768,6 +800,15 @@ class OrdersRecordBuilder
   DateTime get cancelledAt => _$this._cancelledAt;
   set cancelledAt(DateTime cancelledAt) => _$this._cancelledAt = cancelledAt;
 
+  DateTime _onlocationAt;
+  DateTime get onlocationAt => _$this._onlocationAt;
+  set onlocationAt(DateTime onlocationAt) =>
+      _$this._onlocationAt = onlocationAt;
+
+  String _customerCity;
+  String get customerCity => _$this._customerCity;
+  set customerCity(String customerCity) => _$this._customerCity = customerCity;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -811,6 +852,8 @@ class OrdersRecordBuilder
       _paidAt = $v.paidAt;
       _paymentMethod = $v.paymentMethod;
       _cancelledAt = $v.cancelledAt;
+      _onlocationAt = $v.onlocationAt;
+      _customerCity = $v.customerCity;
       _reference = $v.reference;
       _$v = null;
     }
@@ -863,6 +906,8 @@ class OrdersRecordBuilder
             paidAt: paidAt,
             paymentMethod: paymentMethod,
             cancelledAt: cancelledAt,
+            onlocationAt: onlocationAt,
+            customerCity: customerCity,
             reference: reference);
     replace(_$result);
     return _$result;
