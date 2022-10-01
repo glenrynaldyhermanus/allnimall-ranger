@@ -9,75 +9,57 @@ part 'pets_record.g.dart';
 abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   static Serializer<PetsRecord> get serializer => _$petsRecordSerializer;
 
-  @nullable
-  DateTime get birthdate;
+  DateTime? get birthdate;
 
-  @nullable
-  String get breed;
+  String? get breed;
 
-  @nullable
-  String get condition;
+  String? get condition;
 
-  @nullable
   @BuiltValueField(wireName: 'has_diarrhea')
-  bool get hasDiarrhea;
+  bool? get hasDiarrhea;
 
-  @nullable
   @BuiltValueField(wireName: 'has_earmites')
-  bool get hasEarmites;
+  bool? get hasEarmites;
 
-  @nullable
   @BuiltValueField(wireName: 'has_fleas')
-  bool get hasFleas;
+  bool? get hasFleas;
 
-  @nullable
   @BuiltValueField(wireName: 'has_fungus')
-  bool get hasFungus;
+  bool? get hasFungus;
 
-  @nullable
   @BuiltValueField(wireName: 'has_scabies')
-  bool get hasScabies;
+  bool? get hasScabies;
 
-  @nullable
   @BuiltValueField(wireName: 'has_sterilised')
-  bool get hasSterilised;
+  bool? get hasSterilised;
 
-  @nullable
   @BuiltValueField(wireName: 'has_vaccinated')
-  bool get hasVaccinated;
+  bool? get hasVaccinated;
 
-  @nullable
   @BuiltValueField(wireName: 'has_worms')
-  bool get hasWorms;
+  bool? get hasWorms;
 
-  @nullable
-  String get name;
+  String? get name;
 
-  @nullable
   @BuiltValueField(wireName: 'owner_name')
-  String get ownerName;
+  String? get ownerName;
 
-  @nullable
   @BuiltValueField(wireName: 'owner_uid')
-  DocumentReference get ownerUid;
+  DocumentReference? get ownerUid;
 
-  @nullable
-  String get sex;
+  String? get sex;
 
-  @nullable
-  int get weight;
+  int? get weight;
 
-  @nullable
   @BuiltValueField(wireName: 'weight_unit')
-  String get weightUnit;
+  String? get weightUnit;
 
-  @nullable
   @BuiltValueField(wireName: 'picture_url')
-  String get pictureUrl;
+  String? get pictureUrl;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(PetsRecordBuilder builder) => builder
     ..breed = ''
@@ -102,11 +84,11 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
 
   static Stream<PetsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<PetsRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   PetsRecord._();
   factory PetsRecord([void Function(PetsRecordBuilder) updates]) = _$PetsRecord;
@@ -114,47 +96,53 @@ abstract class PetsRecord implements Built<PetsRecord, PetsRecordBuilder> {
   static PetsRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createPetsRecordData({
-  DateTime birthdate,
-  String breed,
-  String condition,
-  bool hasDiarrhea,
-  bool hasEarmites,
-  bool hasFleas,
-  bool hasFungus,
-  bool hasScabies,
-  bool hasSterilised,
-  bool hasVaccinated,
-  bool hasWorms,
-  String name,
-  String ownerName,
-  DocumentReference ownerUid,
-  String sex,
-  int weight,
-  String weightUnit,
-  String pictureUrl,
-}) =>
-    serializers.toFirestore(
-        PetsRecord.serializer,
-        PetsRecord((p) => p
-          ..birthdate = birthdate
-          ..breed = breed
-          ..condition = condition
-          ..hasDiarrhea = hasDiarrhea
-          ..hasEarmites = hasEarmites
-          ..hasFleas = hasFleas
-          ..hasFungus = hasFungus
-          ..hasScabies = hasScabies
-          ..hasSterilised = hasSterilised
-          ..hasVaccinated = hasVaccinated
-          ..hasWorms = hasWorms
-          ..name = name
-          ..ownerName = ownerName
-          ..ownerUid = ownerUid
-          ..sex = sex
-          ..weight = weight
-          ..weightUnit = weightUnit
-          ..pictureUrl = pictureUrl));
+  DateTime? birthdate,
+  String? breed,
+  String? condition,
+  bool? hasDiarrhea,
+  bool? hasEarmites,
+  bool? hasFleas,
+  bool? hasFungus,
+  bool? hasScabies,
+  bool? hasSterilised,
+  bool? hasVaccinated,
+  bool? hasWorms,
+  String? name,
+  String? ownerName,
+  DocumentReference? ownerUid,
+  String? sex,
+  int? weight,
+  String? weightUnit,
+  String? pictureUrl,
+}) {
+  final firestoreData = serializers.toFirestore(
+    PetsRecord.serializer,
+    PetsRecord(
+      (p) => p
+        ..birthdate = birthdate
+        ..breed = breed
+        ..condition = condition
+        ..hasDiarrhea = hasDiarrhea
+        ..hasEarmites = hasEarmites
+        ..hasFleas = hasFleas
+        ..hasFungus = hasFungus
+        ..hasScabies = hasScabies
+        ..hasSterilised = hasSterilised
+        ..hasVaccinated = hasVaccinated
+        ..hasWorms = hasWorms
+        ..name = name
+        ..ownerName = ownerName
+        ..ownerUid = ownerUid
+        ..sex = sex
+        ..weight = weight
+        ..weightUnit = weightUnit
+        ..pictureUrl = pictureUrl,
+    ),
+  );
+
+  return firestoreData;
+}

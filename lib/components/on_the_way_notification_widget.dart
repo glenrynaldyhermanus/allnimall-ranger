@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OnTheWayNotificationWidget extends StatefulWidget {
-  const OnTheWayNotificationWidget({Key key}) : super(key: key);
+  const OnTheWayNotificationWidget({Key? key}) : super(key: key);
 
   @override
   _OnTheWayNotificationWidgetState createState() =>
@@ -287,7 +287,7 @@ class _OnTheWayNotificationWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 44),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    Navigator.pop(context);
+                    context.pop();
                   },
                   text: 'Menegerti',
                   options: FFButtonOptions(

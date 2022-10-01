@@ -12,11 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PaymentConfirmationWidget extends StatefulWidget {
   const PaymentConfirmationWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _PaymentConfirmationWidgetState createState() =>
@@ -24,7 +24,7 @@ class PaymentConfirmationWidget extends StatefulWidget {
 }
 
 class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
-  String timeListValue;
+  String? timeListValue;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                     ),
@@ -125,8 +125,8 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order.service} x ${widget.order.quantity.toString()} ${widget.order.petCategory} = ${formatNumber(
-                          widget.order.amount,
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order!.service} x ${widget.order!.quantity?.toString()} ${widget.order!.petCategory} = ${formatNumber(
+                          widget.order!.amount,
                           formatType: FormatType.decimal,
                           decimalType: DecimalType.commaDecimal,
                           currency: 'Rp',
@@ -176,7 +176,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Terima+kasih+atas+konfirmasi+dan+kepercayaan+kakak+telah+menggunakan+jasa+Allnimall.');
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Terima+kasih+atas+konfirmasi+dan+kepercayaan+kakak+telah+menggunakan+jasa+Allnimall.');
                       },
                       text: 'Kirim Pembayaran Terkonfirmasi',
                       options: FFButtonOptions(
@@ -216,8 +216,8 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                           paidAt: getCurrentTimestamp,
                           paymentMethod: timeListValue,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
-                        Navigator.pop(context);
+                        await widget.order!.reference.update(ordersUpdateData);
+                        context.pop();
                       },
                       text: 'Paid',
                       options: FFButtonOptions(

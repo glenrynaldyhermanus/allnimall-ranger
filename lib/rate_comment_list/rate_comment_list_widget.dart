@@ -8,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class RateCommentListWidget extends StatefulWidget {
   const RateCommentListWidget({
-    Key key,
+    Key? key,
     this.ranger,
   }) : super(key: key);
 
-  final DocumentReference ranger;
+  final DocumentReference? ranger;
 
   @override
   _RateCommentListWidgetState createState() => _RateCommentListWidgetState();
@@ -53,7 +53,7 @@ class _RateCommentListWidgetState extends State<RateCommentListWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                     ),
@@ -117,7 +117,7 @@ class _RateCommentListWidgetState extends State<RateCommentListWidget> {
                         );
                       }
                       List<RatingsRecord> columnRatingsRecordList =
-                          snapshot.data;
+                          snapshot.data!;
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -148,7 +148,7 @@ class _RateCommentListWidgetState extends State<RateCommentListWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              columnRatingsRecord.rate
+                                              columnRatingsRecord.rate!
                                                   .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -184,13 +184,13 @@ class _RateCommentListWidgetState extends State<RateCommentListWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                columnRatingsRecord.orderNo,
+                                                columnRatingsRecord.orderNo!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText2,
                                               ),
                                               Text(
-                                                columnRatingsRecord.comment,
+                                                columnRatingsRecord.comment!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,

@@ -13,18 +13,18 @@ import 'package:google_fonts/google_fonts.dart';
 
 class RequestDetailWidget extends StatefulWidget {
   const RequestDetailWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _RequestDetailWidgetState createState() => _RequestDetailWidgetState();
 }
 
 class _RequestDetailWidgetState extends State<RequestDetailWidget> {
-  LatLng googleMapsCenter;
+  LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -45,7 +45,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
         ),
         actions: [
           Visibility(
-            visible: (valueOrDefault(currentUserDocument?.role, '')) == 'Admin',
+            visible: valueOrDefault(currentUserDocument?.role, '') == 'Admin',
             child: AuthUserStreamWidget(
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -58,8 +58,8 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                   size: 30,
                 ),
                 onPressed: () async {
-                  await widget.order.reference.delete();
-                  Navigator.pop(context);
+                  await widget.order!.reference.delete();
+                  context.pop();
                 },
               ),
             ),
@@ -99,7 +99,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      widget.order.name,
+                                      widget.order!.name!,
                                       style: FlutterFlowTheme.of(context)
                                           .title3
                                           .override(
@@ -119,7 +119,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      widget.order.orderNo,
+                                      widget.order!.orderNo!,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
@@ -180,7 +180,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                     children: [
                                       Text(
                                         dateTimeFormat('MMMMEEEEd',
-                                            widget.order.scheduledAt),
+                                            widget.order!.scheduledAt!),
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1,
@@ -192,7 +192,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                             .subtitle1,
                                       ),
                                       Text(
-                                        widget.order.prefferedTime,
+                                        widget.order!.prefferedTime!,
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1,
@@ -208,7 +208,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        widget.order.service,
+                                        widget.order!.service!,
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1,
@@ -224,7 +224,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        widget.order.petCategory,
+                                        widget.order!.petCategory!,
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle2,
@@ -236,7 +236,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                             .subtitle2,
                                       ),
                                       Text(
-                                        widget.order.quantity.toString(),
+                                        widget.order!.quantity!.toString(),
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle2,
@@ -259,12 +259,12 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       onCameraIdle: (latLng) =>
                                           googleMapsCenter = latLng,
                                       initialLocation: googleMapsCenter ??=
-                                          widget.order.customerLatlng,
+                                          widget.order!.customerLatlng!,
                                       markers: [
                                         if (widget.order != null)
                                           FlutterFlowMarker(
-                                            widget.order.reference.path,
-                                            widget.order.customerLatlng,
+                                            widget.order!.reference.path,
+                                            widget.order!.customerLatlng!,
                                           ),
                                       ],
                                       markerColor: GoogleMarkerColor.violet,
@@ -291,7 +291,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          widget.order.customerAddress,
+                                          widget.order!.customerAddress!,
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle2,
@@ -301,7 +301,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                         onPressed: () async {
                                           await launchURL(
                                               functions.generateWhatsAppUrl(
-                                                  widget.order.customerPhone));
+                                                  widget.order!.customerPhone));
                                         },
                                         text: 'Call',
                                         options: FFButtonOptions(
@@ -354,26 +354,19 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       20, 0, 20, 0),
                                   child: StreamBuilder<List<OrdersRecord>>(
                                     stream: queryOrdersRecord(
-                                      queryBuilder:
-                                          (ordersRecord) =>
-                                              ordersRecord
-                                                  .where(
-                                                      'scheduled_at',
-                                                      isGreaterThanOrEqualTo:
-                                                          functions
-                                                              .dateStart(widget
-                                                                  .order
-                                                                  .scheduledAt))
-                                                  .where(
-                                                      'scheduled_at',
-                                                      isLessThanOrEqualTo:
-                                                          functions
-                                                              .dateEnd(widget
-                                                                  .order
-                                                                  .scheduledAt))
-                                                  .where('status',
-                                                      isEqualTo: 'Confirmed')
-                                                  .orderBy('scheduled_at'),
+                                      queryBuilder: (ordersRecord) =>
+                                          ordersRecord
+                                              .where('scheduled_at',
+                                                  isGreaterThanOrEqualTo:
+                                                      functions.dateStart(widget
+                                                          .order!.scheduledAt))
+                                              .where('scheduled_at',
+                                                  isLessThanOrEqualTo:
+                                                      functions.dateEnd(widget
+                                                          .order!.scheduledAt))
+                                              .where('status',
+                                                  isEqualTo: 'Confirmed')
+                                              .orderBy('scheduled_at'),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -392,7 +385,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       }
                                       List<OrdersRecord>
                                           columnOrdersRecordList =
-                                          snapshot.data;
+                                          snapshot.data!;
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -418,7 +411,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                                                 0, 2, 0, 0),
                                                     child: Text(
                                                       columnOrdersRecord
-                                                          .startTime,
+                                                          .startTime!,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -445,14 +438,14 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                                         children: [
                                                           Text(
                                                             columnOrdersRecord
-                                                                .name,
+                                                                .name!,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1,
                                                           ),
                                                           Text(
                                                             columnOrdersRecord
-                                                                .customerAddress,
+                                                                .customerAddress!,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2
@@ -520,7 +513,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                   ),
                                 );
                               },
-                            );
+                            ).then((value) => setState(() {}));
                           },
                           text: 'Tolak',
                           icon: Icon(
@@ -565,7 +558,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                   ),
                                 );
                               },
-                            );
+                            ).then((value) => setState(() {}));
                           },
                           text: 'Ambil ',
                           icon: Icon(

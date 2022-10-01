@@ -9,11 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DeleteConfirmationWidget extends StatefulWidget {
   const DeleteConfirmationWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _DeleteConfirmationWidgetState createState() =>
@@ -21,12 +21,18 @@ class DeleteConfirmationWidget extends StatefulWidget {
 }
 
 class _DeleteConfirmationWidgetState extends State<DeleteConfirmationWidget> {
-  TextEditingController nameController;
+  TextEditingController? nameController;
 
   @override
   void initState() {
     super.initState();
     nameController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -143,7 +149,7 @@ class _DeleteConfirmationWidgetState extends State<DeleteConfirmationWidget> {
                       children: [
                         Expanded(
                           child: Text(
-                            widget.order.customerName,
+                            widget.order!.customerName!,
                             style: FlutterFlowTheme.of(context).bodyText2,
                           ),
                         ),
@@ -180,6 +186,26 @@ class _DeleteConfirmationWidgetState extends State<DeleteConfirmationWidget> {
                             topRight: Radius.circular(4.0),
                           ),
                         ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 1,
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4.0),
+                            topRight: Radius.circular(4.0),
+                          ),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x00000000),
+                            width: 1,
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4.0),
+                            topRight: Radius.circular(4.0),
+                          ),
+                        ),
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding:
@@ -192,9 +218,9 @@ class _DeleteConfirmationWidgetState extends State<DeleteConfirmationWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if ((widget.order.customerName) ==
-                            (nameController.text)) {
-                          await widget.order.reference.delete();
+                        if (widget.order!.customerName ==
+                            nameController!.text) {
+                          await widget.order!.reference.delete();
                           await actions.backToRoot(
                             context,
                           );

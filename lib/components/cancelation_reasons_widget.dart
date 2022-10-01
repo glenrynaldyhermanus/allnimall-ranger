@@ -10,11 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CancelationReasonsWidget extends StatefulWidget {
   const CancelationReasonsWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _CancelationReasonsWidgetState createState() =>
@@ -104,11 +104,11 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Kendaraan rusak di jalan',
                           cancelledAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         triggerPushNotification(
                           notificationTitle: 'Order Canceled',
                           notificationText:
-                              'Order dibatalkan - ${widget.order.orderNo}',
+                              'Order dibatalkan - ${widget.order!.orderNo}',
                           userRefs: FFAppState().adminList.toList(),
                           initialPageName: 'OrderList',
                           parameterData: {},
@@ -165,7 +165,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Memiliki masalah kesehatan',
                           cancelledAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -218,7 +218,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Kondisi darurat',
                           cancelledAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -271,7 +271,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Customer tidak dapat dihubungi',
                           cancelledAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -324,7 +324,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Customer tidak di tempat',
                           cancelledAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -377,7 +377,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Pet tidak dapat di-grooming',
                           cancelledAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -430,7 +430,7 @@ class _CancelationReasonsWidgetState extends State<CancelationReasonsWidget> {
                           notes: 'Lainnya',
                           createdAt: getCurrentTimestamp,
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );

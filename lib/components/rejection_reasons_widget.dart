@@ -9,11 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class RejectionReasonsWidget extends StatefulWidget {
   const RejectionReasonsWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _RejectionReasonsWidgetState createState() => _RejectionReasonsWidgetState();
@@ -89,7 +89,7 @@ class _RejectionReasonsWidgetState extends State<RejectionReasonsWidget> {
                           status: 'Rejected',
                           notes: 'Slot sudah penuh',
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -141,7 +141,7 @@ class _RejectionReasonsWidgetState extends State<RejectionReasonsWidget> {
                           status: 'Rejected',
                           notes: 'Lokasi tidak bisa dicover',
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -193,7 +193,7 @@ class _RejectionReasonsWidgetState extends State<RejectionReasonsWidget> {
                           status: 'Rejected',
                           notes: 'Layanan belum tersedia',
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -245,7 +245,7 @@ class _RejectionReasonsWidgetState extends State<RejectionReasonsWidget> {
                           status: 'Rejected',
                           notes: 'Groomer tidak tersedia',
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );
@@ -297,7 +297,7 @@ class _RejectionReasonsWidgetState extends State<RejectionReasonsWidget> {
                           status: 'Rejected',
                           notes: 'Lainnya',
                         );
-                        await widget.order.reference.update(ordersUpdateData);
+                        await widget.order!.reference.update(ordersUpdateData);
                         await actions.backToRoot(
                           context,
                         );

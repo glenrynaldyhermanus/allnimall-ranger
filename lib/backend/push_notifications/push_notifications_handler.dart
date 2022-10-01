@@ -12,7 +12,8 @@ import '../../index.dart';
 import '../../main.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
+  const PushNotificationsHandler({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -65,14 +66,12 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.of(context).primaryBtnText,
+          color: Color(0xFFE1E3F9),
           child: Center(
-            child: Builder(
-              builder: (context) => Image.asset(
-                'assets/images/Artboard1_4.png',
-                width: MediaQuery.of(context).size.width * 0.9,
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'assets/images/Artboard1_4.png',
+              width: MediaQuery.of(context).size.width * 0.9,
+              fit: BoxFit.cover,
             ),
           ),
         )
@@ -90,42 +89,12 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         order:
             await getDocumentParameter(data, 'order', OrdersRecord.serializer),
       ),
-  'SignUp': (data) async => SignUpWidget(),
   'Menu': (data) async => MenuWidget(),
-  'CreateOrder': (data) async => CreateOrderWidget(),
-  'CalendarPickers': (data) async => CalendarPickersWidget(),
-  'CreateCustomer': (data) async => CreateCustomerWidget(),
-  'CustomerList': (data) async => CustomerListWidget(),
-  'RangerList': (data) async => RangerListWidget(
-        isSelection: getParameter(data, 'isSelection'),
-      ),
-  'CreateHistoricalOrder': (data) async => CreateHistoricalOrderWidget(),
   'OrderList': (data) async => OrderListWidget(),
   'RateCommentList': (data) async => RateCommentListWidget(
         ranger: getParameter(data, 'ranger'),
       ),
-  'EditCustomerForOrder': (data) async => EditCustomerForOrderWidget(
-        order:
-            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
-      ),
-  'EditOrderInformation': (data) async => EditOrderInformationWidget(
-        order:
-            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
-      ),
-  'EditOrderSchedule': (data) async => EditOrderScheduleWidget(
-        order:
-            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
-      ),
-  'ServiceList': (data) async => ServiceListWidget(),
-  'Admin': (data) async => AdminWidget(),
-  'OrderDetailPet': (data) async => OrderDetailPetWidget(
-        order:
-            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
-      ),
-  'CustomerPet': (data) async => CustomerPetWidget(
-        order:
-            await getDocumentParameter(data, 'order', OrdersRecord.serializer),
-      ),
+  'NOMAN': (data) async => NomanWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

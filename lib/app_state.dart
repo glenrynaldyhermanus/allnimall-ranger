@@ -18,27 +18,27 @@ class FFAppState {
     prefs = await SharedPreferences.getInstance();
   }
 
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
-  DateTime filterDate;
+  DateTime? filterDate;
 
-  DocumentReference selectedCustomer;
+  DocumentReference? selectedCustomer;
 
   String selectedCustomerName = '';
 
   String selectedCustomerAddress = '';
 
-  DocumentReference selectedRanger;
+  DocumentReference? selectedRanger;
 
   String selectedRangerName = '';
 
   String selectedCustomerPhone = '';
 
-  LatLng selectedCustomerLatLng;
+  LatLng? selectedCustomerLatLng;
 
   String selectedRangerPhone = '';
 
-  String selectedRangerPicture;
+  String selectedRangerPicture = '';
 
   List<DocumentReference> adminList = [
     FirebaseFirestore.instance.doc('/rangers/pUgDOviQ0jPbDBPgvpsCvUtrTA32'),
@@ -49,7 +49,7 @@ class FFAppState {
   String searchQuery = '';
 }
 
-LatLng _latLngFromString(String val) {
+LatLng? _latLngFromString(String? val) {
   if (val == null) {
     return null;
   }

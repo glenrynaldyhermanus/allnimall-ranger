@@ -8,29 +8,29 @@ abstract class FlutterFlowTheme {
     return LightModeTheme();
   }
 
-  Color primaryColor;
-  Color secondaryColor;
-  Color tertiaryColor;
-  Color alternate;
-  Color primaryBackground;
-  Color secondaryBackground;
-  Color primaryText;
-  Color secondaryText;
+  late Color primaryColor;
+  late Color secondaryColor;
+  late Color tertiaryColor;
+  late Color alternate;
+  late Color primaryBackground;
+  late Color secondaryBackground;
+  late Color primaryText;
+  late Color secondaryText;
 
-  Color primaryBtnText;
-  Color lineColor;
-  Color customColor1;
-  Color grayIcon;
-  Color gray200;
-  Color gray600;
-  Color black600;
-  Color tertiary400;
-  Color textColor;
-  Color btnText;
-  Color customColor3;
-  Color customColor4;
-  Color white;
-  Color background;
+  late Color primaryBtnText;
+  late Color lineColor;
+  late Color customColor1;
+  late Color grayIcon;
+  late Color gray200;
+  late Color gray600;
+  late Color black600;
+  late Color tertiary400;
+  late Color textColor;
+  late Color btnText;
+  late Color customColor3;
+  late Color customColor4;
+  late Color white;
+  late Color background;
 
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
@@ -51,29 +51,29 @@ abstract class FlutterFlowTheme {
 }
 
 class LightModeTheme extends FlutterFlowTheme {
-  Color primaryColor = const Color(0xFF3A3D71);
-  Color secondaryColor = const Color(0xFFEF487F);
-  Color tertiaryColor = const Color(0xFFEE8B60);
-  Color alternate = const Color(0xFFFF5963);
-  Color primaryBackground = const Color(0xFFF1F4F8);
-  Color secondaryBackground = const Color(0xFFFFFFFF);
-  Color primaryText = const Color(0xFF101213);
-  Color secondaryText = const Color(0xFF57636C);
+  late Color primaryColor = const Color(0xFF3A3D71);
+  late Color secondaryColor = const Color(0xFFEF487F);
+  late Color tertiaryColor = const Color(0xFFEE8B60);
+  late Color alternate = const Color(0xFFFF5963);
+  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color secondaryBackground = const Color(0xFFFFFFFF);
+  late Color primaryText = const Color(0xFF101213);
+  late Color secondaryText = const Color(0xFF57636C);
 
-  Color primaryBtnText = Color(0xFFFFFFFF);
-  Color lineColor = Color(0xFFE0E3E7);
-  Color customColor1 = Color(0xFF78B2C9);
-  Color grayIcon = Color(0xFF95A1AC);
-  Color gray200 = Color(0xFFDBE2E7);
-  Color gray600 = Color(0xFF262D34);
-  Color black600 = Color(0xFF090F13);
-  Color tertiary400 = Color(0xFF39D2C0);
-  Color textColor = Color(0xFF1E2429);
-  Color btnText = Color(0xFFFFFFFF);
-  Color customColor3 = Color(0xFFDF3F3F);
-  Color customColor4 = Color(0xFF090F13);
-  Color white = Color(0xFFFFFFFF);
-  Color background = Color(0xFF1D2429);
+  late Color primaryBtnText = Color(0xFFFFFFFF);
+  late Color lineColor = Color(0xFFE0E3E7);
+  late Color customColor1 = Color(0xFF78B2C9);
+  late Color grayIcon = Color(0xFF95A1AC);
+  late Color gray200 = Color(0xFFDBE2E7);
+  late Color gray600 = Color(0xFF262D34);
+  late Color black600 = Color(0xFF090F13);
+  late Color tertiary400 = Color(0xFF39D2C0);
+  late Color textColor = Color(0xFF1E2429);
+  late Color btnText = Color(0xFFFFFFFF);
+  late Color customColor3 = Color(0xFFDF3F3F);
+  late Color customColor4 = Color(0xFF090F13);
+  late Color white = Color(0xFFFFFFFF);
+  late Color background = Color(0xFF1D2429);
 }
 
 abstract class Typography {
@@ -151,19 +151,19 @@ class ThemeTypography extends Typography {
 
 extension TextStyleHelper on TextStyle {
   TextStyle override({
-    String fontFamily,
-    Color color,
-    double fontSize,
-    FontWeight fontWeight,
-    double letterSpacing,
-    FontStyle fontStyle,
+    String? fontFamily,
+    Color? color,
+    double? fontSize,
+    FontWeight? fontWeight,
+    double? letterSpacing,
+    FontStyle? fontStyle,
     bool useGoogleFonts = true,
-    TextDecoration decoration,
-    double lineHeight,
+    TextDecoration? decoration,
+    double? lineHeight,
   }) =>
       useGoogleFonts
           ? GoogleFonts.getFont(
-              fontFamily,
+              fontFamily!,
               color: color ?? this.color,
               fontSize: fontSize ?? this.fontSize,
               letterSpacing: letterSpacing ?? this.letterSpacing,

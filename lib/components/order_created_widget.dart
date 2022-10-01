@@ -9,11 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class OrderCreatedWidget extends StatefulWidget {
   const OrderCreatedWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _OrderCreatedWidgetState createState() => _OrderCreatedWidgetState();
@@ -89,7 +89,7 @@ class _OrderCreatedWidgetState extends State<OrderCreatedWidget> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.order.orderNo,
+                        widget.order!.orderNo!,
                         style: FlutterFlowTheme.of(context).bodyText2,
                       ),
                     ),
@@ -222,7 +222,7 @@ class _OrderCreatedWidgetState extends State<OrderCreatedWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     await launchURL(
-                        '${functions.generateWhatsAppUrl(widget.order.customerPhone)}&text=Jadwal+kakak+sudah+berhasil+didaftarkan+dengan+nomor+order+%3A+${widget.order.orderNo}%0D%0AUntuk+melihat+detail+reservasi+kakak+silahkan+buka+link+berikut+ya%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order.orderNo}');
+                        '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Jadwal+kakak+sudah+berhasil+didaftarkan+dengan+nomor+order+%3A+${widget.order!.orderNo}%0D%0AUntuk+melihat+detail+reservasi+kakak+silahkan+buka+link+berikut+ya%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order!.orderNo}');
                   },
                   text: 'Share Order Tracking',
                   options: FFButtonOptions(
@@ -247,7 +247,7 @@ class _OrderCreatedWidgetState extends State<OrderCreatedWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 44),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    Navigator.pop(context);
+                    context.pop();
                   },
                   text: 'Done!',
                   options: FFButtonOptions(
