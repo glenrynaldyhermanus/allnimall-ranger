@@ -138,10 +138,10 @@ class _NomanWidgetState extends State<NomanWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                      ),
+                                    fontFamily: 'Poppins',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
                                   onEnded: () async {
                                     context.pop();
                                   },
