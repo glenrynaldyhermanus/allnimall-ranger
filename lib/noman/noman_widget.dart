@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_timer.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NomanWidget extends StatefulWidget {
@@ -22,6 +23,13 @@ class _NomanWidgetState extends State<NomanWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      timerController.onExecute.add(
+        StopWatchExecute.start,
+      );
+    });
+
     timerMilliseconds = 180000;
     timerValue = StopWatchTimer.getDisplayTime(
       0,
