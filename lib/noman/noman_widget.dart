@@ -22,7 +22,7 @@ class _NomanWidgetState extends State<NomanWidget> {
   @override
   void initState() {
     super.initState();
-    timerMilliseconds = 10;
+    timerMilliseconds = 180000;
     timerValue = StopWatchTimer.getDisplayTime(
       0,
       hours: true,
@@ -32,7 +32,7 @@ class _NomanWidgetState extends State<NomanWidget> {
     );
     timerController = StopWatchTimer(
       mode: StopWatchMode.countDown,
-      presetMillisecond: 10,
+      presetMillisecond: 180000,
       onChange: (value) {
         setState(() {
           timerMilliseconds = value;
