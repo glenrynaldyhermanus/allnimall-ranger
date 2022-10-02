@@ -105,7 +105,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '08:00',
                           endTime: functions.countEndTimeForOrder(
-                              8, widget.order!.quantity),
+                              8, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -161,7 +161,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        8, widget.order!.quantity),
+                                        8, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -192,7 +192,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '09:00',
                           endTime: functions.countEndTimeForOrder(
-                              9, widget.order!.quantity),
+                              9, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -248,7 +248,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        9, widget.order!.quantity),
+                                        9, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -279,7 +279,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '10:00',
                           endTime: functions.countEndTimeForOrder(
-                              10, widget.order!.quantity),
+                              10, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -335,7 +335,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        10, widget.order!.quantity),
+                                        10, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -366,7 +366,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '11:00',
                           endTime: functions.countEndTimeForOrder(
-                              11, widget.order!.quantity),
+                              11, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -422,7 +422,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        11, widget.order!.quantity),
+                                        11, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -453,7 +453,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '12:00',
                           endTime: functions.countEndTimeForOrder(
-                              12, widget.order!.quantity),
+                              12, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -509,7 +509,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        12, widget.order!.quantity),
+                                        12, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -540,7 +540,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '13:00',
                           endTime: functions.countEndTimeForOrder(
-                              13, widget.order!.quantity),
+                              13, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -596,7 +596,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        13, widget.order!.quantity),
+                                        13, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -627,7 +627,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '14:00',
                           endTime: functions.countEndTimeForOrder(
-                              14, widget.order!.quantity),
+                              14, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -683,7 +683,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        14, widget.order!.quantity),
+                                        14, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -714,7 +714,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                           status: 'Confirmed',
                           startTime: '15:00',
                           endTime: functions.countEndTimeForOrder(
-                              15, widget.order!.quantity),
+                              15, widget.order!.quantity!),
                           confirmedAt: getCurrentTimestamp,
                           rangerUid: currentUserReference,
                           rangerName: currentUserDisplayName,
@@ -770,7 +770,7 @@ class _RequestTimePickerWidgetState extends State<RequestTimePickerWidget> {
                                   ),
                                   Text(
                                     functions.countEndTimeForOrder(
-                                        15, widget.order!.quantity),
+                                        15, widget.order!.quantity!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(

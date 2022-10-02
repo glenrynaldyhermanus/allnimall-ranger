@@ -16,10 +16,10 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
   final String wireName = 'OrdersRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, OrdersRecord object,
+  Iterable<Object?> serialize(Serializers serializers, OrdersRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.createdAt;
     if (value != null) {
       result
@@ -207,7 +207,7 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
         ..add('customer_uid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.rangerUid;
     if (value != null) {
@@ -215,7 +215,7 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
         ..add('ranger_uid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.paidAt;
     if (value != null) {
@@ -252,169 +252,170 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
-  OrdersRecord deserialize(Serializers serializers, Iterable<Object> serialized,
+  OrdersRecord deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new OrdersRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'created_at':
           result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'order_no':
           result.orderNo = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'pet_category':
           result.petCategory = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'scheduled_at':
           result.scheduledAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'service':
           result.service = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'quantity':
           result.quantity = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'amount':
           result.amount = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'customer_address':
           result.customerAddress = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'customer_latlng':
           result.customerLatlng = serializers.deserialize(value,
-              specifiedType: const FullType(LatLng)) as LatLng;
+              specifiedType: const FullType(LatLng)) as LatLng?;
           break;
         case 'customer_name':
           result.customerName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'payment_status':
           result.paymentStatus = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'preffered_time':
           result.prefferedTime = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'discount':
           result.discount = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'notes':
           result.notes = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'start_time':
           result.startTime = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'end_time':
           result.endTime = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'ranger_name':
           result.rangerName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'ranger_phone':
           result.rangerPhone = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'ranger_profile_picture':
           result.rangerProfilePicture = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'confirmed_at':
           result.confirmedAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'customer_phone':
           result.customerPhone = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'ontheway_at':
           result.onthewayAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'working_at':
           result.workingAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'finish_at':
           result.finishAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'customer_uid':
           result.customerUid = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'ranger_uid':
           result.rangerUid = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'paid_at':
           result.paidAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'payment_method':
           result.paymentMethod = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'cancelled_at':
           result.cancelledAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'onlocation_at':
           result.onlocationAt = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'customer_city':
           result.customerCity = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -425,76 +426,76 @@ class _$OrdersRecordSerializer implements StructuredSerializer<OrdersRecord> {
 
 class _$OrdersRecord extends OrdersRecord {
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final String orderNo;
+  final String? orderNo;
   @override
-  final String petCategory;
+  final String? petCategory;
   @override
-  final String name;
+  final String? name;
   @override
-  final DateTime scheduledAt;
+  final DateTime? scheduledAt;
   @override
-  final String service;
+  final String? service;
   @override
-  final int quantity;
+  final int? quantity;
   @override
-  final double amount;
+  final double? amount;
   @override
-  final String status;
+  final String? status;
   @override
-  final String customerAddress;
+  final String? customerAddress;
   @override
-  final LatLng customerLatlng;
+  final LatLng? customerLatlng;
   @override
-  final String customerName;
+  final String? customerName;
   @override
-  final String paymentStatus;
+  final String? paymentStatus;
   @override
-  final String prefferedTime;
+  final String? prefferedTime;
   @override
-  final double discount;
+  final double? discount;
   @override
-  final String notes;
+  final String? notes;
   @override
-  final String startTime;
+  final String? startTime;
   @override
-  final String endTime;
+  final String? endTime;
   @override
-  final String rangerName;
+  final String? rangerName;
   @override
-  final String rangerPhone;
+  final String? rangerPhone;
   @override
-  final String rangerProfilePicture;
+  final String? rangerProfilePicture;
   @override
-  final DateTime confirmedAt;
+  final DateTime? confirmedAt;
   @override
-  final String customerPhone;
+  final String? customerPhone;
   @override
-  final DateTime onthewayAt;
+  final DateTime? onthewayAt;
   @override
-  final DateTime workingAt;
+  final DateTime? workingAt;
   @override
-  final DateTime finishAt;
+  final DateTime? finishAt;
   @override
-  final DocumentReference<Object> customerUid;
+  final DocumentReference<Object?>? customerUid;
   @override
-  final DocumentReference<Object> rangerUid;
+  final DocumentReference<Object?>? rangerUid;
   @override
-  final DateTime paidAt;
+  final DateTime? paidAt;
   @override
-  final String paymentMethod;
+  final String? paymentMethod;
   @override
-  final DateTime cancelledAt;
+  final DateTime? cancelledAt;
   @override
-  final DateTime onlocationAt;
+  final DateTime? onlocationAt;
   @override
-  final String customerCity;
+  final String? customerCity;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ffRef;
 
-  factory _$OrdersRecord([void Function(OrdersRecordBuilder) updates]) =>
-      (new OrdersRecordBuilder()..update(updates)).build();
+  factory _$OrdersRecord([void Function(OrdersRecordBuilder)? updates]) =>
+      (new OrdersRecordBuilder()..update(updates))._build();
 
   _$OrdersRecord._(
       {this.createdAt,
@@ -530,7 +531,7 @@ class _$OrdersRecord extends OrdersRecord {
       this.cancelledAt,
       this.onlocationAt,
       this.customerCity,
-      this.reference})
+      this.ffRef})
       : super._();
 
   @override
@@ -577,7 +578,7 @@ class _$OrdersRecord extends OrdersRecord {
         cancelledAt == other.cancelledAt &&
         onlocationAt == other.onlocationAt &&
         customerCity == other.customerCity &&
-        reference == other.reference;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -619,12 +620,12 @@ class _$OrdersRecord extends OrdersRecord {
                     cancelledAt.hashCode),
                 onlocationAt.hashCode),
             customerCity.hashCode),
-        reference.hashCode));
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('OrdersRecord')
+    return (newBuiltValueToStringHelper(r'OrdersRecord')
           ..add('createdAt', createdAt)
           ..add('orderNo', orderNo)
           ..add('petCategory', petCategory)
@@ -658,158 +659,160 @@ class _$OrdersRecord extends OrdersRecord {
           ..add('cancelledAt', cancelledAt)
           ..add('onlocationAt', onlocationAt)
           ..add('customerCity', customerCity)
-          ..add('reference', reference))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class OrdersRecordBuilder
     implements Builder<OrdersRecord, OrdersRecordBuilder> {
-  _$OrdersRecord _$v;
+  _$OrdersRecord? _$v;
 
-  DateTime _createdAt;
-  DateTime get createdAt => _$this._createdAt;
-  set createdAt(DateTime createdAt) => _$this._createdAt = createdAt;
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
-  String _orderNo;
-  String get orderNo => _$this._orderNo;
-  set orderNo(String orderNo) => _$this._orderNo = orderNo;
+  String? _orderNo;
+  String? get orderNo => _$this._orderNo;
+  set orderNo(String? orderNo) => _$this._orderNo = orderNo;
 
-  set petCategory(String petCategory) => _$this._petCategory = petCategory;
+  String? _petCategory;
+  String? get petCategory => _$this._petCategory;
+  set petCategory(String? petCategory) => _$this._petCategory = petCategory;
 
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  DateTime _scheduledAt;
-  DateTime get scheduledAt => _$this._scheduledAt;
-  set scheduledAt(DateTime scheduledAt) => _$this._scheduledAt = scheduledAt;
+  DateTime? _scheduledAt;
+  DateTime? get scheduledAt => _$this._scheduledAt;
+  set scheduledAt(DateTime? scheduledAt) => _$this._scheduledAt = scheduledAt;
 
-  String _service;
-  String get service => _$this._service;
-  set service(String service) => _$this._service = service;
+  String? _service;
+  String? get service => _$this._service;
+  set service(String? service) => _$this._service = service;
 
-  int _quantity;
-  int get quantity => _$this._quantity;
-  set quantity(int quantity) => _$this._quantity = quantity;
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
 
-  double _amount;
-  double get amount => _$this._amount;
-  set amount(double amount) => _$this._amount = amount;
+  double? _amount;
+  double? get amount => _$this._amount;
+  set amount(double? amount) => _$this._amount = amount;
 
-  String _status;
-  String get status => _$this._status;
-  set status(String status) => _$this._status = status;
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
 
-  String _customerAddress;
-  String get customerAddress => _$this._customerAddress;
-  set customerAddress(String customerAddress) =>
+  String? _customerAddress;
+  String? get customerAddress => _$this._customerAddress;
+  set customerAddress(String? customerAddress) =>
       _$this._customerAddress = customerAddress;
 
-  LatLng _customerLatlng;
-  LatLng get customerLatlng => _$this._customerLatlng;
-  set customerLatlng(LatLng customerLatlng) =>
+  LatLng? _customerLatlng;
+  LatLng? get customerLatlng => _$this._customerLatlng;
+  set customerLatlng(LatLng? customerLatlng) =>
       _$this._customerLatlng = customerLatlng;
 
-  String _customerName;
-  String get customerName => _$this._customerName;
-  set customerName(String customerName) => _$this._customerName = customerName;
+  String? _customerName;
+  String? get customerName => _$this._customerName;
+  set customerName(String? customerName) => _$this._customerName = customerName;
 
-  String _paymentStatus;
-  String get paymentStatus => _$this._paymentStatus;
-  set paymentStatus(String paymentStatus) =>
+  String? _paymentStatus;
+  String? get paymentStatus => _$this._paymentStatus;
+  set paymentStatus(String? paymentStatus) =>
       _$this._paymentStatus = paymentStatus;
 
-  String _prefferedTime;
-  String get prefferedTime => _$this._prefferedTime;
-  set prefferedTime(String prefferedTime) =>
+  String? _prefferedTime;
+  String? get prefferedTime => _$this._prefferedTime;
+  set prefferedTime(String? prefferedTime) =>
       _$this._prefferedTime = prefferedTime;
 
-  double _discount;
-  double get discount => _$this._discount;
-  set discount(double discount) => _$this._discount = discount;
+  double? _discount;
+  double? get discount => _$this._discount;
+  set discount(double? discount) => _$this._discount = discount;
 
-  String _notes;
-  String get notes => _$this._notes;
-  set notes(String notes) => _$this._notes = notes;
+  String? _notes;
+  String? get notes => _$this._notes;
+  set notes(String? notes) => _$this._notes = notes;
 
-  String _startTime;
-  String get startTime => _$this._startTime;
-  set startTime(String startTime) => _$this._startTime = startTime;
+  String? _startTime;
+  String? get startTime => _$this._startTime;
+  set startTime(String? startTime) => _$this._startTime = startTime;
 
-  String _endTime;
-  String get endTime => _$this._endTime;
-  set endTime(String endTime) => _$this._endTime = endTime;
+  String? _endTime;
+  String? get endTime => _$this._endTime;
+  set endTime(String? endTime) => _$this._endTime = endTime;
 
-  String _rangerName;
-  String get rangerName => _$this._rangerName;
-  set rangerName(String rangerName) => _$this._rangerName = rangerName;
+  String? _rangerName;
+  String? get rangerName => _$this._rangerName;
+  set rangerName(String? rangerName) => _$this._rangerName = rangerName;
 
-  String _rangerPhone;
-  String get rangerPhone => _$this._rangerPhone;
-  set rangerPhone(String rangerPhone) => _$this._rangerPhone = rangerPhone;
+  String? _rangerPhone;
+  String? get rangerPhone => _$this._rangerPhone;
+  set rangerPhone(String? rangerPhone) => _$this._rangerPhone = rangerPhone;
 
-  String _rangerProfilePicture;
-  String get rangerProfilePicture => _$this._rangerProfilePicture;
-  set rangerProfilePicture(String rangerProfilePicture) =>
+  String? _rangerProfilePicture;
+  String? get rangerProfilePicture => _$this._rangerProfilePicture;
+  set rangerProfilePicture(String? rangerProfilePicture) =>
       _$this._rangerProfilePicture = rangerProfilePicture;
 
-  DateTime _confirmedAt;
-  DateTime get confirmedAt => _$this._confirmedAt;
-  set confirmedAt(DateTime confirmedAt) => _$this._confirmedAt = confirmedAt;
+  DateTime? _confirmedAt;
+  DateTime? get confirmedAt => _$this._confirmedAt;
+  set confirmedAt(DateTime? confirmedAt) => _$this._confirmedAt = confirmedAt;
 
-  String _customerPhone;
-  String get customerPhone => _$this._customerPhone;
-  set customerPhone(String customerPhone) =>
+  String? _customerPhone;
+  String? get customerPhone => _$this._customerPhone;
+  set customerPhone(String? customerPhone) =>
       _$this._customerPhone = customerPhone;
 
-  DateTime _onthewayAt;
-  DateTime get onthewayAt => _$this._onthewayAt;
-  set onthewayAt(DateTime onthewayAt) => _$this._onthewayAt = onthewayAt;
+  DateTime? _onthewayAt;
+  DateTime? get onthewayAt => _$this._onthewayAt;
+  set onthewayAt(DateTime? onthewayAt) => _$this._onthewayAt = onthewayAt;
 
-  DateTime _workingAt;
-  DateTime get workingAt => _$this._workingAt;
-  set workingAt(DateTime workingAt) => _$this._workingAt = workingAt;
+  DateTime? _workingAt;
+  DateTime? get workingAt => _$this._workingAt;
+  set workingAt(DateTime? workingAt) => _$this._workingAt = workingAt;
 
-  DateTime _finishAt;
-  DateTime get finishAt => _$this._finishAt;
-  set finishAt(DateTime finishAt) => _$this._finishAt = finishAt;
+  DateTime? _finishAt;
+  DateTime? get finishAt => _$this._finishAt;
+  set finishAt(DateTime? finishAt) => _$this._finishAt = finishAt;
 
-  DocumentReference<Object> _customerUid;
-  DocumentReference<Object> get customerUid => _$this._customerUid;
-  set customerUid(DocumentReference<Object> customerUid) =>
+  DocumentReference<Object?>? _customerUid;
+  DocumentReference<Object?>? get customerUid => _$this._customerUid;
+  set customerUid(DocumentReference<Object?>? customerUid) =>
       _$this._customerUid = customerUid;
 
-  DocumentReference<Object> _rangerUid;
-  DocumentReference<Object> get rangerUid => _$this._rangerUid;
-  set rangerUid(DocumentReference<Object> rangerUid) =>
+  DocumentReference<Object?>? _rangerUid;
+  DocumentReference<Object?>? get rangerUid => _$this._rangerUid;
+  set rangerUid(DocumentReference<Object?>? rangerUid) =>
       _$this._rangerUid = rangerUid;
 
-  DateTime _paidAt;
-  DateTime get paidAt => _$this._paidAt;
-  set paidAt(DateTime paidAt) => _$this._paidAt = paidAt;
+  DateTime? _paidAt;
+  DateTime? get paidAt => _$this._paidAt;
+  set paidAt(DateTime? paidAt) => _$this._paidAt = paidAt;
 
-  String _paymentMethod;
-  String get paymentMethod => _$this._paymentMethod;
-  set paymentMethod(String paymentMethod) =>
+  String? _paymentMethod;
+  String? get paymentMethod => _$this._paymentMethod;
+  set paymentMethod(String? paymentMethod) =>
       _$this._paymentMethod = paymentMethod;
 
-  DateTime _cancelledAt;
-  DateTime get cancelledAt => _$this._cancelledAt;
-  set cancelledAt(DateTime cancelledAt) => _$this._cancelledAt = cancelledAt;
+  DateTime? _cancelledAt;
+  DateTime? get cancelledAt => _$this._cancelledAt;
+  set cancelledAt(DateTime? cancelledAt) => _$this._cancelledAt = cancelledAt;
 
-  DateTime _onlocationAt;
-  DateTime get onlocationAt => _$this._onlocationAt;
-  set onlocationAt(DateTime onlocationAt) =>
+  DateTime? _onlocationAt;
+  DateTime? get onlocationAt => _$this._onlocationAt;
+  set onlocationAt(DateTime? onlocationAt) =>
       _$this._onlocationAt = onlocationAt;
 
-  String _customerCity;
-  String get customerCity => _$this._customerCity;
-  set customerCity(String customerCity) => _$this._customerCity = customerCity;
+  String? _customerCity;
+  String? get customerCity => _$this._customerCity;
+  set customerCity(String? customerCity) => _$this._customerCity = customerCity;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   OrdersRecordBuilder() {
     OrdersRecord._initializeBuilder(this);
@@ -851,7 +854,7 @@ class OrdersRecordBuilder
       _cancelledAt = $v.cancelledAt;
       _onlocationAt = $v.onlocationAt;
       _customerCity = $v.customerCity;
-      _reference = $v.reference;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -864,12 +867,14 @@ class OrdersRecordBuilder
   }
 
   @override
-  void update(void Function(OrdersRecordBuilder) updates) {
+  void update(void Function(OrdersRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$OrdersRecord build() {
+  OrdersRecord build() => _build();
+
+  _$OrdersRecord _build() {
     final _$result = _$v ??
         new _$OrdersRecord._(
             createdAt: createdAt,
@@ -905,10 +910,10 @@ class OrdersRecordBuilder
             cancelledAt: cancelledAt,
             onlocationAt: onlocationAt,
             customerCity: customerCity,
-            reference: reference);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

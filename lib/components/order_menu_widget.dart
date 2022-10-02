@@ -165,7 +165,7 @@ class _OrderMenuWidgetState extends State<OrderMenuWidget> {
                     InkWell(
                       onTap: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Jadwal+kakak+sudah+berhasil+didaftarkan+dengan+nomor+order+%3A+${widget.order!.orderNo}%0D%0AUntuk+melihat+detail+reservasi+kakak+silahkan+buka+link+berikut+ya%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order!.orderNo}');
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone!)}&text=Jadwal+kakak+sudah+berhasil+didaftarkan+dengan+nomor+order+%3A+${widget.order!.orderNo}%0D%0AUntuk+melihat+detail+reservasi+kakak+silahkan+buka+link+berikut+ya%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order!.orderNo}');
                         context.pop();
                       },
                       child: Container(
@@ -222,7 +222,7 @@ class _OrderMenuWidgetState extends State<OrderMenuWidget> {
                     InkWell(
                       onTap: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order!.service} x ${widget.order!.quantity?.toString()} ${widget.order!.petCategory} = ${formatNumber(
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone!)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order!.service} x ${widget.order!.quantity?.toString()} ${widget.order!.petCategory} = ${formatNumber(
                           widget.order!.amount,
                           formatType: FormatType.decimal,
                           decimalType: DecimalType.commaDecimal,
@@ -284,7 +284,7 @@ class _OrderMenuWidgetState extends State<OrderMenuWidget> {
                     InkWell(
                       onTap: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Hai+Allnimall+Loverz%21%0D%0ATerima+kasih+telah+menggunakan+jasa+kami.+%0D%0AUntuk+membantu+kami+menjaga+kualitas+pelayanan+kami%2C+mohon+kesediaan+kakak+untuk+memberikan+rating+dan+komentar+bagi+Groomer+kami+di+link+berikut+%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order!.orderNo}');
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone!)}&text=Hai+Allnimall+Loverz%21%0D%0ATerima+kasih+telah+menggunakan+jasa+kami.+%0D%0AUntuk+membantu+kami+menjaga+kualitas+pelayanan+kami%2C+mohon+kesediaan+kakak+untuk+memberikan+rating+dan+komentar+bagi+Groomer+kami+di+link+berikut+%0D%0Ahttps%3A%2F%2Fallnimall.web.app%2F%23%2Forder%3Fno%3D${widget.order!.orderNo}');
                         context.pop();
                       },
                       child: Container(

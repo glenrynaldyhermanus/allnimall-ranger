@@ -125,7 +125,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order!.service} x ${widget.order!.quantity?.toString()} ${widget.order!.petCategory} = ${formatNumber(
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone!)}&text=Berikut+rincian+order+kakak%2C%0D%0A${widget.order!.service} x ${widget.order!.quantity?.toString()} ${widget.order!.petCategory} = ${formatNumber(
                           widget.order!.amount,
                           formatType: FormatType.decimal,
                           decimalType: DecimalType.commaDecimal,
@@ -176,7 +176,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         await launchURL(
-                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone)}&text=Terima+kasih+atas+konfirmasi+dan+kepercayaan+kakak+telah+menggunakan+jasa+Allnimall.');
+                            '${functions.generateWhatsAppUrl(widget.order!.customerPhone!)}&text=Terima+kasih+atas+konfirmasi+dan+kepercayaan+kakak+telah+menggunakan+jasa+Allnimall.');
                       },
                       text: 'Kirim Pembayaran Terkonfirmasi',
                       options: FFButtonOptions(

@@ -1,19 +1,19 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/calendar_picker_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../menu/menu_widget.dart';
 import '../order_detail/order_detail_widget.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key key}) : super(key: key);
+  const HomeWidget({Key? key}) : super(key: key);
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
@@ -26,7 +26,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() => FFAppState().filterDate = getCurrentTimestamp);
     });
   }
@@ -44,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                functions.titleByDate(FFAppState().filterDate),
+                functions.titleByDate(FFAppState().filterDate!),
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Outfit',
                       color: Color(0xFF0F1113),
@@ -66,7 +66,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   color: FlutterFlowTheme.of(context).secondaryColor,
                   size: 20,
                 ),
-                onPressed: ()  {
+                onPressed: () {
                   showModalBottomSheet(
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
@@ -125,7 +125,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'Jadwal kamu hari ${functions.localDateString(FFAppState().filterDate)}',
+                      'Jadwal kamu hari ${functions.localDateString(FFAppState().filterDate!)}',
                       style: FlutterFlowTheme.of(context).bodyText2.override(
                             fontFamily: 'Outfit',
                             color: Color(0xFF57636C),
@@ -147,10 +147,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 isEqualTo: currentUserReference)
                             .where('scheduled_at',
                                 isGreaterThanOrEqualTo: functions
-                                    .dateStart(FFAppState().filterDate))
+                                    .dateStart(FFAppState().filterDate!))
                             .where('scheduled_at',
                                 isLessThanOrEqualTo:
-                                    functions.dateEnd(FFAppState().filterDate))
+                                    functions.dateEnd(FFAppState().filterDate!))
                             .where('status', whereIn: [
                               "Confirmed",
                               "OnTheWay",
@@ -176,7 +176,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           );
                         }
                         List<OrdersRecord> listViewOrdersRecordList =
-                            snapshot.data;
+                            snapshot.data!;
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           primary: false,
@@ -237,7 +237,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 5, 0, 5),
                                                 child: AutoSizeText(
-                                                  listViewOrdersRecord.startTime
+                                                  listViewOrdersRecord
+                                                      .startTime!
                                                       .maybeHandleOverflow(
                                                     maxChars: 70,
                                                     replacement: '…',
@@ -304,7 +305,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  listViewOrdersRecord.name,
+                                                  listViewOrdersRecord.name!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .title3
@@ -322,7 +323,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .fromSTEB(0, 4, 8, 0),
                                                   child: AutoSizeText(
                                                     listViewOrdersRecord
-                                                        .customerAddress
+                                                        .customerAddress!
                                                         .maybeHandleOverflow(
                                                       maxChars: 70,
                                                       replacement: '…',
@@ -367,10 +368,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         queryBuilder: (ordersRecord) => ordersRecord
                             .where('scheduled_at',
                                 isGreaterThanOrEqualTo: functions
-                                    .dateStart(FFAppState().filterDate))
+                                    .dateStart(FFAppState().filterDate!))
                             .where('scheduled_at',
                                 isLessThanOrEqualTo:
-                                    functions.dateEnd(FFAppState().filterDate))
+                                    functions.dateEnd(FFAppState().filterDate!))
                             .where('status', whereIn: [
                               "Confirmed",
                               "OnTheWay",
@@ -396,7 +397,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           );
                         }
                         List<OrdersRecord> listViewOrdersRecordList =
-                            snapshot.data;
+                            snapshot.data!;
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           primary: false,
@@ -469,7 +470,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     0, 5, 0, 5),
                                                         child: AutoSizeText(
                                                           listViewOrdersRecord
-                                                              .startTime
+                                                              .startTime!
                                                               .maybeHandleOverflow(
                                                             maxChars: 70,
                                                             replacement: '…',
@@ -552,7 +553,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  listViewOrdersRecord.name,
+                                                  listViewOrdersRecord.name!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .title3
@@ -585,7 +586,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       4, 8, 0),
                                                           child: AutoSizeText(
                                                             listViewOrdersRecord
-                                                                .rangerName
+                                                                .rangerName!
                                                                 .maybeHandleOverflow(
                                                               maxChars: 70,
                                                               replacement: '…',
@@ -672,7 +673,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .fromSTEB(0, 4, 8, 0),
                                                   child: AutoSizeText(
                                                     listViewOrdersRecord
-                                                        .customerAddress
+                                                        .customerAddress!
                                                         .maybeHandleOverflow(
                                                       maxChars: 70,
                                                       replacement: '…',

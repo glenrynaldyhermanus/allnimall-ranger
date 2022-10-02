@@ -79,7 +79,7 @@ String generateMapsUrl(LatLng latLng) {
 double countRating(List<RatingsRecord> rateList) {
   var rate = 0.0;
   for (var ratings in rateList) {
-    rate += ratings.rate;
+    rate += ratings.rate!;
   }
 
   return rate / rateList.length;
@@ -99,8 +99,8 @@ bool isOnQuery(
     query = query.replaceAll("+62 ", "").replaceAll("-", "");
   }
 
-  if (customer.displayName.contains(query) ||
-      customer.phoneNumber.contains(query)) {
+  if (customer.displayName!.contains(query) ||
+      customer.phoneNumber!.contains(query)) {
     return true;
   }
   return false;
@@ -124,7 +124,7 @@ int countSuccessOrder(List<OrdersRecord> orderList) {
   List<OrdersRecord> _orderList = orderList;
   _orderList.retainWhere((element) => element.status == "Finish");
   _orderList.retainWhere(
-          (element) => element.scheduledAt.month == DateTime.now().month);
+          (element) => element.scheduledAt!.month == DateTime.now().month);
   return _orderList.length;
 }
 
@@ -133,11 +133,11 @@ int countTotalPets(List<OrdersRecord> orderList) {
   List<OrdersRecord> _orderList = orderList;
   _orderList.retainWhere((element) => element.status == "Finish");
   _orderList.retainWhere(
-      (element) => element.scheduledAt.month == DateTime.now().month);
+      (element) => element.scheduledAt!.month == DateTime.now().month);
 
   int petCount = 0;
   for (var _rec in _orderList) {
-    petCount += _rec.quantity;
+    petCount += _rec.quantity!;
   }
 
   return petCount;

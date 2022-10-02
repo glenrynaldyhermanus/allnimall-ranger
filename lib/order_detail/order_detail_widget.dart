@@ -1,41 +1,39 @@
+import 'package:flutter/material.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/cancelation_reasons_widget.dart';
 import '../components/order_menu_widget.dart';
 import '../components/payment_confirmation_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../order_detail_pet/order_detail_pet_widget.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OrderDetailWidget extends StatefulWidget {
   const OrderDetailWidget({
-    Key key,
+    Key? key,
     this.order,
   }) : super(key: key);
 
-  final OrdersRecord order;
+  final OrdersRecord? order;
 
   @override
   _OrderDetailWidgetState createState() => _OrderDetailWidgetState();
 }
 
 class _OrderDetailWidgetState extends State<OrderDetailWidget> {
-  LatLng googleMapsCenter;
+  LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrdersRecord>(
-      stream: OrdersRecord.getDocument(widget.order.reference),
+      stream: OrdersRecord.getDocument(widget.order!.reference),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -67,7 +65,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if ((orderDetailOrdersRecord.status) != 'Finish')
+                  if ((orderDetailOrdersRecord!.status) != 'Finish')
                     FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30,
@@ -161,7 +159,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          widget.order.name,
+                                          widget.order!.name!,
                                           style: FlutterFlowTheme.of(context)
                                               .title3
                                               .override(
@@ -181,7 +179,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          widget.order.orderNo,
+                                          widget.order!.orderNo!,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -244,7 +242,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                         children: [
                                           Text(
                                             dateTimeFormat('MMMMEEEEd',
-                                                widget.order.scheduledAt),
+                                                widget.order!.scheduledAt),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1,
@@ -256,7 +254,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 .subtitle1,
                                           ),
                                           Text(
-                                            widget.order.prefferedTime,
+                                            widget.order!.prefferedTime!,
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1,
@@ -273,7 +271,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            widget.order.service,
+                                            widget.order!.service!,
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1,
@@ -290,7 +288,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            widget.order.petCategory,
+                                            widget.order!.petCategory!,
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle2,
@@ -302,7 +300,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 .subtitle2,
                                           ),
                                           Text(
-                                            widget.order.quantity.toString(),
+                                            widget.order!.quantity.toString(),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle2,
@@ -326,12 +324,12 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           onCameraIdle: (latLng) =>
                                               googleMapsCenter = latLng,
                                           initialLocation: googleMapsCenter ??=
-                                              widget.order.customerLatlng,
+                                              widget.order!.customerLatlng,
                                           markers: [
                                             if (widget.order != null)
                                               FlutterFlowMarker(
-                                                widget.order.reference.path,
-                                                widget.order.customerLatlng,
+                                                widget.order!.reference.path,
+                                                widget.order!.customerLatlng!,
                                               ),
                                           ],
                                           markerColor: GoogleMarkerColor.violet,
@@ -365,7 +363,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 10, 0),
                                               child: Text(
-                                                widget.order.customerAddress,
+                                                widget.order!.customerAddress!,
                                                 textAlign: TextAlign.start,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -388,7 +386,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                   await launchURL(
                                                       functions.generateMapsUrl(
                                                           orderDetailOrdersRecord
-                                                              .customerLatlng));
+                                                              .customerLatlng!));
                                                 },
                                                 text: 'Navigasi',
                                                 options: FFButtonOptions(
@@ -433,14 +431,14 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                widget.order.customerName,
+                                                widget.order!.customerName!,
                                                 textAlign: TextAlign.start,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .subtitle1,
                                               ),
                                               Text(
-                                                widget.order.customerPhone,
+                                                widget.order!.customerPhone!,
                                                 textAlign: TextAlign.start,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -458,7 +456,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                               await launchURL(
                                                   functions.generateWhatsAppUrl(
                                                       orderDetailOrdersRecord
-                                                          .customerPhone));
+                                                          .customerPhone!));
                                             },
                                             text: 'Call',
                                             options: FFButtonOptions(
@@ -996,7 +994,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if ((orderDetailOrdersRecord.status) == 'Confirmed')
+                            if ((orderDetailOrdersRecord!.status) ==
+                                'Confirmed')
                               Expanded(
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -1005,7 +1004,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       status: 'OnTheWay',
                                       onthewayAt: getCurrentTimestamp,
                                     );
-                                    await widget.order.reference
+                                    await widget.order!.reference
                                         .update(ordersUpdateData);
                                     triggerPushNotification(
                                       notificationTitle: 'FYI',
@@ -1043,7 +1042,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   ),
                                 ),
                               ),
-                            if ((orderDetailOrdersRecord.status) == 'OnTheWay')
+                            if ((orderDetailOrdersRecord!.status) == 'OnTheWay')
                               Expanded(
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -1052,7 +1051,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       status: 'OnTheLocation',
                                       onlocationAt: getCurrentTimestamp,
                                     );
-                                    await widget.order.reference
+                                    await widget.order!.reference
                                         .update(ordersUpdateData);
                                     triggerPushNotification(
                                       notificationTitle: 'FYI',
@@ -1090,7 +1089,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   ),
                                 ),
                               ),
-                            if ((orderDetailOrdersRecord.status) ==
+                            if ((orderDetailOrdersRecord!.status) ==
                                 'OnTheLocation')
                               Expanded(
                                 flex: 8,
@@ -1101,7 +1100,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       status: 'Working',
                                       workingAt: getCurrentTimestamp,
                                     );
-                                    await widget.order.reference
+                                    await widget.order!.reference
                                         .update(ordersUpdateData);
                                     triggerPushNotification(
                                       notificationTitle: 'FYI',
@@ -1146,17 +1145,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 child: Align(
                                   alignment: AlignmentDirectional(0, 0),
                                   child: FFButtonWidget(
-                                    onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              OrderDetailPetWidget(
-                                            order: orderDetailOrdersRecord,
-                                          ),
-                                        ),
-                                      );
-                                    },
+                                    onPressed: () {},
                                     text: '',
                                     icon: Icon(
                                       Icons.pets,
@@ -1185,7 +1174,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   ),
                                 ),
                               ),
-                            if ((orderDetailOrdersRecord.status) == 'Working')
+                            if ((orderDetailOrdersRecord!.status) == 'Working')
                               Expanded(
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -1194,7 +1183,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       status: 'Finish',
                                       finishAt: getCurrentTimestamp,
                                     );
-                                    await widget.order.reference
+                                    await widget.order!.reference
                                         .update(ordersUpdateData);
                                     triggerPushNotification(
                                       notificationTitle: 'FYI',
@@ -1244,7 +1233,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                if ((widget.order.paymentStatus) == 'Unpaid')
+                                if ((widget.order!.paymentStatus) == 'Unpaid')
                                   Expanded(
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,

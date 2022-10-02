@@ -1,15 +1,15 @@
+import 'package:flutter/material.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/rejection_reasons_widget.dart';
 import '../components/request_time_picker_widget.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RequestDetailWidget extends StatefulWidget {
   const RequestDetailWidget({
@@ -299,9 +299,9 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          await launchURL(
-                                              functions.generateWhatsAppUrl(
-                                                  widget.order!.customerPhone));
+                                          await launchURL(functions
+                                              .generateWhatsAppUrl(widget
+                                                  .order!.customerPhone!));
                                         },
                                         text: 'Call',
                                         options: FFButtonOptions(
@@ -359,11 +359,11 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                               .where('scheduled_at',
                                                   isGreaterThanOrEqualTo:
                                                       functions.dateStart(widget
-                                                          .order!.scheduledAt))
+                                                          .order!.scheduledAt!))
                                               .where('scheduled_at',
                                                   isLessThanOrEqualTo:
                                                       functions.dateEnd(widget
-                                                          .order!.scheduledAt))
+                                                          .order!.scheduledAt!))
                                               .where('status',
                                                   isEqualTo: 'Confirmed')
                                               .orderBy('scheduled_at'),
