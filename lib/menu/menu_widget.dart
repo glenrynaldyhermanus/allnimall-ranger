@@ -40,6 +40,7 @@ class _MenuWidgetState extends State<MenuWidget> {
         List<RatingsRecord> menuRatingsRecordList = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
             automaticallyImplyLeading: false,
@@ -66,7 +67,6 @@ class _MenuWidgetState extends State<MenuWidget> {
             centerTitle: false,
             elevation: 0,
           ),
-          backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
           body: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -190,8 +190,10 @@ class _MenuWidgetState extends State<MenuWidget> {
                         context.pushNamed(
                           'RateCommentList',
                           queryParams: {
-                            'ranger': serializeParam(currentUserReference,
-                                ParamType.DocumentReference),
+                            'ranger': serializeParam(
+                              currentUserReference,
+                              ParamType.DocumentReference,
+                            ),
                           }.withoutNulls,
                         );
                       },

@@ -33,6 +33,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: Color(0xFFF1F4F8),
       appBar: AppBar(
         backgroundColor: Color(0xFFF1F4F8),
         automaticallyImplyLeading: false,
@@ -103,7 +104,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Color(0xFFF1F4F8),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
@@ -178,7 +178,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 'OrderDetail',
                                 queryParams: {
                                   'order': serializeParam(
-                                      listViewOrdersRecord, ParamType.Document),
+                                    listViewOrdersRecord,
+                                    ParamType.Document,
+                                  ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
                                   'order': listViewOrdersRecord,
