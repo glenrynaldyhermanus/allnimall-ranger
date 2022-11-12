@@ -35,6 +35,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: Color(0xFFF1F4F8),
       appBar: AppBar(
         backgroundColor: Color(0xFFF1F4F8),
         automaticallyImplyLeading: false,
@@ -112,7 +113,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Color(0xFFF1F4F8),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
@@ -136,41 +136,78 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ],
                 ),
               ),
-              if ((valueOrDefault(currentUserDocument?.role, '')) != 'Admin')
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                  child: AuthUserStreamWidget(
-                    child: StreamBuilder<List<OrdersRecord>>(
-                      stream: queryOrdersRecord(
-                        queryBuilder: (ordersRecord) => ordersRecord
-                            .where('ranger_uid',
-                                isEqualTo: currentUserReference)
-                            .where('scheduled_at',
-                                isGreaterThanOrEqualTo: functions
-                                    .dateStart(FFAppState().filterDate!))
-                            .where('scheduled_at',
-                                isLessThanOrEqualTo:
-                                    functions.dateEnd(FFAppState().filterDate!))
-                            .where('status', whereIn: [
-                              "Confirmed",
-                              "OnTheWay",
-                              "Working",
-                              "Finish"
-                            ])
-                            .orderBy('scheduled_at')
-                            .orderBy('start_time'),
-                        limit: 10,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                child: StreamBuilder<List<OrdersRecord>>(
+                  stream: queryOrdersRecord(
+                    queryBuilder: (ordersRecord) => ordersRecord
+                        .where('ranger_uid', isEqualTo: currentUserReference)
+                        .where('scheduled_at',
+                            isGreaterThanOrEqualTo:
+                                functions.dateStart(FFAppState().filterDate))
+                        .where('scheduled_at',
+                            isLessThanOrEqualTo:
+                                functions.dateEnd(FFAppState().filterDate))
+                        .whereIn('status',
+                            ["Confirmed", "OnTheWay", "Working", "Finish"])
+                        .orderBy('scheduled_at')
+                        .orderBy('start_time'),
+                    limit: 10,
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                          ),
+                        ),
+                      );
+                    }
+                    List<OrdersRecord> listViewOrdersRecordList =
+                        snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewOrdersRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewOrdersRecord =
+                            listViewOrdersRecordList[listViewIndex];
+                        return Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 10),
+                          child: InkWell(
+                            onTap: () async {
+                              context.pushNamed(
+                                'OrderDetail',
+                                queryParams: {
+                                  'order': serializeParam(
+                                    listViewOrdersRecord,
+                                    ParamType.Document,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  'order': listViewOrdersRecord,
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 3,
+                                    color: Color(0x411D2429),
+                                    offset: Offset(0, 1),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(8),
                               ),
                             ),
                           );

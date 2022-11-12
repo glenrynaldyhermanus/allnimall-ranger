@@ -51,6 +51,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
         return Scaffold(
           key: scaffoldKey,
           resizeToAvoidBottomInset: false,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primaryColor,
             automaticallyImplyLeading: true,
@@ -128,7 +129,6 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
             centerTitle: false,
             elevation: 0,
           ),
-          backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
           body: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -241,8 +241,13 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            dateTimeFormat('MMMMEEEEd',
-                                                widget.order!.scheduledAt),
+                                            dateTimeFormat(
+                                              'MMMMEEEEd',
+                                              widget.order!.scheduledAt!,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle1,
@@ -319,32 +324,39 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                           borderRadius:
                                               BorderRadius.circular(16),
                                         ),
-                                        child: FlutterFlowGoogleMap(
-                                          controller: googleMapsController,
-                                          onCameraIdle: (latLng) =>
-                                              googleMapsCenter = latLng,
-                                          initialLocation: googleMapsCenter ??=
-                                              widget.order!.customerLatlng,
-                                          markers: [
-                                            if (widget.order != null)
-                                              FlutterFlowMarker(
-                                                widget.order!.reference.path,
-                                                widget.order!.customerLatlng!,
-                                              ),
-                                          ],
-                                          markerColor: GoogleMarkerColor.violet,
-                                          mapType: MapType.normal,
-                                          style: GoogleMapStyle.standard,
-                                          initialZoom: 14,
-                                          allowInteraction: true,
-                                          allowZoom: true,
-                                          showZoomControls: true,
-                                          showLocation: true,
-                                          showCompass: false,
-                                          showMapToolbar: false,
-                                          showTraffic: false,
-                                          centerMapOnMarkerTap: true,
-                                        ),
+                                        child: Builder(builder: (context) {
+                                          final _googleMapMarker = widget.order;
+                                          return FlutterFlowGoogleMap(
+                                            controller: googleMapsController,
+                                            onCameraIdle: (latLng) =>
+                                                googleMapsCenter = latLng,
+                                            initialLocation:
+                                                googleMapsCenter ??= widget
+                                                    .order!.customerLatlng!,
+                                            markers: [
+                                              if (_googleMapMarker != null)
+                                                FlutterFlowMarker(
+                                                  _googleMapMarker
+                                                      .reference.path,
+                                                  _googleMapMarker
+                                                      .customerLatlng!,
+                                                ),
+                                            ],
+                                            markerColor:
+                                                GoogleMarkerColor.violet,
+                                            mapType: MapType.normal,
+                                            style: GoogleMapStyle.standard,
+                                            initialZoom: 14,
+                                            allowInteraction: true,
+                                            allowZoom: true,
+                                            showZoomControls: true,
+                                            showLocation: true,
+                                            showCompass: false,
+                                            showMapToolbar: false,
+                                            showTraffic: false,
+                                            centerMapOnMarkerTap: true,
+                                          );
+                                        }),
                                       ),
                                     ),
                                     Padding(
@@ -596,9 +608,13 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                             null))
                                                           Text(
                                                             dateTimeFormat(
-                                                                'Hm',
-                                                                orderDetailOrdersRecord
-                                                                    .confirmedAt),
+                                                              'Hm',
+                                                              orderDetailOrdersRecord
+                                                                  .confirmedAt!,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
@@ -714,9 +730,13 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                             null))
                                                           Text(
                                                             dateTimeFormat(
-                                                                'Hm',
-                                                                orderDetailOrdersRecord
-                                                                    .onthewayAt),
+                                                              'Hm',
+                                                              orderDetailOrdersRecord
+                                                                  .onthewayAt!,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
@@ -832,9 +852,13 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                             null))
                                                           Text(
                                                             dateTimeFormat(
-                                                                'Hm',
-                                                                orderDetailOrdersRecord
-                                                                    .workingAt),
+                                                              'Hm',
+                                                              orderDetailOrdersRecord
+                                                                  .workingAt!,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
@@ -950,9 +974,13 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                                             null))
                                                           Text(
                                                             dateTimeFormat(
-                                                                'Hm',
-                                                                orderDetailOrdersRecord
-                                                                    .finishAt),
+                                                              'Hm',
+                                                              orderDetailOrdersRecord
+                                                                  .finishAt!,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme

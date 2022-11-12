@@ -33,6 +33,7 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: true,
@@ -68,7 +69,6 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -179,8 +179,12 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        dateTimeFormat('MMMMEEEEd',
-                                            widget.order!.scheduledAt!),
+                                        dateTimeFormat(
+                                          'MMMMEEEEd',
+                                          widget.order!.scheduledAt!,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle1,
@@ -254,32 +258,35 @@ class _RequestDetailWidgetState extends State<RequestDetailWidget> {
                                       color: Color(0xFFEEEEEE),
                                       borderRadius: BorderRadius.circular(16),
                                     ),
-                                    child: FlutterFlowGoogleMap(
-                                      controller: googleMapsController,
-                                      onCameraIdle: (latLng) =>
-                                          googleMapsCenter = latLng,
-                                      initialLocation: googleMapsCenter ??=
-                                          widget.order!.customerLatlng!,
-                                      markers: [
-                                        if (widget.order != null)
-                                          FlutterFlowMarker(
-                                            widget.order!.reference.path,
+                                    child: Builder(builder: (context) {
+                                      final _googleMapMarker = widget.order;
+                                      return FlutterFlowGoogleMap(
+                                        controller: googleMapsController,
+                                        onCameraIdle: (latLng) =>
+                                            googleMapsCenter = latLng,
+                                        initialLocation: googleMapsCenter ??=
                                             widget.order!.customerLatlng!,
-                                          ),
-                                      ],
-                                      markerColor: GoogleMarkerColor.violet,
-                                      mapType: MapType.normal,
-                                      style: GoogleMapStyle.standard,
-                                      initialZoom: 14,
-                                      allowInteraction: true,
-                                      allowZoom: true,
-                                      showZoomControls: true,
-                                      showLocation: true,
-                                      showCompass: false,
-                                      showMapToolbar: false,
-                                      showTraffic: false,
-                                      centerMapOnMarkerTap: true,
-                                    ),
+                                        markers: [
+                                          if (_googleMapMarker != null)
+                                            FlutterFlowMarker(
+                                              _googleMapMarker.reference.path,
+                                              _googleMapMarker.customerLatlng!,
+                                            ),
+                                        ],
+                                        markerColor: GoogleMarkerColor.violet,
+                                        mapType: MapType.normal,
+                                        style: GoogleMapStyle.standard,
+                                        initialZoom: 14,
+                                        allowInteraction: true,
+                                        allowZoom: true,
+                                        showZoomControls: true,
+                                        showLocation: true,
+                                        showCompass: false,
+                                        showMapToolbar: false,
+                                        showTraffic: false,
+                                        centerMapOnMarkerTap: true,
+                                      );
+                                    }),
                                   ),
                                 ),
                                 Padding(

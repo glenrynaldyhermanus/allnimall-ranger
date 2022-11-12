@@ -15,9 +15,9 @@ class NomanWidget extends StatefulWidget {
 }
 
 class _NomanWidgetState extends State<NomanWidget> {
-  late final StopWatchTimer timerController;
-  late String timerValue;
-  late int timerMilliseconds;
+  StopWatchTimer? timerController;
+  String? timerValue;
+  int? timerMilliseconds;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -25,40 +25,17 @@ class _NomanWidgetState extends State<NomanWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      timerController.onExecute.add(
+      timerController?.onExecute.add(
         StopWatchExecute.start,
       );
     });
 
-    timerMilliseconds = 180000;
-    timerValue = StopWatchTimer.getDisplayTime(
-      0,
-      hours: true,
-      minute: true,
-      second: true,
-      milliSecond: false,
-    );
-    timerController = StopWatchTimer(
-      mode: StopWatchMode.countDown,
-      presetMillisecond: 180000,
-      onChange: (value) {
-        setState(() {
-          timerMilliseconds = value;
-          timerValue = StopWatchTimer.getDisplayTime(
-            value,
-            hours: true,
-            minute: true,
-            second: true,
-            milliSecond: false,
-          );
-        });
-      },
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    timerController.dispose();
+    timerController?.dispose();
     super.dispose();
   }
 
@@ -66,6 +43,7 @@ class _NomanWidgetState extends State<NomanWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: false,
@@ -94,7 +72,6 @@ class _NomanWidgetState extends State<NomanWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -140,8 +117,32 @@ class _NomanWidgetState extends State<NomanWidget> {
                                       ),
                                 ),
                                 FlutterFlowTimer(
-                                  timerValue: timerValue,
-                                  timer: timerController,
+                                  timerValue: timerValue ??=
+                                      StopWatchTimer.getDisplayTime(
+                                    timerMilliseconds ??= 180000,
+                                    hours: true,
+                                    minute: true,
+                                    second: true,
+                                    milliSecond: false,
+                                  ),
+                                  timer: timerController ??= StopWatchTimer(
+                                    mode: StopWatchMode.countDown,
+                                    presetMillisecond: timerMilliseconds ??=
+                                        180000,
+                                    onChange: (value) {
+                                      setState(() {
+                                        timerMilliseconds = value;
+                                        timerValue =
+                                            StopWatchTimer.getDisplayTime(
+                                          value,
+                                          hours: true,
+                                          minute: true,
+                                          second: true,
+                                          milliSecond: false,
+                                        );
+                                      });
+                                    },
+                                  ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
