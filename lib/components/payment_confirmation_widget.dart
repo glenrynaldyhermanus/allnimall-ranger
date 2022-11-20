@@ -156,7 +156,7 @@ class _PaymentConfirmationWidgetState extends State<PaymentConfirmationWidget> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
-                    child: FlutterFlowDropDown(
+                    child: FlutterFlowDropDown<String>(
                       options: ['Transfer Bank Mandiri', 'Transfer Bank BCA'],
                       onChanged: (val) => setState(() => timeListValue = val),
                       height: 50,

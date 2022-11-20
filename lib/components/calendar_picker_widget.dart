@@ -71,7 +71,7 @@ class _CalendarPickerWidgetState extends State<CalendarPickerWidget> {
                     onPressed: () async {
                       setState(() =>
                           FFAppState().filterDate = calendarSelectedDay?.end);
-                      context.pop();
+                      Navigator.pop(context);
                     },
                     text: 'Pilih',
                     options: FFButtonOptions(
