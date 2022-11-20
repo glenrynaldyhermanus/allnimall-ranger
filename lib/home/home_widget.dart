@@ -44,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                functions.titleByDate(FFAppState().filterDate!),
+                functions.titleByDate(FFAppState().filterDate ??  DateTime.now()),
                 style: FlutterFlowTheme.of(context).title1.override(
                   fontFamily: 'Outfit',
                   color: Color(0xFF0F1113),
