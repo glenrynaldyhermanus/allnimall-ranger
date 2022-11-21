@@ -50,10 +50,9 @@ String generateOrderNo() {
 String titleByDate(DateTime date) {
   DateTime now = DateTime.now();
   var days = 0;
-  if(date == null){
-    date = DateTime.now();
-  }
   days = (date.difference(now).inHours / 24).round();
+
+  print(date);
 
   if (days == 0) {
     return "Hari Ini";

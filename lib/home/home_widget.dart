@@ -125,7 +125,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'Jadwal kamu hari ${functions.localDateString(FFAppState().filterDate!)}',
+                      'Jadwal kamu hari ${functions.localDateString(FFAppState().filterDate ?? DateTime.now())}',
                       style: FlutterFlowTheme.of(context).bodyText2.override(
                         fontFamily: 'Outfit',
                         color: Color(0xFF57636C),
@@ -368,10 +368,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         queryBuilder: (ordersRecord) => ordersRecord
                             .where('scheduled_at',
                             isGreaterThanOrEqualTo: functions
-                                .dateStart(FFAppState().filterDate!))
+                                .dateStart(FFAppState().filterDate ?? DateTime.now()))
                             .where('scheduled_at',
                             isLessThanOrEqualTo:
-                            functions.dateEnd(FFAppState().filterDate!))
+                            functions.dateEnd(FFAppState().filterDate ?? DateTime.now()))
                             .where('status', whereIn: [
                           "Confirmed",
                           "OnTheWay",
