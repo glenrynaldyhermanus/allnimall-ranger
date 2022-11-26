@@ -60,7 +60,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   size: 30,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  Navigator.of(context).pop();
                 },
               ),
             ],

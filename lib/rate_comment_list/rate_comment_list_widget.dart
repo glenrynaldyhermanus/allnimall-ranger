@@ -198,6 +198,8 @@ class _RateCommentListWidgetState extends State<RateCommentListWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ],
                                           ),

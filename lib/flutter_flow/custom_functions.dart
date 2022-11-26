@@ -81,7 +81,11 @@ double countRating(List<RatingsRecord> rateList) {
     rate += ratings.rate!;
   }
 
-  return rate / rateList.length;
+  rate = rate / rateList.length;
+
+  String inString = rate.toStringAsFixed(1); // '2.35'
+  double inDouble = double.parse(inString); // 2.35
+  return inDouble;
 }
 
 bool isOnQuery(

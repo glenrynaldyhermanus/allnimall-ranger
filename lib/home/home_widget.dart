@@ -147,10 +147,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                             isEqualTo: currentUserReference)
                             .where('scheduled_at',
                             isGreaterThanOrEqualTo: functions
-                                .dateStart(FFAppState().filterDate!))
+                                .dateStart(FFAppState().filterDate ?? DateTime.now()))
                             .where('scheduled_at',
                             isLessThanOrEqualTo:
-                            functions.dateEnd(FFAppState().filterDate!))
+                            functions.dateEnd(FFAppState().filterDate ?? DateTime.now()))
                             .where('status', whereIn: [
                           "Confirmed",
                           "OnTheWay",
