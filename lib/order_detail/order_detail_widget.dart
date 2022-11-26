@@ -148,28 +148,23 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                             ),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
+                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          widget.order!.name!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .title3
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
+                                    child: Text(
+                                      widget.order!.name!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .title3
+                                          .override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   Padding(
@@ -270,18 +265,11 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           20, 10, 20, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            widget.order!.service!,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .subtitle1,
-                                          ),
-                                        ],
+                                      child:Text(
+                                        widget.order!.service!,
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1,
                                       ),
                                     ),
                                     Padding(
